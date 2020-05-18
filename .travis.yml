@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '12'
+before_install:
+- npm install -g @angular/cli
+install: npm install
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  app: real-super-cool-modern-app-wfh
+  api_key:
+    secure: URz87oEA1TiiJ2uU5JfAAD49FR4Oh+UgxAiRnHLox0t/VqFFw72MgZldcpaRgSSicwb6JmB6JebkUjZkjdnnsxyiAb+WXahzrrvT1xDBcFRublaW7xquJP+Gyl+C674eTMKQUg5Nc76CqjINh15uzsyNWZiTfHMknpwrykOiiKOEwdEQSPxzKbNglR/CmOnA8FwkCRx/87THPleY3eTiqhP0uDl4qnYEniV4v8V8BL5T7lz+mHdXLuEQ8TKhVvSDCNHDD98wQAgtOFQlJIqgNLeg45emgPIvbwtDyOg42/Xs2PFws722qs7RCX65bq6yi2CJMDpIQ9yWQEHnNzl/7NJ6UrF8OcDi72exbUkideIVzdju4RPMpndo0Viz38WnaBc5Ti9RBYDATCE1BCFE4X3P4WGGX1Oa8B4EkfuZBtHhUHrwiIO00trr2rH7wTjBY9P51v/iEDzC4mj2H2Wbd/JGzF4uwfjGhtCtJrwqnALs2P0+hmfdgXTJmXEn2vaGjtYjQb67ZdrDG7K+lrcErutXC/+kXpb2Ok0g8c4pSfbyXvY/yUVV6qFgcOYIQZQfZ22QZx32ny7LSi1HzNayLgdXM9HWODodnlx5ekV4+6uRNCkVVeWQHK06fnGhoK47JOdZ3JN+H4+EYaDHoBm4vuBE0HowL5PLWet7XHseD2Y=
