@@ -1,0 +1,63 @@
+.login {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  overflow: hidden;
+
+  &__title {
+    margin: 1rem;
+    text-align: center;
+  }
+
+  &__container {
+    width: 40%;
+    margin: 5% auto;
+    border-radius: 10px;
+  }
+
+  .signin {
+    &__list {
+      margin-top: 1.5rem;
+    }
+    &__item {
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+    &__checkbox {
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+    &__button {
+      margin-top: 1.5rem;
+      display: block;
+      width: 80%;
+      margin: 1rem auto;
+    }
+  }
+
+  .signup {
+    &__list {
+      margin-top: 20px;
+    }
+    &__item {
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+    &__button {
+      margin-top: 20px;
+      display: block;
+      width: 80%;
+      margin: 1rem auto;
+    }
+  }
+}
+
+.icon {
+  color: grey;
+}
