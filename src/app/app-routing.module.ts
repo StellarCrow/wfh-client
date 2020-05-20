@@ -1,12 +1,22 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginFormComponent } from "./components/login-form/login-form.component";
-import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from "./components/home/home.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { AuthGuard } from "./core/guards/auth.guard";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: "",
+    loadChildren: () =>
+      import("./modules/home/home.module").then(m => m.HomeModule)
+  },
+  {
+    path: "game",
+    loadChildren: () =>
+      import("./modules/game/game.module").then(m => m.GameModule)
+  },
+  // { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginFormComponent },
   { path: "home", component: HomeComponent },
   { path: "**", component: NotFoundComponent }

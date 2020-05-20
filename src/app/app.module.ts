@@ -5,8 +5,9 @@ import { MaterialModule } from "./core/material/material";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
 import { LoginFormComponent } from "./components/login-form/login-form.component";
 
 import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
@@ -26,6 +27,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CoreModule,
     MaterialModule,
     HttpClientModule,
     FormsModule,
