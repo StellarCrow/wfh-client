@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginFormComponent } from "./components/login-form/login-form.component";
-import { HomeComponent } from "./components/home/home.component";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { LoginFormComponent } from "./modules/home/components/login-form/login-form.component";
+import { WelcomeComponent } from "./modules/home/components/welcome/welcome.component";
+import { NotFoundComponent } from "./modules/home/components/not-found/not-found.component";
 import { AuthGuard } from "./core/guards/auth.guard";
 
 const routes: Routes = [
@@ -16,9 +16,9 @@ const routes: Routes = [
     loadChildren: () =>
       import("./modules/game/game.module").then(m => m.GameModule)
   },
-  // { path: "", component: HomeComponent, canActivate: [AuthGuard] },
+  // { path: "", component: WelcomeComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginFormComponent },
-  { path: "home", component: HomeComponent },
+  { path: "welcome", component: WelcomeComponent },
   { path: "**", component: NotFoundComponent }
 ];
 

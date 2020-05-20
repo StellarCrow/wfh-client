@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
-import { AuthService } from "./../../core/services/auth/auth.service";
-import { AlertService } from "./../../core/services/alert/alert.service";
+import { AuthService } from "../../../../core/services/auth/auth.service";
+import { AlertService } from "../../../../core/services/alert/alert.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 
 @Component({
@@ -122,7 +122,7 @@ export class LoginFormComponent implements OnInit {
             this.alertService.error(data.error.message);
           } else {
             // this.router.navigate([this.returnUrl]);
-            this.router.navigate(["home"]);
+            this.router.navigate(["welcome"]);
           }
         },
         error => {
