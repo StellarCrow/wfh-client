@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
-import { IUser } from "./../../core/models/user";
 import { AuthService } from "./../../core/service/auth/auth.service";
 import { AlertService } from "./../../core/service/alert/alert.service";
+import { MatTabChangeEvent } from "@angular/material/tabs";
 
 @Component({
   selector: "app-login-form",
@@ -13,11 +13,11 @@ import { AlertService } from "./../../core/service/alert/alert.service";
 })
 export class LoginFormComponent implements OnInit {
   registerForm: FormGroup;
+  loginForm: FormGroup;
   loading = false;
   submitted = false;
-
-  loginForm: FormGroup;
   returnUrl: string;
+  selectedTabIndex: number;
 
   constructor(
     private formBuilderLogin: FormBuilder,
@@ -27,6 +27,7 @@ export class LoginFormComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService
   ) {
+    this.selectedTabIndex = 1;
     if (this.authService.currentUserValue) {
       this.router.navigate(["/"]);
     }
@@ -38,7 +39,7 @@ export class LoginFormComponent implements OnInit {
       password: ["", Validators.required]
     });
 
-    // this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
 
     this.registerForm = this.formBuilderRegister.group({
       firstName: ["", Validators.required],
@@ -68,14 +69,27 @@ export class LoginFormComponent implements OnInit {
     }
 
     console.log("register");
-    this.loading = true;
+    // this.loading = true;
     this.authService
       .register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success("Registration successful", true);
-          this.router.navigate(["/login"]);
+          if (!data.succes) {
+            this.alertService.error(data.error.message);
+          } else {
+            this.alertService.success("Registration successful", true);
+            //this.router.navigate(["/"]);
+            this.selectedTabIndex = 0;
+
+            //TODO move to separate method
+            this.registerForm = this.formBuilderRegister.group({
+              firstName: ["", Validators.required],
+              lastName: ["", Validators.required],
+              email: ["", Validators.required],
+              password: ["", [Validators.required, Validators.minLength(6)]]
+            });
+          }
         },
         error => {
           this.alertService.error(error);
@@ -95,9 +109,7 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    console.log("start login");
-
-    this.loading = true;
+    // this.loading = true;
     this.authService
       .login(
         this.getLoginControls.email.value,
@@ -106,7 +118,11 @@ export class LoginFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          if (!data.succes) {
+            this.alertService.error(data.error.message);
+          } else {
+            this.router.navigate([this.returnUrl]);
+          }
         },
         error => {
           this.alertService.error(error);
@@ -114,4 +130,6 @@ export class LoginFormComponent implements OnInit {
         }
       );
   }
+
+  tabChanged(event: MatTabChangeEvent) {}
 }

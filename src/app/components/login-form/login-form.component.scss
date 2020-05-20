@@ -14,7 +14,7 @@
 
   &__container {
     width: 40%;
-    margin: 5% auto;
+    margin: 10% auto;
     border-radius: 10px;
   }
 
@@ -23,11 +23,6 @@
       margin-top: 1.5rem;
     }
     &__item {
-      width: 80%;
-      display: block;
-      margin: auto;
-    }
-    &__checkbox {
       width: 80%;
       display: block;
       margin: auto;
@@ -42,7 +37,7 @@
 
   .signup {
     &__list {
-      margin-top: 20px;
+      margin-top: 1rem;
     }
     &__item {
       width: 80%;
@@ -59,5 +54,5 @@
 }
 
 .icon {
-  color: grey;
+  color: #787878;
 }

@@ -24,7 +24,12 @@ export class AuthService {
   }
 
   register(user: IUser) {
-    return this.http.post(`${apiUrl}/auth/register`, user);
+    return this.http.post<any>(`${apiUrl}/auth/register`, user)
+    .pipe(
+      map(user => {
+        return user;
+      })
+    );
   }
 
   login(email, password) {

@@ -1,7 +1,8 @@
 <div class="login">
+    <alert></alert>
     <mat-card class="login__container">
         <mat-card-title class="login__title">Sign In / Sign Up</mat-card-title>
-        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="tabChanged($event)">
             <mat-tab class="login__signin signin" label="Sign In">
                 <mat-card-content class="signin__list">
                     <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -26,15 +27,12 @@
                             <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
                         </mat-form-field>
 
-                        <mat-checkbox class="signin__checkbox checkbox">Remember Me!</mat-checkbox>
                         <button mat-raised-button color="primary" class="signin__button button" [disabled]="loading">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            <span *ngIf="loading"></span>
                             Sign In
                         </button>
 
-                        <button mat-raised-button class="signin__button button">
-                            Login with Google
-                        </button>
+
                     </form>
                 </mat-card-content>
             </mat-tab>
@@ -78,65 +76,19 @@
                         </mat-form-field>
 
 
-                        <mat-form-field class="signup__item">
+                        <!-- <mat-form-field class="signup__item">
                             <input matInput class="signup__password" placeholder="Password" type="password" required
                                 minlength="6" name="repassword">
-                            <!-- <mat-error *ngIf="repassword.errors && repassword.errors.required">
+                            <mat-error *ngIf="getRegisterControls.repassword.errors && getRegisterControls.repassword.errors.required">
                                 Re-Enter Password is required
-                            </mat-error> -->
+                            </mat-error>
                             <mat-icon matSuffix class="signup__password-icon icon">lock</mat-icon>
-                        </mat-form-field>
+                        </mat-form-field> -->
                         <button mat-raised-button color="primary" class="signup__button button" [disabled]="loading">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            <span *ngIf="loading"></span>
                             Sign Up
                         </button>
                     </form>
-
-
-                    <!-- <h2>Register</h2>
-                    <form [formGroup]="registerForm" (ngSubmit)="register()">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" formControlName="firstName" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && getRegisterControls.firstName.errors }" />
-                            <div *ngIf="submitted && getRegisterControls.firstName.errors" class="invalid-feedback">
-                                <div *ngIf="getRegisterControls.firstName.errors.required">First Name is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" formControlName="lastName" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && getRegisterControls.lastName.errors }" />
-                            <div *ngIf="submitted && getRegisterControls.lastName.errors" class="invalid-feedback">
-                                <div *ngIf="getRegisterControls.lastName.errors.required">Last Name is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Username</label>
-                            <input type="text" formControlName="email" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && getRegisterControls.email.errors }" />
-                            <div *ngIf="submitted && getRegisterControls.email.errors" class="invalid-feedback">
-                                <div *ngIf="getRegisterControls.email.errors.required">email is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" formControlName="password" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && getRegisterControls.password.errors }" />
-                            <div *ngIf="submitted && getRegisterControls.password.errors" class="invalid-feedback">
-                                <div *ngIf="getRegisterControls.password.errors.required">Password is required</div>
-                                <div *ngIf="getRegisterControls.password.errors.minlength">Password must be at least 6 characters</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button [disabled]="loading" class="btn btn-primary">
-                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                                Register
-                            </button>
-                            <a routerLink="/login" class="btn btn-link">Cancel</a>
-                        </div>
-                    </form> -->
-
 
                 </mat-card-content>
             </mat-tab>
