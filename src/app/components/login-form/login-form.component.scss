@@ -27,6 +27,12 @@
       display: block;
       margin: auto;
     }
+    &__message {
+      width: 80%;
+      display: block;
+      color: #787878;
+      margin: 1rem auto;
+    }
     &__button {
       margin-top: 1.5rem;
       display: block;
@@ -44,8 +50,14 @@
       display: block;
       margin: auto;
     }
+    &__message {
+      width: 80%;
+      display: block;
+      color: #787878;
+      margin: 1rem auto;
+    }
     &__button {
-      margin-top: 20px;
+      margin-top: 1.5rem;
       display: block;
       width: 80%;
       margin: 1rem auto;

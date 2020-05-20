@@ -1,0 +1,11 @@
+.alert {
+    text-align: center;
+    margin: 1rem auto;
+    width: 80%;
+  &__danger {
+    color: red;
+  }
+  &__success {
+    color: green;
+  }
+}

@@ -9,8 +9,8 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginFormComponent } from "./components/login-form/login-form.component";
 
-import { ErrorInterceptor } from "./core/helpers/error.interceptor";
-import { JwtInterceptor } from "./core/helpers/jwt.interceptor";
+import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
+import { JwtInterceptor } from "./core/interceptors/jwt.interceptor";
 import { AlertComponent } from "./components/alert/alert.component";
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';

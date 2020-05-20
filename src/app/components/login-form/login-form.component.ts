@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
-import { AuthService } from "./../../core/service/auth/auth.service";
-import { AlertService } from "./../../core/service/alert/alert.service";
+import { AuthService } from "./../../core/services/auth/auth.service";
+import { AlertService } from "./../../core/services/alert/alert.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 
 @Component({
@@ -39,7 +39,7 @@ export class LoginFormComponent implements OnInit {
       password: ["", Validators.required]
     });
 
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    // this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
 
     this.registerForm = this.formBuilderRegister.group({
       firstName: ["", Validators.required],
@@ -75,11 +75,11 @@ export class LoginFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if (!data.succes) {
+          if (!data.success) {
             this.alertService.error(data.error.message);
           } else {
+            console.log("success");
             this.alertService.success("Registration successful", true);
-            //this.router.navigate(["/"]);
             this.selectedTabIndex = 0;
 
             //TODO move to separate method
@@ -118,10 +118,11 @@ export class LoginFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if (!data.succes) {
+          if (!data.success) {
             this.alertService.error(data.error.message);
           } else {
-            this.router.navigate([this.returnUrl]);
+            // this.router.navigate([this.returnUrl]);
+            this.router.navigate(["home"]);
           }
         },
         error => {

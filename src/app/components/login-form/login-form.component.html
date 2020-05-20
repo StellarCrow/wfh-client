@@ -1,15 +1,14 @@
 <div class="login">
-    <alert></alert>
     <mat-card class="login__container">
         <mat-card-title class="login__title">Sign In / Sign Up</mat-card-title>
-        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="tabChanged($event)">
+        <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="tabChanged($event)">
             <mat-tab class="login__signin signin" label="Sign In">
                 <mat-card-content class="signin__list">
                     <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <mat-form-field class="signin__item">
                             <input matInput formControlName="email" class="signin__email" placeholder="Email" required
                                 name="email" type="email">
-                            <mat-error *ngIf="getLoginControls.email.invalid">Email is required</mat-error>
+                            <mat-error *ngIf="getLoginControls.email.invalid">Email is required (name@example.com)</mat-error>
                             <mat-icon matSuffix class="signin__mail-icon icon">email</mat-icon>
                         </mat-form-field>
 
@@ -22,11 +21,11 @@
                             </mat-error>
                             <mat-error
                                 *ngIf="getLoginControls.password.errors && getLoginControls.password.errors.minlength">
-                                Password must be of length 6
+                                Password must be at least 6 characters long with 1 symbol
                             </mat-error>
                             <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
                         </mat-form-field>
-
+                        <small class="signin__message">* - field is required</small>
                         <button mat-raised-button color="primary" class="signin__button button" [disabled]="loading">
                             <span *ngIf="loading"></span>
                             Sign In
@@ -57,7 +56,7 @@
                         <mat-form-field class="signup__item">
                             <input matInput formControlName="email" class="signup__email" placeholder="Email" required
                                 name="email">
-                            <mat-error *ngIf="getRegisterControls.email.invalid">Email is required</mat-error>
+                            <mat-error *ngIf="getRegisterControls.email.invalid">Email is required (name@example.com)</mat-error>
                             <mat-icon matSuffix class="signup__password-icon icon">email</mat-icon>
                         </mat-form-field>
 
@@ -70,20 +69,12 @@
                             </mat-error>
                             <mat-error
                                 *ngIf="getRegisterControls.password.errors && getRegisterControls.password.errors.minlength">
-                                Password must be at least 6 characters
+                                Password must be at least 6 characters long with 1 symbol 
                             </mat-error>
                             <mat-icon matSuffix class="signup__password-icon icon">lock</mat-icon>
                         </mat-form-field>
+                        <small class="signup__message">* - field is required</small>
 
-
-                        <!-- <mat-form-field class="signup__item">
-                            <input matInput class="signup__password" placeholder="Password" type="password" required
-                                minlength="6" name="repassword">
-                            <mat-error *ngIf="getRegisterControls.repassword.errors && getRegisterControls.repassword.errors.required">
-                                Re-Enter Password is required
-                            </mat-error>
-                            <mat-icon matSuffix class="signup__password-icon icon">lock</mat-icon>
-                        </mat-form-field> -->
                         <button mat-raised-button color="primary" class="signup__button button" [disabled]="loading">
                             <span *ngIf="loading"></span>
                             Sign Up
@@ -93,5 +84,6 @@
                 </mat-card-content>
             </mat-tab>
         </mat-tab-group>
+        <alert></alert>
     </mat-card>
 </div>
