@@ -1,7 +1,7 @@
 @import "./../../../../../styles.scss";
 
 .header {
-  background-color: $primary-color;
+  background-color: $black;
   opacity: 0.8;
   border-bottom: 1px solid $grey-medium;
   font-size: 1.2rem;
@@ -28,11 +28,10 @@
   justify-content: space-around;
   flex-wrap: wrap;
   &__item {
-    color: $black;
+    color: $white;
     padding: 1.5rem 1rem;
     &:hover {
-      font-weight: bold;
-      text-decoration: underline;
+      color: $secondary-color;
     }
   }
 }
