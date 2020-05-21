@@ -1,0 +1,14 @@
+<div class="canvas-wrapper">
+    <app-pencil-colors (setPencilColor)="onSetPencilColor($event)"></app-pencil-colors>
+    <canvas class="canvas" #canvas 
+        (mousemove)="mouseMove($event)" 
+        (mousedown)="mouseDown($event)"
+        (mouseup)="mouseUp()" 
+        (mouseleave)="mouseLeave()"></canvas>
+    <app-canvas-background (setCanvasBg)="onSetCanvasBg($event)"></app-canvas-background>
+
+    <div class="canvas-controls">
+        <button class="canvas-controls__btn-undo" (click)="undo()">undo</button>
+        <button type="submit" class="canvas-controls__btn-submit">submit</button>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+.canvas-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.canvas {
+    display: block;
+    // cursor: url(/assets/pencil.png) 1 22, auto;
+}
+
+.canvas-controls {
+    display: flex;
+    justify-content: flex-end;
+
+    &__btn-undo {
+        width: 42px;
+        background-color: #b5b5b5;
+        // background-image: url("/assets/directional.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 40%;
+        font-size: 0;
+        margin-right: 10px;
+        border-radius: 14px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    &__btn-submit {
+        background-color: #abe9a1;
+        padding: 6px 14px;
+        border-radius: 14px;
+        border: none;
+        cursor: pointer;
+    }
+}
