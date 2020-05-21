@@ -2,23 +2,22 @@
 
 .header {
   background-color: $primary-color;
-  color: $black;
   opacity: 0.8;
   border-bottom: 1px solid $grey-medium;
-  font-weight: bold;
+  font-size: 1.2rem;
   &__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
-    padding: 1rem;
+    padding: 0.2rem;
   }
   &__logo {
     margin: 0.5rem;
   }
   .logo {
     &__image {
-      width: 100%;
+      width: 70px;
     }
   }
 }
@@ -29,17 +28,11 @@
   justify-content: space-around;
   flex-wrap: wrap;
   &__item {
-    padding: 0.5rem;
+    color: $black;
+    padding: 1.5rem 1rem;
     &:hover {
-      color: $secondary-color;
-    }
-  }
-  &__button {
-    background: #90ee90;
-    border-radius: 5px;
-    padding: .5rem;
-    &:hover {
-      background-color: $secondary-color;
+      font-weight: bold;
+      text-decoration: underline;
     }
   }
 }

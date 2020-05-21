@@ -2,19 +2,15 @@
     <div class="block">
         <div class="header__list">
             <a class="header__logo logo" [routerLink]="['/welcome']">
-                <img class="logo__image" src="#" alt="logo" />
+                <img class="logo__image" src="./../../../../../assets/logo.png" alt="logo" />
             </a>
             <nav class="navbar">
                 <div class="navbar__item">
-                    <a class="navbar__link">Home</a>
+                    <a class="navbar__link" [routerLink]="['/about']">About</a>
                 </div>
+
                 <div class="navbar__item">
-                    <a class="navbar__link">About</a>
-                </div>
-                <div class="navbar__item">
-                    <a class="navbar__link" (click)="logout()">
-                        <button class="navbar__button button">Logout</button>
-                    </a>
+                    <a class="navbar__link" (click)="logout()">Logout</a>
                 </div>
             </nav>
         </div>

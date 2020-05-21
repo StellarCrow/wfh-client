@@ -11,6 +11,12 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
 .button {
   text-transform: uppercase;
   display: flex;
@@ -20,8 +26,4 @@ body {
   transition: all ease 0.2s;
   font-weight: bold;
   outline: none;
-}
-
-img {
-  max-width: 100%;
 }
