@@ -1,0 +1,26 @@
+.form {
+  &__field {
+    width: 100%;
+  }
+
+  &__button {
+    width: 100%;
+    background-color: aquamarine;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.3em;
+    outline: none;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 5px #d0d2d6;
+      transition: 0.3s ease;
+      background-color: #57ffb6;
+    }
+  }
+}

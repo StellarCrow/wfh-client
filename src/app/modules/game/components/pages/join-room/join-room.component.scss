@@ -1,0 +1,28 @@
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.page {
+  background: url(/assets/backgrounds/join-room-bg.png) no-repeat center top / cover;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+
+  &__content {
+    background: #ffffff;
+    padding: 5% 4%;
+    width: 40%;
+    box-sizing: border-box;
+    border-radius: 2em;
+    margin: auto;
+    margin-left: 5%;
+  }
+}
+
+.content {
+  &__header {
+    font-weight: bold;
+    font-size: 2.5em;
+  }
+}
