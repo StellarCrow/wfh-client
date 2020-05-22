@@ -1,21 +1,23 @@
 language: node_js
 node_js:
 - '12'
-sources:
-- google-chrome
-packages:
-- google-chrome-stable
+
+
+addons:
+  chrome: stable
+
+
 before_install:
 - npm install -g @angular/cli
 install: npm install
-before_script:
-  - export CHROME_BIN=chromium-browser
+
 script:
   - npm run test --watch=false --browsers=ChromeHeadlessNoSandbox
-  - npm run build
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
 branches:
   only:
-  - feature/Travis_tests
+  - feature/Travis_tests  
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
