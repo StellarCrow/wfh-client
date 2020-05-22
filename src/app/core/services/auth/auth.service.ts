@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { IUser } from "./../../../shared/interfaces/user";
-import { apiUrl } from "./../../../../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IUser } from './../../../shared/interfaces/user';
+import { apiUrl } from './../../../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<IUser>;
@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<IUser>(
-      JSON.parse(localStorage.getItem("currentUser"))
+      JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -37,7 +37,7 @@ export class AuthService {
       .post<any>(`${apiUrl}/auth/login`, { email, password })
       .pipe(
         map(user => {
-          localStorage.setItem("currentUser", JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 }
