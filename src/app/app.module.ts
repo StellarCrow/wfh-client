@@ -7,18 +7,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { LoginFormComponent } from "./modules/home/components/login-form/login-form.component";
 import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 import { JwtInterceptor } from "./core/interceptors/jwt.interceptor";
-import { AlertComponent } from "./modules/home/components/alert/alert.component";
 import { NotFoundComponent } from './modules/home/components/not-found/not-found.component';
-import { HomeModule } from './modules/home/home.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
-    AlertComponent,
     NotFoundComponent
   ],
   imports: [
@@ -26,11 +22,7 @@ import { HomeModule } from './modules/home/home.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    MaterialModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HomeModule
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -13,7 +13,7 @@ export class HeaderComponent {
   currentUser: IUser;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.currentUser.subscribe(x => (this.currentUser = x));
+    this.authService.currentUser.subscribe(user => (this.currentUser = user));
   }
 
   logout() {
