@@ -1,0 +1,20 @@
+// screen-size
+$desktop: 1060px;
+$tablets: 768px;
+$phones: 480px;
+
+$screen-height-phones: calc(150vh - 50px);
+$header-height-desktops: 60px;
+$header-height-phones: 50px;
+$screen-height-desktops: calc(100vh - 60px);
+$screen-height-tablets: calc(100vh - 60px);
+
+// colors
+$background-header: #222222;
+$primary-color: #d5f9f6;
+$secondary-color: #ffb38a;
+$tertiaty-color: #b1ffc2;
+$grey-dark: #787878;
+$grey-medium: #ccc;
+$black: #000;
+$white: #fff;
