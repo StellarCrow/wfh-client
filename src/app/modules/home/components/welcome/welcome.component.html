@@ -1,6 +1,7 @@
-<nav class="navbar" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link">Home</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+<div class="welcome">
+    <app-header></app-header>
+    <div class="welcome__container">
+        <div class="welcome__title">Welcome to <span class="welcome__name">PFH</span></div>
+        <button class="welcome__game-button button">Play</button>
     </div>
-</nav>
+</div>

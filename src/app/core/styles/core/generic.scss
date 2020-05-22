@@ -2,13 +2,19 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
 }
 
 .button {
@@ -20,8 +26,4 @@ body {
   transition: all ease 0.2s;
   font-weight: bold;
   outline: none;
-}
-
-img {
-  max-width: 100%;
 }
