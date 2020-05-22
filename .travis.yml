@@ -1,12 +1,16 @@
 language: node_js
 node_js:
 - '12'
+sources:
+- google-chrome
+packages:
+- google-chrome-stable
 before_install:
 - npm install -g @angular/cli
 install: npm install
 script:
   - npm run test --watch=false --browsers=ChromeHeadlessNoSandbox
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - npm run build
 branches:
   only:
   - feature/Travis_tests
