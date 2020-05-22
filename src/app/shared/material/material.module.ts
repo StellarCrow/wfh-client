@@ -1,21 +1,44 @@
 import { NgModule } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
-
-const components = [
-  MatInputModule,
-  MatSidenavModule,
-  MatFormFieldModule,
-  MatIconModule
-];
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [],
-  imports: [...components],
-  exports: [...components],
+  imports: [
+    FormsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatSidenavModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+  ],
+  exports: [
+    FormsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatSidenavModule,
+    MatFormFieldModule
+  ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}
