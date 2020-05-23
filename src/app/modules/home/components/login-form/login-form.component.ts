@@ -1,30 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component,  OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {takeUntil} from 'rxjs/operators';
 import {AuthService} from '../../../../core/services/auth.service';
 import {AlertService} from '../../../../core/services/alert.service';
 import {MatTabChangeEvent} from '@angular/material/tabs';
-import {IloginResponse} from '../../../../shared/interfaces/ilogin-response';
+import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
 import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {Subject, } from 'rxjs';
-import {IUser} from '../../../../shared/interfaces/user';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit, OnDestroy {
+export class LoginFormComponent implements OnInit {
   public registerForm: FormGroup;
   public loginForm: FormGroup;
   public loading = false;
   public submitted = false;
   public returnUrl: string;
   public selectedTabIndex: number;
-  private currentUser: IUser;
-  private notifier = new Subject();
 
   constructor(
     private formBuilderLogin: FormBuilder,
@@ -36,10 +31,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     private dataStore: DataStoreService,
   ) {
     this.selectedTabIndex = 1;
-    this.dataStore.getCurrentUser()
-      .pipe(takeUntil(this.notifier))
-      .subscribe((user: IUser) => this.currentUser = user);
-    if (this.currentUser) {
+
+    if (this.dataStore.getCurrentUser()) {
       this.router.navigate(['/']);
     }
   }
@@ -106,11 +99,12 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     }
     this.authService.loginUser(email, password)
       .subscribe(
-        (data: IloginResponse) => {
+        (data: ILoginResponse) => {
           if (!data.success) {
             return this.alertService.error(data.error.message);
           }
-          localStorage.setItem('token', data.payload);
+          localStorage.setItem('token', JSON.stringify(data.payload.token));
+          this.dataStore.setCurrentUser(data.payload.userData);
           this.router.navigate(['main/welcome']);
         },
         error => {
@@ -123,8 +117,4 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   tabChanged(event: MatTabChangeEvent) {
   }
 
-  ngOnDestroy(): void {
-    this.notifier.next();
-    this.notifier.complete();
-  }
 }

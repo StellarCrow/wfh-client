@@ -6,21 +6,21 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class DataStoreService {
-  public currentUser: Subject<IUser> = new Subject<IUser>();
+  public currentUser: IUser;
   public roomCode;
 
   constructor() {
   }
 
-  public getCurrentUser(): Observable<IUser> {
-    return this.currentUser.asObservable();
+  public getCurrentUser(): IUser {
+    return this.currentUser;
   }
 
   public setCurrentUser(user: IUser) {
-    this.currentUser.next(user);
+    this.currentUser = user;
   }
 
   public removeCurrentUser(): void {
-    this.currentUser.next(null);
+    this.currentUser = null;
   }
 }
