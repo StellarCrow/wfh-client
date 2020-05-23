@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SocketService } from '../../services/socket.service';
-import {ISocket} from '../../interfaces/isocket';
+import {Component, OnInit} from '@angular/core';
+import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
 
 @Component({
@@ -13,7 +12,8 @@ export class ChatComponent implements OnInit {
   messages: IChatMessage[] = [];
   roomCode: string;
 
-  constructor(private socketService: SocketService) {}
+  constructor(private socketService: SocketService) {
+  }
 
   ngOnInit(): void {
     this.roomCode = this.getRoomCode();
@@ -26,13 +26,13 @@ export class ChatComponent implements OnInit {
   }
 
   listenNewMessage(): void {
-    this.socketService.listen('chat-message').subscribe(({payload} ) => {
+    this.socketService.listen('chat-message').subscribe(({payload}) => {
       this.messages = [...this.messages, {username: payload.username, message: payload.message}];
     });
   }
 
   sendMessage(): void {
-    this.messages.push({ username: 'You', message: this.newMessage });
+    this.messages.push({username: 'You', message: this.newMessage});
     this.socketService.emit('new-chat-message', {
       message: this.newMessage,
       code: this.roomCode,

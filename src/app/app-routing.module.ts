@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from './not-found/not-found.component';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthorizationInterceptor} from './core/interceptors/authorization.interceptor';
 
 const routes: Routes = [
   {

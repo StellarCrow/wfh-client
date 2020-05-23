@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { GameRoutingModule } from './game-routing.module';
-import { SharedModule } from '../../shared/shared.module';
-import { LobbyComponent } from './pages/lobby/lobby.component';
-import { ChatComponent } from './components/chat/chat.component';
+import {GameRoutingModule} from './game-routing.module';
+import {SharedModule} from '../../shared/shared.module';
+import {LobbyComponent} from './pages/lobby/lobby.component';
+import {ChatComponent} from './components/chat/chat.component';
 
 
 @NgModule({
@@ -17,4 +17,5 @@ import { ChatComponent } from './components/chat/chat.component';
     FormsModule
   ]
 })
-export class GameModule { }
+export class GameModule {
+}

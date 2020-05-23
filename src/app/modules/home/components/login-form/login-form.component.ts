@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { takeUntil} from 'rxjs/operators';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {takeUntil} from 'rxjs/operators';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 import {IloginResponse} from '../../../../shared/interfaces/ilogin-response';
 import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
 import {DataStoreService} from '../../../../core/services/data-store.service';
@@ -17,11 +17,11 @@ import {IUser} from '../../../../shared/interfaces/user';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit, OnDestroy {
-  public  registerForm: FormGroup;
+  public registerForm: FormGroup;
   public loginForm: FormGroup;
   public loading = false;
   public submitted = false;
-  public  returnUrl: string;
+  public returnUrl: string;
   public selectedTabIndex: number;
   private currentUser: IUser;
   private notifier = new Subject();
@@ -34,8 +34,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private alertService: AlertService,
     private dataStore: DataStoreService,
-
-
   ) {
     this.selectedTabIndex = 1;
     this.dataStore.getCurrentUser()
@@ -98,7 +96,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   public login() {
     const email = this.getLoginControls.email.value;
-    const password =  this.getLoginControls.password.value;
+    const password = this.getLoginControls.password.value;
 
     this.submitted = true;
     this.alertService.clear();
@@ -106,11 +104,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.loginUser( email, password)
+    this.authService.loginUser(email, password)
       .subscribe(
         (data: IloginResponse) => {
           if (!data.success) {
-           return  this.alertService.error(data.error.message);
+            return this.alertService.error(data.error.message);
           }
           localStorage.setItem('token', data.payload);
           this.router.navigate(['main/welcome']);
@@ -121,7 +119,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         }
       );
   }
-  tabChanged(event: MatTabChangeEvent) {}
+
+  tabChanged(event: MatTabChangeEvent) {
+  }
 
   ngOnDestroy(): void {
     this.notifier.next();

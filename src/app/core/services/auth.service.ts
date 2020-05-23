@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { IUser } from '../../shared/interfaces/user';
-import { apiUrl } from '../../../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {IUser} from '../../shared/interfaces/user';
+import {apiUrl} from '../../../environments/environment';
 import {IloginResponse} from '../../shared/interfaces/ilogin-response';
 import {IRegisterResponse} from '../../shared/interfaces/iregister-response';
 import {DataStoreService} from './data-store.service';
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   public loginUser(email, password): Observable<IloginResponse> {
-    return this.http.post<IloginResponse>(`${apiUrl}/auth/login`, { email, password });
+    return this.http.post<IloginResponse>(`${apiUrl}/auth/login`, {email, password});
   }
 
   public eLogout() {

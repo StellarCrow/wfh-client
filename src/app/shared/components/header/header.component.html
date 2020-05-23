@@ -1,18 +1,18 @@
 <header class="header" *ngIf="currentUser">
-    <div class="block">
-        <div class="header__list">
-            <a class="header__logo logo" [routerLink]="['home/welcome']">
-                <img class="logo__image" src="../../../../assets/logo-orange.png" alt="logo" />
-            </a>
-            <nav class="navbar">
-                <div class="navbar__item">
-                    <a class="navbar__link" [routerLink]="['/about']">About</a>
-                </div>
-
-                <div class="navbar__item">
-                    <a class="navbar__link" (click)="logout()">Logout</a>
-                </div>
-            </nav>
+  <div class="block">
+    <div class="header__list">
+      <a class="header__logo logo" [routerLink]="['home/welcome']">
+        <img class="logo__image" src="../../../../assets/logo-orange.png" alt="logo"/>
+      </a>
+      <nav class="navbar">
+        <div class="navbar__item">
+          <a class="navbar__link" [routerLink]="['/about']">About</a>
         </div>
+
+        <div class="navbar__item">
+          <a class="navbar__link" (click)="logout()">Logout</a>
+        </div>
+      </nav>
     </div>
+  </div>
 </header>

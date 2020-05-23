@@ -1,5 +1,5 @@
 export interface IAuth {
-    success: boolean;
-    payload: string;
-    status: string;
+  success: boolean;
+  payload: string;
+  status: string;
 }

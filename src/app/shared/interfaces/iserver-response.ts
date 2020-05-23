@@ -3,7 +3,8 @@ export interface IServerResponse {
   status?: string;
   error?: IError;
 }
+
 interface IError {
-status: string;
-message: string;
+  status: string;
+  message: string;
 }

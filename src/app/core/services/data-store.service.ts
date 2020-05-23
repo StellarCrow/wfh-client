@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IUser} from '../../shared/interfaces/user';
 import {Observable, Subject} from 'rxjs';
 
@@ -7,9 +7,10 @@ import {Observable, Subject} from 'rxjs';
 })
 export class DataStoreService {
   public currentUser: Subject<IUser> = new Subject<IUser>();
-  public roomCode
+  public roomCode;
 
-  constructor() { }
+  constructor() {
+  }
 
   public getCurrentUser(): Observable<IUser> {
     return this.currentUser.asObservable();

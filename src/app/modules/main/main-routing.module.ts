@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {AuthGuard} from '../../core/guards/auth.guard';
 import {AboutComponent} from './components/about/about.component';
@@ -15,6 +15,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true  }]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true}]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {
+}
