@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AuthService } from '../../../../core/services/auth/auth.service';
-import { AlertService } from '../../../../core/services/alert/alert.service';
+import { takeUntil} from 'rxjs/operators';
+import { AuthService } from '../../../../core/services/auth.service';
+import { AlertService } from '../../../../core/services/alert.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import {IloginResponse} from '../../../../shared/interfaces/ilogin-response';
+import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {Subject, } from 'rxjs';
+import {IUser} from '../../../../shared/interfaces/user';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
-  registerForm: FormGroup;
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
-  selectedTabIndex: number;
+export class LoginFormComponent implements OnInit, OnDestroy {
+  public  registerForm: FormGroup;
+  public loginForm: FormGroup;
+  public loading = false;
+  public submitted = false;
+  public  returnUrl: string;
+  public selectedTabIndex: number;
+  private currentUser: IUser;
+  private notifier = new Subject();
 
   constructor(
     private formBuilderLogin: FormBuilder,
@@ -25,27 +32,33 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private dataStore: DataStoreService,
+
+
   ) {
     this.selectedTabIndex = 1;
-    if (this.authService.currentUserValue) {
+    this.dataStore.getCurrentUser()
+      .pipe(takeUntil(this.notifier))
+      .subscribe((user: IUser) => this.currentUser = user);
+    if (this.currentUser) {
       this.router.navigate(['/']);
     }
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.loginForm = this.formBuilderLogin.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.min(6)]]
     });
 
     // this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
 
     this.registerForm = this.formBuilderRegister.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.min(6)]]
     });
   }
 
@@ -57,38 +70,23 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  register() {
+  public register() {
     this.submitted = true;
-
-    // reset alerts on submit
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
 
-    console.log('register');
-    // this.loading = true;
     this.authService
-      .register(this.registerForm.value)
-      .pipe(first())
+      .registerUser(this.registerForm.value)
       .subscribe(
-        data => {
+        (data: IRegisterResponse) => {
           if (!data.success) {
             this.alertService.error(data.error.message);
           } else {
-            console.log('success');
             this.alertService.success('Registration successful', true);
             this.selectedTabIndex = 0;
-
-            // TODO move to separate method
-            this.registerForm = this.formBuilderRegister.group({
-              firstName: ['', Validators.required],
-              lastName: ['', Validators.required],
-              email: ['', Validators.required],
-              password: ['', [Validators.required, Validators.minLength(6)]]
-            });
           }
         },
         error => {
@@ -98,32 +96,24 @@ export class LoginFormComponent implements OnInit {
       );
   }
 
-  login() {
-    this.submitted = true;
+  public login() {
+    const email = this.getLoginControls.email.value;
+    const password =  this.getLoginControls.password.value;
 
-    // reset alerts on submit
+    this.submitted = true;
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
-
-    // this.loading = true;
-    this.authService
-      .login(
-        this.getLoginControls.email.value,
-        this.getLoginControls.password.value
-      )
-      .pipe(first())
+    this.authService.loginUser( email, password)
       .subscribe(
-        data => {
+        (data: IloginResponse) => {
           if (!data.success) {
-            this.alertService.error(data.error.message);
-          } else {
-            // this.router.navigate([this.returnUrl]);
-            this.router.navigate(['welcome']);
+           return  this.alertService.error(data.error.message);
           }
+          localStorage.setItem('token', data.payload);
+          this.router.navigate(['main/welcome']);
         },
         error => {
           this.alertService.error(error);
@@ -131,6 +121,10 @@ export class LoginFormComponent implements OnInit {
         }
       );
   }
-
   tabChanged(event: MatTabChangeEvent) {}
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+  }
 }

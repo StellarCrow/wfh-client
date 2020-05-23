@@ -1,7 +1,7 @@
-@import "plugins/variables.scss";
+@import "../../../../core/styles/plugins/variables";
 
 .welcome {
-  background-image: url("./../../../../../assets/welcome-background.gif");
+  background-image: url("../../../../../assets/welcome-background.gif");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

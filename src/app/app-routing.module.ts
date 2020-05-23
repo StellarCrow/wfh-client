@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthorizationInterceptor} from './core/interceptors/authorization.interceptor';
 
 const routes: Routes = [
   {
@@ -8,15 +11,21 @@ const routes: Routes = [
       import('./modules/game/game.module').then(m => m.GameModule)
   },
   {
+    path: 'main',
+    loadChildren: () =>
+      import('./modules/main/main.module').then(m => m.MainModule)
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/home/home.module').then(m => m.HomeModule)
-  }
+  },
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

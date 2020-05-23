@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../../services/socket.service';
+import {ISocket} from '../../interfaces/isocket';
+import {IChatMessage} from '../../interfaces/ichat-message';
 
 @Component({
   selector: 'app-chat',
@@ -8,14 +10,13 @@ import { SocketService } from '../../services/socket.service';
 })
 export class ChatComponent implements OnInit {
   newMessage: string;
-  messages: any[] = []; // TODO: create specific interface IChatMessage
+  messages: IChatMessage[] = [];
   roomCode: string;
 
   constructor(private socketService: SocketService) {}
 
   ngOnInit(): void {
     this.roomCode = this.getRoomCode();
-
     this.listenNewMessage();
   }
 
@@ -25,9 +26,8 @@ export class ChatComponent implements OnInit {
   }
 
   listenNewMessage(): void {
-    // TODO: IChatMessage
-    this.socketService.listen('chat-message').subscribe((data: any) => {
-      this.messages = [...this.messages, data.payload.message];
+    this.socketService.listen('chat-message').subscribe(({payload} ) => {
+      this.messages = [...this.messages, {username: payload.username, message: payload.message}];
     });
   }
 

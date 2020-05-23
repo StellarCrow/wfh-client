@@ -1,17 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material/material.module';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MaterialModule} from './material/material.module';
+import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent, FooterComponent, AlertComponent],
   imports: [
+    RouterModule,
     CommonModule,
     MaterialModule
   ],
   exports: [
-    MaterialModule
+    MaterialModule,
+    HeaderComponent,
+    FooterComponent,
+    AlertComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
