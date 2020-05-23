@@ -2,6 +2,7 @@
   <div class="lobby__join join">
     <span class="join__message">Join at </span>
     <span class="join__code">{{ roomCode }}</span>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
   </div>
 
   <ul class="lobby__users">

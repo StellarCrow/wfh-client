@@ -26,7 +26,8 @@ export class ChatComponent implements OnInit {
   }
 
   listenNewMessage(): void {
-    this.socketService.listen('chat-message').subscribe(({payload}) => {
+    this.socketService.listen('chat-message')
+      .subscribe(({payload}) => {
       this.messages = [...this.messages, {username: payload.username, message: payload.message}];
     });
   }
@@ -36,6 +37,8 @@ export class ChatComponent implements OnInit {
     this.socketService.emit('new-chat-message', {
       message: this.newMessage,
       code: this.roomCode,
+      username : 'VASKIO'
+      // TODO: save current username in data store and send it to socket
     });
   }
 }

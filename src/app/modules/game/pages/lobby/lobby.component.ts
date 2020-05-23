@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
+import {ISocket} from '../../interfaces/isocket';
 
 @Component({
   selector: 'app-lobby',
@@ -9,6 +10,7 @@ import {SocketService} from '../../services/socket.service';
 export class LobbyComponent implements OnInit {
   users: string[] = [];
   roomCode: string;
+  errorMessage: string;
 
   constructor(private socketService: SocketService) {
     this.roomCode = this.generateRoomCode(4);
@@ -17,14 +19,16 @@ export class LobbyComponent implements OnInit {
   ngOnInit(): void {
     // TODO: move string bellow to welcome page as event of button 'create lobby'
     this.socketService.emit('create-room', {username: 'Vanko', code: this.roomCode});
-    this.socketService.listen('new-user-connected').subscribe((data: any) => {
+    this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
       this.users = [...this.users, data.payload.username];
     });
-    this.socketService.listen('user-disconnected').subscribe((data: any) => {
+    this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
       this.users = this.users.filter(
         (username: string) => username !== data.payload.username
       );
     });
+    this.socketService.listen('error-room-creating').subscribe((data: ISocket) => this.errorMessage = data.answer );
+    this.socketService.listen('error-room-join').subscribe((data: ISocket) => this.errorMessage = data.answer );
   }
 
   // TODO: handle answer.message with alert/notification service
