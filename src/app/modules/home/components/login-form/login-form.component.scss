@@ -23,68 +23,16 @@
     margin: 10% auto;
     border-radius: 10px;
   }
+}
 
-  .signin {
-    &__list {
-      margin-top: 1.5rem;
-    }
-
-    &__item {
-      width: 80%;
-      display: block;
-      margin: auto;
-    }
-
-    &__message {
-      width: 80%;
-      display: block;
-      color: $grey-dark;
-      margin: 1rem auto;
-    }
-
-    &__button {
-      margin-top: 1.5rem;
-      display: block;
-      width: 80%;
-      margin: 1rem auto;
-      background-color: $primary-color;
-      color: $black;
-      border: 1px solid $grey-medium;
-    }
-  }
-
-  .signup {
-    border-bottom: 1px solid $primary-color;
-
-    &__list {
-      margin-top: 1rem;
-    }
-
-    &__item {
-      width: 80%;
-      display: block;
-      margin: auto;
-    }
-
-    &__message {
-      width: 80%;
-      display: block;
-      color: $grey-dark;
-      margin: 1rem auto;
-    }
-
-    &__button {
-      margin-top: 1.5rem;
-      display: block;
-      width: 80%;
-      margin: 1rem auto;
-      background-color: $primary-color;
-      color: $black;
-      border: 1px solid $grey-medium;
-    }
+.signin {
+  &__list {
+    margin-top: 1.5rem;
   }
 }
 
-.icon {
-  color: $grey-dark;
+.signup {
+  &__list {
+    margin-top: 1rem;
+  }
 }
