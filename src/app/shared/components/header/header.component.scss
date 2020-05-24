@@ -1,42 +1,73 @@
-@import "../../../core/styles/plugins/variables";
+@import "plugins/variables";
 
 .header {
-  background-color: $black;
-  opacity: 0.8;
-  border-bottom: 1px solid $grey-medium;
-  font-size: 1.2rem;
-
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    text-align: center;
-    padding: 0.2rem;
-  }
+  z-index: 1;
+  background: transparent;
+  display: flex;
+  flex-flow: row nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: $padding-app-header;
+  box-sizing: border-box;
 
   &__logo {
-    margin: 0.5rem;
+    max-width: 100px;
   }
 
-  .logo {
-    &__image {
-      width: 70px;
-    }
+  &__image {
+    max-height: 100%;
+    width: auto;
+  }
+
+  &__menu {
+    margin-left: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
   }
 }
 
-.navbar {
-  display: flex;
-  text-align: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
+.menu {
   &__item {
-    color: $white;
-    padding: 1.5rem 1rem;
+    font-size: 1.2em;
+    margin-right: 1.5em;
+    position: relative;
 
-    &:hover {
-      color: $secondary-color;
+    &::after {
+      content: '';
+      display: block;
+      height: 10px;
+      position: absolute;
+      top: 65%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 0.1em;
+      z-index: -1;
+      background-color: $tertiary-color;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+
+
+    &--logout {
+      color: $text-color--light;
+      background-color: $tertiary-color;
+      border-radius: 0.2em;
+      padding: 0.1em 0.4em;
+      transition: 0.3s ease;
+
+      &:hover {
+        background: $tertiary-color--darker;
+      }
     }
   }
 }
+

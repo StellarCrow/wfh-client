@@ -1,2 +1,9 @@
+@import "plugins/mixins";
+
 //core
-@import './../src/app/core/styles/core/_generic.scss';
+@import "./src/app/core/styles/core/generic";
+@import "./src/app/core/styles/core/buttons";
+
+
+//Override default material dialog style
+@include dialog-container-style();

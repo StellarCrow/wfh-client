@@ -1,0 +1,12 @@
+@import "plugins/variables";
+
+@mixin dialog-container-style {
+  .custom-dialog .mat-dialog-container {
+    border-radius: 3em;
+    padding: 15%;
+  }
+}
+
+@mixin text-stroke() {
+  -webkit-text-stroke: 2px $text-color--dark;
+}

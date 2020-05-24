@@ -1,0 +1,19 @@
+@import "../../../../core/styles/plugins/variables";
+
+.form {
+  &__field {
+    width: 100%;
+  }
+
+  &__button {
+    width: 100%;
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    border: 2px solid #000000;
+    margin-top: 1.5em;
+
+    &:hover {
+      box-shadow: 0 0 5px #d0d2d6;
+    }
+  }
+}
