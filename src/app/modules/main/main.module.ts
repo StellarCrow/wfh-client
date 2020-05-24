@@ -5,9 +5,10 @@ import {MainRoutingModule} from './main-routing.module';
 import {MainComponent} from './main.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {AboutComponent} from './components/about/about.component';
-import {MaterialModule} from '../../shared/material/material.module';
 import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ModalJoinRoomComponent} from './components/modal-join-room/modal-join-room.component';
+import {FormJoinRoomComponent} from './components/form-join-room/form-join-room.component';
 
 
 @NgModule({
@@ -15,12 +16,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MainComponent,
     WelcomeComponent,
     AboutComponent,
+    FormJoinRoomComponent,
+    ModalJoinRoomComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     MainRoutingModule,
-    MaterialModule,
     ReactiveFormsModule,
     FormsModule
   ]

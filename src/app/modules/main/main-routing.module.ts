@@ -5,11 +5,16 @@ import {AuthGuard} from '../../core/guards/auth.guard';
 import {AboutComponent} from './components/about/about.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthorizationInterceptor} from '../../core/interceptors/authorization.interceptor';
+import {MainComponent} from './main.component';
 
 
 const routes: Routes = [
-  {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard]},
-  {path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
+  {
+    path: '', component: MainComponent, children: [
+      { path: 'welcome', component: WelcomeComponent, pathMatch: 'full' },
+      { path: 'about', component: AboutComponent },
+    ]
+  }
 ];
 
 @NgModule({

@@ -1,0 +1,33 @@
+@import "plugins/variables";
+
+.button {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease 0.3s;
+  font-weight: bold;
+  outline: none;
+  font-family: $ff-header-solid;
+  border: none;
+  color: #ffffff;
+  padding: 0.3em 1.3em;
+  border-radius: 0.5em;
+  background-color: $tertiary-color;
+
+  &:hover {
+    background-color: $tertiary-color--darker;
+  }
+
+
+  &--join {
+    background-color: $secondary-color;
+
+    &:hover {
+      background-color: $secondary-color--darker;
+    }
+  }
+}
+
+
