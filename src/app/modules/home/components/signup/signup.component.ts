@@ -48,7 +48,6 @@ export class SignupComponent implements OnInit {
           this.alertService.error(data.error.message);
         } else {
           this.alertService.success('Registration successful', true);
-          // this.selectedTabIndex = 0;
           this.signupSuccess();
         }
       },
