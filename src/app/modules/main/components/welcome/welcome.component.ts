@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../core/services/auth.service';
-import {IUser} from '../../../../shared/interfaces/user';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalJoinRoomComponent} from '../modal-join-room/modal-join-room.component';
 
