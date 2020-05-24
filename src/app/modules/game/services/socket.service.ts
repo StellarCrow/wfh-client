@@ -13,7 +13,7 @@ export class SocketService {
   public socket: io.Socket;
   public chatRoomName: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.socket = io(socketUrl);
   }
 

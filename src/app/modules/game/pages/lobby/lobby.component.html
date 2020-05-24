@@ -5,20 +5,20 @@
     <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
   </div>
 
-  <ul class="lobby__users">
-    <span>Users:</span>
+  <!-- TODO: Remove h4 later -->
+  <h4>Users:</h4>
 
-    <li *ngFor="let user of users" class="lobby__user">
+  <ul class="lobby__users">
+
+    <li *ngFor="let user of users; index as i" class="lobby__user">
       <span>{{ user }}</span>
+      <app-video [id]="i"></app-video>
     </li>
   </ul>
 
-  <!-- TODO: remove. Temporary test of chat -->
+  <!-- TODO: Remove - Temporary test of chat -->
   <div class="lobby__chat">
     <span>Chat:</span>
     <app-chat></app-chat>
   </div>
-
-  <!-- TODO: remove. Temporary test of multiple users -->
-
 </div>

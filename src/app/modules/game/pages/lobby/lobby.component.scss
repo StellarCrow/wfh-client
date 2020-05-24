@@ -1,0 +1,9 @@
+.lobby {
+  &__users {
+    display: flex;
+    list-style-type: none;
+  }
+  &__user {
+    margin: 0 1rem;
+  }
+}

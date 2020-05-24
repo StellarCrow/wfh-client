@@ -17,8 +17,21 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.configSocketListeners();
+
     // TODO: move string bellow to welcome page as event of button 'create lobby'
-    this.socketService.emit('create-room', {username: 'Vanko', code: this.roomCode});
+    this.createSocketRoom();
+  }
+
+  private createSocketRoom(): void {
+    this.socketService.emit('create-room', {username: 'Testuser', code: this.roomCode});
+  }
+
+  private configSocketListeners(): void {
+    this.socketService.listen('room-created').subscribe((data: ISocket) => {
+      this.users = [...this.users, data.payload.username];
+    });
+
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
       this.users = [...this.users, data.payload.username];
     });
