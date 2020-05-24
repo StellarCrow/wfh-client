@@ -1,0 +1,89 @@
+<div class="login">
+  <mat-card class="login__container">
+    <mat-card-title class="login__title">Sign In / Sign Up</mat-card-title>
+    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="tabChanged($event)">
+      <mat-tab class="login__signin signin" label="Sign In">
+        <mat-card-content class="signin__list">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field class="signin__item">
+              <input matInput formControlName="email" class="signin__email" placeholder="Email" required
+                     name="email" type="email">
+              <mat-error *ngIf="getLoginControls.email.invalid">Email is required (name@example.com)</mat-error>
+              <mat-icon matSuffix class="signin__mail-icon icon">email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="signin__item">
+              <input matInput formControlName="password" class="signin__password" placeholder="Password"
+                     type="password" required minlength="6" name="password">
+              <mat-error
+                *ngIf="getLoginControls.password.errors && getLoginControls.password.errors.required">
+                Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="getLoginControls.password.errors && getLoginControls.password.errors.minlength">
+                Password must be at least 6 characters long with 1 symbol
+              </mat-error>
+              <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
+            </mat-form-field>
+            <small class="signin__message">* - field is required</small>
+            <button mat-raised-button color="primary" class="signin__button button" [disabled]="loading">
+              <span *ngIf="loading"></span>
+              Sign In
+            </button>
+
+
+          </form>
+        </mat-card-content>
+      </mat-tab>
+
+      <mat-tab class="login__signup" label="Sign Up">
+        <mat-card-content class="signup__list">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <mat-form-field class="signup__item">
+              <input matInput formControlName="firstName" class="signup__firstname"
+                     placeholder="First Name" required name="firstName">
+              <mat-icon matSuffix class="signup__firstname-icon icon">perm_identity</mat-icon>
+              <mat-error *ngIf="getRegisterControls.firstName.invalid">First name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="signup__item">
+              <input matInput formControlName="lastName" class="signup__lastname" placeholder="Last Name"
+                     required name="lastName">
+              <mat-icon matSuffix class="signup__lastname-icon icon">perm_identity</mat-icon>
+              <mat-error *ngIf="getRegisterControls.lastName.invalid">Last name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="signup__item">
+              <input matInput formControlName="email" class="signup__email" placeholder="Email" required
+                     name="email">
+              <mat-error *ngIf="getRegisterControls.email.invalid">Email is required (name@example.com)</mat-error>
+              <mat-icon matSuffix class="signup__password-icon icon">email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="signup__item">
+              <input matInput formControlName="password" class="signup__password" placeholder="Password"
+                     type="password" required minlength="6" name="password">
+              <mat-error
+                *ngIf="getRegisterControls.password.errors && getRegisterControls.password.errors.required">
+                Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="getRegisterControls.password.errors && getRegisterControls.password.errors.minlength">
+                Password must be at least 6 characters long with 1 symbol
+              </mat-error>
+              <mat-icon matSuffix class="signup__password-icon icon">lock</mat-icon>
+            </mat-form-field>
+            <small class="signup__message">* - field is required</small>
+
+            <button mat-raised-button color="primary" class="signup__button button" [disabled]="loading">
+              <span *ngIf="loading"></span>
+              Sign Up
+            </button>
+          </form>
+
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+    <alert></alert>
+  </mat-card>
+</div>

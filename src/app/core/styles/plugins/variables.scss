@@ -1,0 +1,58 @@
+
+
+//----------BREAKPOINTS-------------
+
+$bp-xxsmall: 320px;
+$bp-xsmall: 425px;
+$bp-small: 768px;
+$bp-medium: 1024px;
+$bp-large: 1366px;
+$bp-xlarge: 1920px;
+$bp-xxlarge: 2560px;
+
+
+//----------SCREEN-SIZE-------------
+
+$screen-height-phones: calc(150vh - 50px);
+$header-height-desktops: 60px;
+$header-height-phones: 50px;
+$screen-height-desktops: calc(100vh - 60px);
+$screen-height-tablets: calc(100vh - 60px);
+
+//----------FONT-WEIGHT-------------
+
+$extra-light: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+$extra-bold: 800;
+$black: 900;
+
+//----------FONT-FAMILY-------------
+$ff-primary: 'M PLUS Rounded 1c', sans-serif;
+$ff-secondary: 'KGIWantCrazy', sans-serif;
+$ff-header-solid: 'JandaManateeSolid', sans-serif;
+$ff-header-bubble: 'JandaManateeBubble', sans-serif;
+
+//-------------FONT-SIZE----------------
+
+$base-font-size: 16px;
+
+//-------------COLORS----------------
+$background-header: #222222;
+$primary-color: #d5f9f6;
+$primary-color--darker: #d5f9f6;
+$secondary-color: #e1a688;
+$secondary-color--darker: #b47455;
+$tertiary-color: #9ddb9b;
+$tertiary-color--darker: #57aa56;
+$grey-dark: #787878;
+$grey-medium: #ccc;
+$black: #000;
+$white: #fff;
+
+
+$text-color--light: #ffffff;
+$text-color--dark: #000000;
