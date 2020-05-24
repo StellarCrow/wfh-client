@@ -1,0 +1,21 @@
+<div class="chat">
+  <div class="chat-window">
+    <ul class="chat-window__list">
+      <li *ngFor="let message of messages" class="chat-window__message-item">
+        <span class="chat-window__name" *ngIf="message.name">
+          {{ message.name }}
+        </span>
+        <span class="chat-window__message">{{ message.message }}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="chat__controller">
+    <textarea
+      [(ngModel)]="newMessage"
+      cols="30"
+      rows="10"
+      class="chat__message"
+    ></textarea>
+    <button (click)="sendMessage()" class="chat__submit">Send</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="header__logo">
+    <a class="header__link" routerLink="/main/welcome">
+      <img src="assets/logo-orange.png" alt="logo" class="header__img">
+    </a>
+  </div>
+  <ul class="header__menu menu">
+    <li class="menu__item">
+      <a class="menu__link" routerLink="/main/about">About</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link menu__link--logout" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</header>
