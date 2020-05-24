@@ -1,23 +1,19 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
-import {WelcomeComponent} from './components/welcome/welcome.component';
-import {AboutComponent} from './components/about/about.component';
-import {NotFoundComponent} from './components/not-found/not-found.component';
-import {AuthGuard} from './../../core/guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginFormComponent},
-  {path: 'welcome', component: WelcomeComponent},
-  {path: 'about', component: AboutComponent},
-  {path: '**', component: NotFoundComponent}
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
 })
 export class HomeRoutingModule {
 }

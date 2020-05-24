@@ -12,6 +12,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+
   &__title {
     margin: 1rem;
     text-align: center;
@@ -27,17 +28,20 @@
     &__list {
       margin-top: 1.5rem;
     }
+
     &__item {
       width: 80%;
       display: block;
       margin: auto;
     }
+
     &__message {
       width: 80%;
       display: block;
       color: $grey-dark;
       margin: 1rem auto;
     }
+
     &__button {
       margin-top: 1.5rem;
       display: block;
@@ -51,20 +55,24 @@
 
   .signup {
     border-bottom: 1px solid $primary-color;
+
     &__list {
       margin-top: 1rem;
     }
+
     &__item {
       width: 80%;
       display: block;
       margin: auto;
     }
+
     &__message {
       width: 80%;
       display: block;
       color: $grey-dark;
       margin: 1rem auto;
     }
+
     &__button {
       margin-top: 1.5rem;
       display: block;

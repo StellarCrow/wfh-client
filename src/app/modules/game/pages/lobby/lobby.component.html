@@ -1,0 +1,24 @@
+<div class="lobby">
+  <div class="lobby__join join">
+    <span class="join__message">Join at </span>
+    <span class="join__code">{{ roomCode }}</span>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+  </div>
+
+  <ul class="lobby__users">
+    <span>Users:</span>
+
+    <li *ngFor="let user of users" class="lobby__user">
+      <span>{{ user }}</span>
+    </li>
+  </ul>
+
+  <!-- TODO: remove. Temporary test of chat -->
+  <div class="lobby__chat">
+    <span>Chat:</span>
+    <app-chat></app-chat>
+  </div>
+
+  <!-- TODO: remove. Temporary test of multiple users -->
+
+</div>
