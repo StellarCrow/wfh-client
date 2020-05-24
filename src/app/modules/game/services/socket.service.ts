@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
 import {Observable, Subscriber} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
 
 import {socketUrl} from 'src/environments/environment';
 import {ISocket, ISocketPayload} from '../interfaces/isocket';
@@ -11,9 +10,8 @@ import {ISocket, ISocketPayload} from '../interfaces/isocket';
 })
 export class SocketService {
   public socket: io.Socket;
-  public chatRoomName: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.socket = io(socketUrl);
   }
 
