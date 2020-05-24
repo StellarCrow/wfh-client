@@ -1,4 +1,4 @@
-@import "../../../core/styles/plugins/variables";
+@import "plugins/variables";
 
 .header {
   z-index: 1;
@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1em 2em 0;
+  padding: $padding-app-header;
   box-sizing: border-box;
 
   &__logo {

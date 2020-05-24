@@ -6,7 +6,7 @@
   position: relative;
   background: url(/assets/backgrounds/welcome-background.gif) no-repeat center top / cover;
   transform: scaleX(-1);
-  padding: 4%;
+  padding: $padding-welcome-page;
   box-sizing: border-box;
 
   &__container {
@@ -33,7 +33,7 @@
 
 .game {
   background: url(/assets/images/shirt.png/) no-repeat left top / contain;
-  padding: 6% 8%;
+  padding: $padding-top-bottom $padding-left-right;
 
   &__heading {
     text-align: center;
@@ -63,11 +63,11 @@
     border: 2px solid #000000;
     letter-spacing: 0.1em;
 
-    &:first-child {
+    &--create {
       transform: rotate(-10deg);
     }
 
-    &:last-child {
+    &--join {
       transform: rotate(10deg) translateY(30%);
     }
   }
@@ -81,6 +81,6 @@
 
 @media (min-width: $bp-large) {
   .game {
-    padding: 10% 8%;
+    padding: $padding-top-bottom--large $padding-left-right--large;
   }
 }

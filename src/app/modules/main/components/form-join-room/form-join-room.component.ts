@@ -15,10 +15,6 @@ export class FormJoinRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createForm();
-  }
-
-  public createForm(): void {
     this.formJoinRoom = this.formBuilder.group({
       room: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
     });
