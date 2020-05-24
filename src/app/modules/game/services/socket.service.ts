@@ -10,7 +10,6 @@ import {ISocket, ISocketPayload} from '../interfaces/isocket';
 })
 export class SocketService {
   public socket: io.Socket;
-  public chatRoomName: string;
 
   constructor() {
     this.socket = io(socketUrl);

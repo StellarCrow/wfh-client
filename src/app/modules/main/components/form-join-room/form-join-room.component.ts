@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SocketService} from '../../../game/services/socket.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-form-join-room',
@@ -11,7 +14,11 @@ export class FormJoinRoomComponent implements OnInit {
   public formJoinRoom: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private socketService: SocketService,
+    private dataStore: DataStoreService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,12 +31,11 @@ export class FormJoinRoomComponent implements OnInit {
     return !this.formJoinRoom.get(field).valid && this.formJoinRoom.get(field).touched;
   }
 
-  public onSubmit(): void {
-
+  public joinRoom(): void {
     const room = this.formJoinRoom.value.room;
-    console.log('In submit');
-
-    //Joining a room
+    this.dataStore.setRoomCode(room);
+    this.socketService.emit('new-user', {username: this.dataStore.getUserName(), room});
+    this.router.navigate(['game/lobby']);
   }
 
 }
