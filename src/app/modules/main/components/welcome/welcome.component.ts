@@ -41,6 +41,8 @@ export class WelcomeComponent {
     this.router.navigate(['game/lobby']);
   }
 
+  // Generates room of length <codeLength> (must be an even number),
+  // that consists of [0-9a-z]
   private generateRoomCode(codeLength): string {
     const dec2alphanum = (dec) => ('0' + dec.toString(36)).substr(-2);
 

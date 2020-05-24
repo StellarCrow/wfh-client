@@ -31,7 +31,7 @@ export class FormJoinRoomComponent implements OnInit {
     return !this.formJoinRoom.get(field).valid && this.formJoinRoom.get(field).touched;
   }
 
-  public joinRoom(): void {
+  public onSubmit(): void {
     const room = this.formJoinRoom.value.room;
     this.dataStore.setRoomCode(room);
     this.socketService.emit('new-user', {username: this.dataStore.getUserName(), room});
