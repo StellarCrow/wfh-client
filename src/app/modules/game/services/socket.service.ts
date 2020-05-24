@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
 import {Observable, Subscriber} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
 
 import {socketUrl} from 'src/environments/environment';
 import {ISocket, ISocketPayload} from '../interfaces/isocket';
@@ -25,5 +24,9 @@ export class SocketService {
 
   public emit(eventName: string, payload: ISocketPayload) {
     this.socket.emit(eventName, payload);
+  }
+
+  public on(eventName: string, callbackFn: Function) {
+    this.socket.on(eventName, callbackFn);
   }
 }

@@ -4,5 +4,5 @@ export interface ISocket {
 }
 
 export interface ISocketPayload {
-  [key: string]: string;
+  [key: string]: any;
 }
