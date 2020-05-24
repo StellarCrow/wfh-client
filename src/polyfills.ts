@@ -61,3 +61,7 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// Special polyfill for simple peer's rc
+// Add global to window, assigning the value of window itself.
+(window as any).global = window;
