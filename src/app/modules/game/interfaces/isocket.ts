@@ -1,8 +1,8 @@
 export interface ISocket {
   answer: string;
-  payload: ISocketPayload;
+  payload: any;
 }
 
 export interface ISocketPayload {
-  [key: string]: string;
+  [key: string]: any;
 }
