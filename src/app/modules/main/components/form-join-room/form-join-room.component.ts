@@ -13,7 +13,6 @@ export class FormJoinRoomComponent implements OnInit {
 
   public formJoinRoom: FormGroup;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private socketService: SocketService,
@@ -27,14 +26,8 @@ export class FormJoinRoomComponent implements OnInit {
     });
   }
 
-  public isFieldValid(field: string): boolean {
-    return !this.formJoinRoom.get(field).valid && this.formJoinRoom.get(field).touched;
-  }
-
   public onSubmit(): void {
-    const room = this.formJoinRoom.value.room;
-    this.dataStore.setRoomCode(room);
-    this.socketService.emit('new-user', {username: this.dataStore.getUserName(), room});
+    this.dataStore.setRoomCode(this.formJoinRoom.value.room);
     this.router.navigate(['game/lobby']);
   }
 

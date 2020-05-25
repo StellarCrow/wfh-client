@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,21 +9,18 @@ import {IChatMessage} from '../../interfaces/ichat-message';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  newMessage: string;
-  messages: IChatMessage[] = [];
-  roomCode: string;
+  public  newMessage: string;
+  public messages: IChatMessage[] = [];
+  public  roomCode: string;
+  public  username: string;
 
-  constructor(private socketService: SocketService) {
+  constructor(private socketService: SocketService, private dataStore: DataStoreService) {
   }
 
   ngOnInit(): void {
-    this.roomCode = this.getRoomCode();
+    this.roomCode = this.dataStore.getRoomCode();
+    this.username = this.dataStore.getUserName();
     this.listenNewMessage();
-  }
-
-  getRoomCode(): string {
-    // return this.socketService.chatRoomName; // TODO: get room code from service
-    return 'xxxx';
   }
 
   listenNewMessage(): void {
@@ -36,9 +34,8 @@ export class ChatComponent implements OnInit {
     this.messages.push({username: 'You', message: this.newMessage});
     this.socketService.emit('new-chat-message', {
       message: this.newMessage,
-      code: this.roomCode,
-      username : 'VASKIO'
-      // TODO: save current username in data store and send it to socket
+      room: this.roomCode,
+      username: this.username
     });
   }
 }

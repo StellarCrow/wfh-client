@@ -7,6 +7,7 @@ import {IUser} from '../../shared/interfaces/user';
 export class DataStoreService {
   public currentUser: IUser;
   public roomCode;
+  public userName: string;
 
   constructor() {
   }
@@ -24,7 +25,7 @@ export class DataStoreService {
   }
 
   public getUserName(): string {
-    return this.currentUser ? this.currentUser.firstName : localStorage.getItem('firstName');
+    return this.currentUser ? this.currentUser.firstName : JSON.parse(localStorage.getItem('firstName'));
   }
 
   public setRoomCode(code: string): void {
