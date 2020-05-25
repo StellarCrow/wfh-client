@@ -19,22 +19,26 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO: move string bellow to welcome page as event of button 'create lobby'
+    this.configSocketListeners();
+  }
 
+  private configSocketListeners(): void {
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
+      console.log(data.answer);
       this.users = data.payload;
     });
+
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
+      console.log(data.answer);
       this.users = this.users.filter(
         (username: string) => username !== data.payload.username
       );
     });
-    this.socketService.listen('error-event').subscribe((data: ISocket) => this.errorMessage = data.answer);
+    
+    this.socketService.listen('error-event').subscribe((data: ISocket) => {
+      this.errorMessage = data.answer
+    });
   }
 
   // TODO: handle answer.message with alert/notification service
-
-  // Generates room of length <codeLength> (must be an even number),
-  // that consists of [0-9a-z]
-
 }

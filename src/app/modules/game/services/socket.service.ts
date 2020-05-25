@@ -24,4 +24,8 @@ export class SocketService {
   public emit(eventName: string, payload: ISocketPayload) {
     this.socket.emit(eventName, payload);
   }
+
+  public on(eventName: string, callbackFn: Function) {
+    this.socket.on(eventName, callbackFn);
+  }
 }
