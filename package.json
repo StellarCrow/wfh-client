@@ -7,7 +7,8 @@
     "start": "node server.js",
     "build": "ng build --aot --prod",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
