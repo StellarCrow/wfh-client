@@ -9,13 +9,14 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
   styleUrls: ['./lobby.component.scss'],
 })
 export class LobbyComponent implements OnInit {
-  public users: string[];
+  public users: string[] = [];
   public roomCode: string;
   public errorMessage: string;
+  public username: string;
 
   constructor(private socketService: SocketService, private dataStore: DataStoreService) {
     this.roomCode = this.dataStore.getRoomCode();
-    this.users = [this.dataStore.getUserName()];
+    this.username = this.dataStore.getUserName();
   }
 
   ngOnInit(): void {
@@ -24,19 +25,17 @@ export class LobbyComponent implements OnInit {
 
   private configSocketListeners(): void {
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
-      console.log(data.answer);
-      this.users = data.payload;
+      this.users = [...data.payload];
     });
-
+    this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
-      console.log(data.answer);
       this.users = this.users.filter(
         (username: string) => username !== data.payload.username
       );
     });
-    
+
     this.socketService.listen('error-event').subscribe((data: ISocket) => {
-      this.errorMessage = data.answer
+      this.errorMessage = data.answer;
     });
   }
 
