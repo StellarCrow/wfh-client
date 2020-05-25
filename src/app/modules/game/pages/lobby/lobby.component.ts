@@ -23,15 +23,13 @@ export class LobbyComponent implements OnInit {
   }
 
   private configSocketListeners(): void {
-    this.socketService.listen('room-created').subscribe((data: ISocket) => {
-      this.users = [...this.users, data.payload.username];
-    });
-
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
+      console.log(data.answer);
       this.users = data.payload;
     });
 
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
+      console.log(data.answer);
       this.users = this.users.filter(
         (username: string) => username !== data.payload.username
       );
