@@ -54,3 +54,13 @@ a {
   color: inherit;
 }
 
+.button {
+  // text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  font-weight: bold;
+  outline: none;
+}

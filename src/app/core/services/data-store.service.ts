@@ -24,7 +24,7 @@ export class DataStoreService {
   }
 
   public getUserName(): string {
-    return this.currentUser.firstName;
+    return this.currentUser ? this.currentUser.firstName : localStorage.getItem('firstName');
   }
 
   public setRoomCode(code: string): void {
