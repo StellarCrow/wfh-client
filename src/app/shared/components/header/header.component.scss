@@ -1,0 +1,73 @@
+@import "plugins/variables";
+
+.header {
+  z-index: 1;
+  background: transparent;
+  display: flex;
+  flex-flow: row nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: $padding-app-header;
+  box-sizing: border-box;
+
+  &__logo {
+    max-width: 100px;
+  }
+
+  &__image {
+    max-height: 100%;
+    width: auto;
+  }
+
+  &__menu {
+    margin-left: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+}
+
+.menu {
+  &__item {
+    font-size: 1.2em;
+    margin-right: 1.5em;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 10px;
+      position: absolute;
+      top: 65%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 0.1em;
+      z-index: -1;
+      background-color: $tertiary-color;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+
+
+    &--logout {
+      color: $text-color--light;
+      background-color: $tertiary-color;
+      border-radius: 0.2em;
+      padding: 0.1em 0.4em;
+      transition: 0.3s ease;
+
+      &:hover {
+        background: $tertiary-color--darker;
+      }
+    }
+  }
+}
+

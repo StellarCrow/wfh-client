@@ -1,0 +1,9 @@
+@import "plugins/variables";
+
+.modal {
+  &__title {
+    font-family: $ff-header-solid;
+    font-size: $title-modal-font-size;
+  }
+}
+

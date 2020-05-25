@@ -1,0 +1,30 @@
+@import "plugins/variables.scss";
+
+.signin {
+  &__item {
+    width: 80%;
+    display: block;
+    margin: auto;
+  }
+
+  &__message {
+    width: 80%;
+    display: block;
+    color: $grey-dark;
+    margin: 1rem auto;
+  }
+
+  &__button {
+    margin-top: 1.5rem;
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+    background-color: $primary-color;
+    color: $black;
+    border: 1px solid $grey-medium;
+  }
+}
+
+.icon {
+  color: $grey-dark;
+}
