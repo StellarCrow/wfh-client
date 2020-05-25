@@ -9,6 +9,7 @@ addons:
 
 before_install:
 - npm install -g @angular/cli
+- export CHROME_BIN=chromium-browser
 install: npm install
 
 script:
