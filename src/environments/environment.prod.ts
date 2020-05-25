@@ -3,4 +3,4 @@ export const environment = {
 };
 
 export const apiUrl = 'https://wfh-backend.herokuapp.com/api';
-export const socketUrl = 'ws://wfh-backend.herokuapp.com/';
+export const socketUrl = 'wss://wfh-backend.herokuapp.com/';
