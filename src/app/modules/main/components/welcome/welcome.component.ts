@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../../core/services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalJoinRoomComponent} from '../modal-join-room/modal-join-room.component';
 import {SocketService} from '../../../game/services/socket.service';
@@ -11,12 +10,11 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent {
+export class WelcomeComponent  {
   public roomCode: string;
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private dialog: MatDialog,
     private socketService: SocketService,
     private dataStore: DataStoreService
