@@ -17,6 +17,7 @@ export class VideoComponent implements AfterViewInit {
   }
 
   private configureMediaEventHandlers(): void {
+    this.getMediaStream();
     this.createPeer();
     this.backOffer();
     this.backAnswer();

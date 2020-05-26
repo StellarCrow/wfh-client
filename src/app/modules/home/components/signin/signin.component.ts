@@ -50,6 +50,7 @@ export class SigninComponent implements OnInit {
         if (!data.success) {
           return this.alertService.error(data.error.message);
         }
+        localStorage.setItem('firstName', JSON.stringify(data.payload.userData.firstName));
         localStorage.setItem('token', JSON.stringify(data.payload.token));
         this.dataStore.setCurrentUser(data.payload.userData);
         this.router.navigate(['main/welcome']);
