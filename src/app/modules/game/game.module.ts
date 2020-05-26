@@ -7,10 +7,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {LobbyComponent} from './pages/lobby/lobby.component';
 import {ChatComponent} from './components/chat/chat.component';
 import { VideoComponent } from './components/video/video.component';
+import { GameComponent } from './pages/game/game.component';
 
 
 @NgModule({
-  declarations: [LobbyComponent, ChatComponent, VideoComponent],
+  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent],
   imports: [
     CommonModule,
     SharedModule,
