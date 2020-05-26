@@ -28,7 +28,7 @@ module.exports = function (config) {
         flags: ['--disable-setuid-sandbox', '--no-sandbox']
       }
     },
-    port: 7867,
+    port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,

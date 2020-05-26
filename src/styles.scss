@@ -1,4 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "plugins/mixins";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//core
+@import "./src/app/core/styles/core/generic";
+@import "./src/app/core/styles/core/buttons";
+
+
+//Override default material dialog style
+@include dialog-container-style();

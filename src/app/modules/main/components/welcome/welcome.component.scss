@@ -1,0 +1,86 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
+.welcome {
+  min-height: 100vh;
+  position: relative;
+  background: url(/assets/backgrounds/welcome-background.gif) no-repeat center top / cover;
+  transform: scaleX(-1);
+  padding: $padding-welcome-page;
+  box-sizing: border-box;
+
+  &__container {
+    transform: scaleX(-1);
+    align-self: stretch;
+  }
+
+  &__heading {
+    @include text-stroke();
+    max-width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2em;
+    font-weight: $bold;
+    font-family: $ff-header-solid;
+    color: $tertiary-color;
+    text-transform: uppercase;
+  }
+
+  &__game {
+    max-width: 30%;
+  }
+}
+
+.game {
+  background: url(/assets/images/shirt.png/) no-repeat left top / contain;
+  padding: $padding-top-bottom $padding-left-right;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  &__title {
+    font-family: $ff-header-solid;
+    font-size: 2em;
+    @include text-stroke();
+    color: $primary-color;
+  }
+
+  &__description {
+    font-family: $ff-secondary;
+    margin-bottom: 2em;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+  }
+
+  &__button {
+    font-size: 1.3em;
+    border: 2px solid #000000;
+    letter-spacing: 0.1em;
+
+    &--create {
+      transform: rotate(-10deg);
+    }
+
+    &--join {
+      transform: rotate(10deg) translateY(30%);
+    }
+  }
+}
+
+@media (max-width: $bp-medium) {
+  .welcome__game {
+    max-width: 40%;
+  }
+}
+
+@media (min-width: $bp-large) {
+  .game {
+    padding: $padding-top-bottom--large $padding-left-right--large;
+  }
+}
