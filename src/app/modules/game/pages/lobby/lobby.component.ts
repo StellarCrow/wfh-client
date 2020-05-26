@@ -27,6 +27,9 @@ export class LobbyComponent implements OnInit {
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
       this.users = [...data.payload];
     });
+    this.socketService.listen('reconnect-user').subscribe((data: ISocket) => {
+      this.users = [...data.payload];
+    });
     this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
       this.users = this.users.filter(
