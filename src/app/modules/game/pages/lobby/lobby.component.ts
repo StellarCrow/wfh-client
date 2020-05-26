@@ -34,10 +34,15 @@ export class LobbyComponent implements OnInit {
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
       this.users = [...data.payload];
       this.checkGameStatus();
+      this.dataStore.setRoomsUsers(this.users);
     });
+
+    this.socketService.listen('game-started').subscribe((data) => this.router.navigate(['game/play']));
+
     this.socketService.listen('reconnect-user').subscribe((data: ISocket) => {
       this.users = [...data.payload];
       this.checkGameStatus();
+      this.dataStore.setRoomsUsers(this.users);
     });
     this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
@@ -45,6 +50,7 @@ export class LobbyComponent implements OnInit {
         (username: string) => username !== data.payload.username
       );
       this.checkGameStatus();
+      this.dataStore.setRoomsUsers(this.users);
     });
 
     this.socketService.listen('error-event').subscribe((data: ISocket) => {
@@ -55,8 +61,9 @@ export class LobbyComponent implements OnInit {
   public checkGameStatus() {
     this.gameReady = this.users.length < 3;
   }
-  public startGame() {
 
+  public startGame() {
+    this.socketService.emit('start-game', {room: this.roomCode});
   }
 
 }
