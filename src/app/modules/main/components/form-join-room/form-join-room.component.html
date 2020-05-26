@@ -3,7 +3,7 @@
     <mat-label>Room Code</mat-label>
     <input matInput placeholder="zxwo" formControlName="room" />
     <mat-hint>Can be found in the game lobby</mat-hint>
-    <mat-error *ngIf="isFieldValid('room')">Room code is not valid</mat-error>
+    <mat-error *ngIf="!formJoinRoom.valid && this.formJoinRoom.controls.room.touched">Room code is not valid</mat-error>
   </mat-form-field>
   <button
     class="form__button button"
