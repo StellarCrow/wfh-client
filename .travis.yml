@@ -13,7 +13,7 @@ script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 branches:
   only:
-  - master
+  - feature/Travis_tests
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
