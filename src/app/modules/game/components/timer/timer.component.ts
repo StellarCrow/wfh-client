@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
@@ -6,20 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
+  subscription: Subscription;
   duration: number = 75;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.startCount();
+    this.subscription = interval(1000).subscribe(t => {
+      this.startCount();
+    });
   }
 
   startCount(): void {
-    const countDownTimer = setInterval(() => {
-      this.duration -= 1;
-      if (this.duration < 1) {
-        clearInterval(countDownTimer);
-      }
-    }, 1000);
+    this.duration -= 1;
+    if (this.duration < 1) {
+      this.subscription.unsubscribe();
+    }
   }
 }
