@@ -9,10 +9,10 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  public  newMessage: string;
+  public newMessage: string;
   public messages: IChatMessage[] = [];
-  public  roomCode: string;
-  public  username: string;
+  public roomCode: string;
+  public username: string;
 
   constructor(private socketService: SocketService, private dataStore: DataStoreService) {
   }
@@ -25,17 +25,18 @@ export class ChatComponent implements OnInit {
 
   listenNewMessage(): void {
     this.socketService.listen('chat-message')
-      .subscribe(({payload}) => {
-      this.messages = [...this.messages, {username: payload.username, message: payload.message}];
-    });
+      .subscribe(({ payload }) => {
+        this.messages = [...this.messages, { username: payload.username, message: payload.message }];
+      });
   }
 
   sendMessage(): void {
-    this.messages.push({username: 'You', message: this.newMessage});
+    this.messages.push({ username: 'You', message: this.newMessage });
     this.socketService.emit('new-chat-message', {
       message: this.newMessage,
       room: this.roomCode,
       username: this.username
     });
+    this.newMessage = '';
   }
 }
