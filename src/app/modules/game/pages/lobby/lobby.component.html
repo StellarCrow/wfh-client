@@ -1,18 +1,20 @@
 <div class="lobby">
   <div class="lobby__container">
-    <nav class="lobby__back" [routerLink]="['/main/welcome']">
-      < Back</nav> <div class="lobby__join join">
-        <span class="join__message">Join at </span>
-        <span class="join__code">{{ roomCode }}</span>
-        <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav> 
+      <div class="lobby__join join">
+        <span class="join__message" *ngIf="!errorMessage">Join at </span>
+        <span class="join__code" *ngIf="!errorMessage">{{ roomCode }}</span>
+        <mat-error class="join__error" *ngIf="errorMessage">{{ errorMessage }}</mat-error>
   </div>
+  <button class="lobby__button button" (click)="startGame()" *ngIf="!errorMessage" [disabled]='!gameStarted'>
+      <span class="button__title" [ngClass]="{'is-wait': !gameStarted, 'is-start': gameStarted}">{{ !gameStarted ? 'Wait!' : 'Start' }}</span>
+  </button>
 
 
   <div class="lobby__sidebar">
     <ul class="lobby__users">
       <li *ngFor="let user of users; index as i" class="lobby__user user">
         <span class="user__name">{{ user }}</span>
-        <!-- <app-video [id]="i" class="user__avatar"></app-video> -->
       </li>
     </ul>
   </div>
