@@ -6,8 +6,8 @@ import {IUser} from '../../shared/interfaces/user';
 })
 export class DataStoreService {
   public currentUser: IUser;
-  public roomCode;
-  public userName: string;
+  public roomCode: string;
+  public users: string[];
 
   constructor() {
   }
@@ -34,5 +34,13 @@ export class DataStoreService {
 
   public getRoomCode(): string {
     return this.roomCode;
+  }
+
+  public getRoomsUsers(): string[] {
+    return this.users;
+  }
+
+  public setRoomsUsers(usersList: string[]): void {
+    this.users = [...usersList];
   }
 }
