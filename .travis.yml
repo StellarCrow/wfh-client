@@ -1,12 +1,17 @@
 language: node_js
 node_js:
 - '12'
+addons:
+  chrome: stable
 before_install:
 - npm install -g @angular/cli
 install: npm install
+script:
+  - npm run test --watch=false --browsers=ChromeHeadlessNoSandbox
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 branches:
   only:
-  - feature/Travis_tests
+  - master
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
