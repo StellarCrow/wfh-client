@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CanvasBackgroundComponent } from './canvas-background.component';
+import {CanvasBackgroundComponent} from './canvas-background.component';
 
 describe('CanvasBackgroundComponent', () => {
   let component: CanvasBackgroundComponent;
@@ -8,9 +8,9 @@ describe('CanvasBackgroundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CanvasBackgroundComponent ]
+      declarations: [CanvasBackgroundComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

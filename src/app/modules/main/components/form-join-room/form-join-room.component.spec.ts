@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FormJoinRoomComponent } from './form-join-room.component';
+import {FormJoinRoomComponent} from './form-join-room.component';
 
 describe('FormJoinRoomComponent', () => {
   let component: FormJoinRoomComponent;
@@ -8,9 +8,9 @@ describe('FormJoinRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormJoinRoomComponent ]
+      declarations: [FormJoinRoomComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
