@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-canvas-background',
@@ -7,7 +7,8 @@ import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 })
 export class CanvasBackgroundComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   colors: string[] = ['#231746', '#223618', '#5f0000'];
 

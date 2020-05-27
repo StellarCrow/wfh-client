@@ -1,32 +1,32 @@
 .canvas-wrapper {
-    max-width: 400px;
-    margin: 0 auto;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .canvas {
-    display: block;
-    border-radius: 15px;
+  display: block;
+  border-radius: 15px;
 }
 
 .canvas-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
 
-    &__btn {
-        font-size: 1.3em;
-        letter-spacing: 0.1em;
-        color: #fff;
-        border: 3px solid #2c2828;
-        border-radius: 10px;
-        text-transform: uppercase;
+  &__btn {
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border: 3px solid #2c2828;
+    border-radius: 10px;
+    text-transform: uppercase;
 
-        &--undo {
-            background-color: #ddab91;
-        }
-
-        &--submit {
-            background-color: #d8e5ad;
-        }
+    &--undo {
+      background-color: #ddab91;
     }
+
+    &--submit {
+      background-color: #d8e5ad;
+    }
+  }
 }

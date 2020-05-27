@@ -1,5 +1,5 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { MediaService } from '../../services/media.service';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {MediaService} from '../../services/media.service';
 
 @Component({
   selector: 'app-video',
@@ -10,7 +10,8 @@ export class VideoComponent implements AfterViewInit {
   @Input() id: number;
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
-  constructor(private mediaService: MediaService) {}
+  constructor(private mediaService: MediaService) {
+  }
 
   ngAfterViewInit(): void {
     this.configureMediaEventHandlers();
