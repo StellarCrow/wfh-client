@@ -1,0 +1,18 @@
+.pencil {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0 0 6px 0;
+
+    &__color {
+        width: 18px;
+        height: 18px;
+        display: block;
+        margin-right: 6px;
+        border-radius: 50%;
+        border-width: 1px;
+        border-style: solid;
+        box-shadow: 0px 2px 8px #717171;
+        cursor: pointer;
+    }
+}

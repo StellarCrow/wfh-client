@@ -8,10 +8,14 @@ import {LobbyComponent} from './pages/lobby/lobby.component';
 import {ChatComponent} from './components/chat/chat.component';
 import { VideoComponent } from './components/video/video.component';
 import { GameComponent } from './pages/game/game.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
+import { CanvasBackgroundComponent } from './components/canvas-background/canvas-background.component';
+import { PencilColorsComponent } from './components/pencil-colors/pencil-colors.component';
+import { TimerComponent } from './components/timer/timer.component';
 
 
 @NgModule({
-  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent],
+  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent, CanvasComponent, CanvasBackgroundComponent, PencilColorsComponent, TimerComponent],
   imports: [
     CommonModule,
     SharedModule,

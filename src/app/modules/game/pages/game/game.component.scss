@@ -7,6 +7,12 @@
     text-align: center;
   }
 
+  &__timer {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+  }
+
   &__chat {
     max-width: 80%;
     margin: 0 auto;
