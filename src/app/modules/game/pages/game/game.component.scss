@@ -6,4 +6,10 @@
     flex: 0 1 33.33%;
     text-align: center;
   }
+
+  &__timer {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+  }
 }
