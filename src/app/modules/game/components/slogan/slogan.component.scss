@@ -1,0 +1,43 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
+.slogan {
+  width: 100%;
+  margin: 50% auto;
+  
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+
+  &__input {
+    padding: 1rem;
+    max-width: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: #ffffff;
+    font-family: $ff-primary;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  &__button {
+    margin: 1rem auto 0;
+    width: 100px;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+
+    &--submit {
+      background-color: #d8e5ad;
+      color: #fff;
+      border: 3px solid #2c2828;
+      &:hover {
+        background-color: darken(#d8e5ad, 10%);
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="slogan">
+    <mat-card class="slogan__container">
+        <form class="slogan__form" [formGroup]="sloganForm" (ngSubmit)="submitSlogan()">
+            <input 
+            class="slogan__input" 
+            matInput 
+            formControlName="sloganText"
+            placeholder="Enter your slogan..." 
+            required
+            type="text"/>
+            <button 
+            class="slogan__button slogan__button--submit button"
+            type="submit" 
+            [disabled]="!this.sloganForm.valid">
+            Send
+        </button>
+        </form>
+    </mat-card>
+</div>

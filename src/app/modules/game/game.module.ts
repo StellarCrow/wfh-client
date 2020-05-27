@@ -12,10 +12,11 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { CanvasBackgroundComponent } from './components/canvas-background/canvas-background.component';
 import { PencilColorsComponent } from './components/pencil-colors/pencil-colors.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { SloganComponent } from './components/slogan/slogan.component';
 
 
 @NgModule({
-  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent, CanvasComponent, CanvasBackgroundComponent, PencilColorsComponent, TimerComponent],
+  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent, CanvasComponent, CanvasBackgroundComponent, PencilColorsComponent, TimerComponent, SloganComponent],
   imports: [
     CommonModule,
     SharedModule,
