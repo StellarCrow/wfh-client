@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-canvas',
@@ -20,6 +20,7 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public width = 400;
   @Input() public height = 400;
 
+  @Output() submitDraw: EventEmitter<void> = new EventEmitter();
 
   private ctx: CanvasRenderingContext2D;
 
@@ -122,6 +123,10 @@ export class CanvasComponent implements AfterViewInit {
     this.linesArray = newLinesArray;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.redraw();
+  }
+
+  handleSubmit(): void {
+    this.submitDraw.emit();
   }
 
 }
