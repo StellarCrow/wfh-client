@@ -28,23 +28,39 @@ export class LobbyComponent implements OnInit {
 
   ngOnInit(): void {
     this.configSocketListeners();
+
+    this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
   }
 
   private configSocketListeners(): void {
+    this.listenUserConnected();
+    this.listenGameStarted();
+    this.listenReconnectUser();
+    this.listenUserDisconnected();
+    this.listenErrorEvent();
+  }
+
+  private listenUserConnected(): void {
     this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
       this.users = [...data.payload];
       this.checkGameStatus();
       this.dataStore.setRoomsUsers(this.users);
     });
+  }
 
+  private listenGameStarted(): void {
     this.socketService.listen('game-started').subscribe((data) => this.router.navigate(['game/play']));
+  }
 
+  private listenReconnectUser(): void {
     this.socketService.listen('reconnect-user').subscribe((data: ISocket) => {
       this.users = [...data.payload];
       this.checkGameStatus();
       this.dataStore.setRoomsUsers(this.users);
     });
-    this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
+  }
+
+  private listenUserDisconnected(): void {
     this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
       this.users = this.users.filter(
         (username: string) => username !== data.payload.username
@@ -52,7 +68,9 @@ export class LobbyComponent implements OnInit {
       this.checkGameStatus();
       this.dataStore.setRoomsUsers(this.users);
     });
+  }
 
+  private listenErrorEvent(): void {
     this.socketService.listen('error-event').subscribe((data: ISocket) => {
       this.errorMessage = data.answer;
     });
