@@ -6,16 +6,32 @@ import {GameRoutingModule} from './game-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {LobbyComponent} from './pages/lobby/lobby.component';
 import {ChatComponent} from './components/chat/chat.component';
-import {VideoComponent} from './components/video/video.component';
-import {GameComponent} from './pages/game/game.component';
-import {CanvasComponent} from './components/canvas/canvas.component';
-import {CanvasBackgroundComponent} from './components/canvas-background/canvas-background.component';
-import {PencilColorsComponent} from './components/pencil-colors/pencil-colors.component';
-import {TimerComponent} from './components/timer/timer.component';
-
+import { VideoComponent } from './components/video/video.component';
+import { GameComponent } from './pages/game/game.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
+import { CanvasBackgroundComponent } from './components/canvas-background/canvas-background.component';
+import { PencilColorsComponent } from './components/pencil-colors/pencil-colors.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { DrawViewComponent } from './pages/game/game-views/draw-view/draw-view.component';
+import { PhraseViewComponent } from './pages/game/game-views/phrase-view/phrase-view.component';
+import { TeeVoteViewComponent } from './pages/game/game-views/tee-vote-view/tee-vote-view.component';
+import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/tee-result-view.component';
 
 @NgModule({
-  declarations: [LobbyComponent, ChatComponent, VideoComponent, GameComponent, CanvasComponent, CanvasBackgroundComponent, PencilColorsComponent, TimerComponent],
+  declarations: [
+    LobbyComponent,
+    ChatComponent,
+    VideoComponent,
+    GameComponent,
+    CanvasComponent,
+    CanvasBackgroundComponent,
+    PencilColorsComponent,
+    TimerComponent,
+    DrawViewComponent,
+    PhraseViewComponent,
+    TeeVoteViewComponent,
+    TeeResultViewComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
