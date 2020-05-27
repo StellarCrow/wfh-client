@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {GameRoutingModule} from './game-routing.module';
 import {SharedModule} from '../../shared/shared.module';
@@ -20,7 +20,8 @@ import { TimerComponent } from './components/timer/timer.component';
     CommonModule,
     SharedModule,
     GameRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GameModule {
