@@ -1,15 +1,14 @@
 <div class="canvas-wrapper">
-    <app-pencil-colors (setPencilColor)="onSetPencilColor($event)"></app-pencil-colors>
-    <canvas class="canvas" #canvas 
-        (mousemove)="mouseMove($event)" 
-        (mousedown)="mouseDown($event)"
-        (mouseup)="mouseUp()" 
-        (mouseleave)="mouseLeave()"></canvas>
-    <app-canvas-background (setCanvasBg)="onSetCanvasBg($event)"></app-canvas-background>
+  <app-pencil-colors (setPencilColor)="onSetPencilColor($event)"></app-pencil-colors>
+  <canvas class="canvas" #canvas
+          (mousemove)="mouseMove($event)"
+          (mousedown)="mouseDown($event)"
+          (mouseup)="mouseUp()"
+          (mouseleave)="mouseLeave()"></canvas>
+  <app-canvas-background (setCanvasBg)="onSetCanvasBg($event)"></app-canvas-background>
 
-    <div class="canvas-controls">
-        <button class="canvas-controls__btn canvas-controls__btn--undo button" (click)="undo()">Erase</button>
-        <button type="submit" class="canvas-controls__btn canvas-controls__btn--submit button">Submit</button>
-        <button type="submit" class="canvas-controls__btn canvas-controls__btn--submit button" (click)="handleSubmit()">Submit</button>
-    </div>
+  <div class="canvas-controls">
+    <button class="canvas-controls__btn canvas-controls__btn--undo button" (click)="undo()">Erase</button>
+    <button type="submit" class="canvas-controls__btn canvas-controls__btn--submit button">Submit</button>
+  </div>
 </div>

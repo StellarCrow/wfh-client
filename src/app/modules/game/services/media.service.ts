@@ -1,12 +1,11 @@
-import { Injectable } from "@angular/core";
-import { SocketService } from "./socket.service";
+import {Injectable} from '@angular/core';
+import {SocketService} from './socket.service';
 
-import Peer from "simple-peer";
-import { Observable, Subscriber } from 'rxjs';
-import { DataStoreService } from 'src/app/core/services/data-store.service';
+import Peer from 'simple-peer';
+import {DataStoreService} from 'src/app/core/services/data-store.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MediaService {
   client: any = {}; // TODO: improve this shiet
@@ -15,7 +14,8 @@ export class MediaService {
   constructor(
     private socketService: SocketService,
     private dataStore: DataStoreService
-  ) {}
+  ) {
+  }
 
   // TODO: return observable with stream as data, without needing the video player
   public getMediaStream(nativeVideoPlayer: any): void {
@@ -44,29 +44,29 @@ export class MediaService {
 
   public createPeer(): void {
     this.socketService.on('create-peer', (id: number) => {
-      console.log("createPeer");
-  
+      console.log('createPeer');
+
       this.client.gotAnswer = false;
       const peer = this.initiatePeer(id, true);
-  
-      peer.on("signal", (data: unknown) => {
+
+      peer.on('signal', (data: unknown) => {
         if (!this.client.gotAnswer) {
-          this.socketService.emit("media-offer", data);
+          this.socketService.emit('media-offer', data);
         }
       });
-  
+
       this.client.peer = peer;
     });
   }
 
   public backOffer(): void {
     this.socketService.on('media-back-offer', (id: number, offer: any) => {
-      console.log("media-back-offer | offer below");
+      console.log('media-back-offer | offer below');
       console.log(offer);
 
       const peer = this.initiatePeer(id, false);
-      peer.on("signal", (data: unknown) => {
-        this.socketService.emit("media-answer", data);
+      peer.on('signal', (data: unknown) => {
+        this.socketService.emit('media-answer', data);
       });
       peer.signal(offer);
 
@@ -88,7 +88,7 @@ export class MediaService {
   public removePeer(): void {
     this.socketService.on('remove-peer', (id: number) => {
       console.log('removePeer | id:', id);
-      
+
       if (this.client.peer) {
         this.client.peer.destroy();
       }
@@ -96,14 +96,14 @@ export class MediaService {
   }
 
   private initiatePeer(id: number, isInit: boolean): any {
-    console.log("initiatePeer | isInit:", isInit, "| id:", id);
+    console.log('initiatePeer | isInit:', isInit, '| id:', id);
 
     const peer = new Peer({
       initiator: isInit,
       stream: this.stream,
       trickle: false,
     });
-    peer.on("stream", (stream) => {
+    peer.on('stream', (stream) => {
       console.log('Playing stream | stream below');
       console.log(stream);
 
@@ -118,15 +118,15 @@ export class MediaService {
       // document.querySelector(`#peer${id}`).appendChild(videoEl);
 
       // videoEl.play();
-      
+
       // const muteToggle = document.createElement('div');
       // muteToggle.id = `muteText${id}`;
       // muteToggle.innerHTML = 'Click to Mute/Unmute';
       // document.getElementById(`peer${id}`).appendChild(muteToggle);
 
       // videoEl.addEventListener('click', () => {
-        // videoEl.volume = Number(!videoEl.volume); // toggle volume 0 <=> 1
-        // console.log(`Change volume to ${videoEl.volume}`);
+      // videoEl.volume = Number(!videoEl.volume); // toggle volume 0 <=> 1
+      // console.log(`Change volume to ${videoEl.volume}`);
       // });
     });
     return peer;

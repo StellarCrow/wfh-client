@@ -1,4 +1,3 @@
-
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
@@ -10,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const modules = [
@@ -26,6 +25,7 @@ const modules = [
   MatSidenavModule,
   MatDialogModule
 ];
+
 @NgModule({
   imports: [...modules],
   exports: [...modules],

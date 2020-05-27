@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./modules/home/home.module').then(m => m.HomeModule),
     canActivate: [LoginGuard]
   },
-  { path: '**', component: NotFoundComponent }
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

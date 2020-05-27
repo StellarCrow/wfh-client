@@ -1,20 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {ISocket} from '../../interfaces/isocket';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.scss']
 })
-export class LobbyComponent implements OnInit {
+export class LobbyComponent implements OnInit, OnDestroy {
   public users: string[] = [];
   public roomCode: string;
   public errorMessage: string;
   public username: string;
   public gameReady: boolean;
+  public notifier = new Subject();
 
   constructor(
     private socketService: SocketService,
@@ -28,7 +31,6 @@ export class LobbyComponent implements OnInit {
 
   ngOnInit(): void {
     this.configSocketListeners();
-
     this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
   }
 
@@ -41,39 +43,49 @@ export class LobbyComponent implements OnInit {
   }
 
   private listenUserConnected(): void {
-    this.socketService.listen('new-user-connected').subscribe((data: ISocket) => {
-      this.users = [...data.payload];
-      this.checkGameStatus();
-      this.dataStore.setRoomsUsers(this.users);
-    });
+    this.socketService.listen('new-user-connected')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        this.users = [...data.payload];
+        this.checkGameStatus();
+        this.dataStore.setRoomsUsers(this.users);
+      });
   }
 
   private listenGameStarted(): void {
-    this.socketService.listen('game-started').subscribe((data) => this.router.navigate(['game/play']));
+    this.socketService.listen('game-started')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data) => this.router.navigate(['game/play']));
   }
 
   private listenReconnectUser(): void {
-    this.socketService.listen('reconnect-user').subscribe((data: ISocket) => {
-      this.users = [...data.payload];
-      this.checkGameStatus();
-      this.dataStore.setRoomsUsers(this.users);
-    });
+    this.socketService.listen('reconnect-user')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        this.users = [...data.payload];
+        this.checkGameStatus();
+        this.dataStore.setRoomsUsers(this.users);
+      });
   }
 
   private listenUserDisconnected(): void {
-    this.socketService.listen('user-disconnected').subscribe((data: ISocket) => {
-      this.users = this.users.filter(
-        (username: string) => username !== data.payload.username
-      );
-      this.checkGameStatus();
-      this.dataStore.setRoomsUsers(this.users);
-    });
+    this.socketService.listen('user-disconnected')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        this.users = this.users.filter(
+          (username: string) => username !== data.payload.username
+        );
+        this.checkGameStatus();
+        this.dataStore.setRoomsUsers(this.users);
+      });
   }
 
   private listenErrorEvent(): void {
-    this.socketService.listen('error-event').subscribe((data: ISocket) => {
-      this.errorMessage = data.answer;
-    });
+    this.socketService.listen('error-event')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        this.errorMessage = data.answer;
+      });
   }
 
   public checkGameStatus() {
@@ -84,4 +96,8 @@ export class LobbyComponent implements OnInit {
     this.socketService.emit('start-game', {room: this.roomCode});
   }
 
+  public ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+  }
 }

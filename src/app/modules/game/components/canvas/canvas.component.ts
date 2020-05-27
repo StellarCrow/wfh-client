@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-canvas',
@@ -6,23 +6,22 @@ import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEm
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements AfterViewInit {
-  linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
-  isMouseDown: boolean = false;
-  lineCount: number = 0;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
+  linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
+  isMouseDown = false;
+  lineCount = 0;
 
   @ViewChild('canvas') public canvas: ElementRef;
 
   @Input() public width = 400;
   @Input() public height = 400;
 
-  @Output() submitDraw: EventEmitter<void> = new EventEmitter();
-
   private ctx: CanvasRenderingContext2D;
+
+  ngOnInit(): void {
+  }
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -49,11 +48,11 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   store(lineNumber: number, x: number, y: number, color: string) {
-    const line = { 
-      'lineNumber': lineNumber, 
-      'x': x, 
-      'y': y, 
-      'color': color 
+    const line = {
+      lineNumber: lineNumber,
+      x: x,
+      y: y,
+      color: color
     };
     this.linesArray.push(line);
   }
@@ -61,9 +60,9 @@ export class CanvasComponent implements AfterViewInit {
   redraw(): void {
     const lines = this.linesArray;
     for (let i = 1; i < lines.length; i++) {
-      if (lines[i].lineNumber !== 0 && lines[i-1].lineNumber !== 0) {
+      if (lines[i].lineNumber !== 0 && lines[i - 1].lineNumber !== 0) {
         this.ctx.beginPath();
-        this.ctx.moveTo(lines[i-1].x, lines[i-1].y);
+        this.ctx.moveTo(lines[i - 1].x, lines[i - 1].y);
         this.ctx.strokeStyle = lines[i].color;
         this.ctx.lineTo(lines[i].x, lines[i].y);
         this.ctx.stroke();
@@ -74,7 +73,7 @@ export class CanvasComponent implements AfterViewInit {
   mouseDown(e: MouseEvent): void {
     this.isMouseDown = true;
     const currentPosition = this.getMousePos(e);
-    this.ctx.moveTo(currentPosition.x, currentPosition.y)
+    this.ctx.moveTo(currentPosition.x, currentPosition.y);
     this.ctx.beginPath();
     this.lineCount += 1;
   }
@@ -82,7 +81,7 @@ export class CanvasComponent implements AfterViewInit {
   mouseMove(e: MouseEvent): void {
     if (this.isMouseDown) {
       const currentPosition = this.getMousePos(e);
-      this.ctx.lineTo(currentPosition.x, currentPosition.y)
+      this.ctx.lineTo(currentPosition.x, currentPosition.y);
       this.ctx.stroke();
       this.store(this.lineCount, currentPosition.x, currentPosition.y, this.ctx.strokeStyle.toString());
     }
@@ -98,7 +97,7 @@ export class CanvasComponent implements AfterViewInit {
     this.store(0, 0, 0, '#fff');
   }
 
-  getMousePos(e: MouseEvent): {x: number, y: number} {
+  getMousePos(e: MouseEvent): { x: number, y: number } {
     const rect = this.canvas.nativeElement.getBoundingClientRect();
     return {
       x: e.clientX - rect.left,
@@ -107,7 +106,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   undo(): void {
-    let maxId: number = 0;
+    let maxId = 0;
 
     this.linesArray.forEach(item => {
       if (item.lineNumber > maxId) {
@@ -123,10 +122,6 @@ export class CanvasComponent implements AfterViewInit {
     this.linesArray = newLinesArray;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.redraw();
-  }
-
-  handleSubmit(): void {
-    this.submitDraw.emit();
   }
 
 }
