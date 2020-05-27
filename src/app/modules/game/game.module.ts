@@ -17,7 +17,6 @@ import { PhraseViewComponent } from './pages/game/game-views/phrase-view/phrase-
 import { TeeVoteViewComponent } from './pages/game/game-views/tee-vote-view/tee-vote-view.component';
 import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/tee-result-view.component';
 
-
 @NgModule({
   declarations: [
     LobbyComponent,

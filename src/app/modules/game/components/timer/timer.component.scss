@@ -1,26 +1,26 @@
 @import "plugins/variables";
 
 .timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background-color: #fae89e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #fae89e;
 
-    &__count {
-        font-size: 2.6em;
-        font-family: $ff-header-solid;
-        width: 100px;
-        height: 100px;
-        color: #2c2828;
-        line-height: 100px;
-        vertical-align: middle;
-        display: inline-block;
-        border-radius: 50%;
-        background-color: #dbfbf8;
-        border: 3px solid #2c2828;
-        transform: rotate(10deg);
-    }
+  &__count {
+    font-size: 2.6em;
+    font-family: $ff-header-solid;
+    width: 100px;
+    height: 100px;
+    color: #2c2828;
+    line-height: 100px;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #dbfbf8;
+    border: 3px solid #2c2828;
+    transform: rotate(10deg);
+  }
 }

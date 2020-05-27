@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-pencil-colors',
@@ -7,7 +7,8 @@ import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 })
 export class PencilColorsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   colors: string[] = ['#000', '#fff', '#975100', '#bd00ff', '#00c2ff', '#33ff00', '#ff0000'];
 

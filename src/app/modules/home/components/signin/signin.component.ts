@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { ILoginResponse } from '../../../../shared/interfaces/i-login-response';
-import { DataStoreService } from '../../../../core/services/data-store.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-signin',
@@ -22,7 +22,8 @@ export class SigninComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private dataStore: DataStoreService
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.signinForm = this.formBuilderSignin.group({
