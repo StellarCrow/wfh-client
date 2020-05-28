@@ -61,5 +61,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();
+
+    this.chatScroll.next();
+    this.chatScroll.complete();
   }
 }
