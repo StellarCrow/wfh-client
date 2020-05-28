@@ -5,7 +5,7 @@ import {NotificationService} from '../../../../core/services/notification.servic
 import {DataService} from '../../../../core/services/data.service';
 import {LocalStorageService} from '../../../../core/services/local-storage.service';
 import {IUser} from '../../../../shared/interfaces/user';
-import {IServerResponse} from '../../../../shared/interfaces/iserver-response';
+import {IAvatarUploadResponse} from '../../../../shared/interfaces/iavatar-upload-response';
 
 @Component({
   selector: 'app-form-upload-file',
@@ -41,8 +41,10 @@ export class FormUploadFileComponent implements OnInit {
       data.append('image', this.imageFile);
       const user: IUser = this.localStorageService.getItem('user');
 
-      this.dataService.uploadAvatar(user._id, data).subscribe((response: IServerResponse) => {
+      this.dataService.uploadAvatar(user._id, data).subscribe((response: IAvatarUploadResponse) => {
           if (response.success) {
+            user.avatar = response.payload.avatar;
+            this.localStorageService.setItem('user', user);
             this.notificationService.notification$.next('Avatar was successfully updated.');
           } else {
             this.notificationService.notification$.next(response.error.message);
