@@ -8,7 +8,7 @@
     </div>
     <button class="lobby__button button" (click)="startGame()" *ngIf="!errorMessage" [disabled]='gameReady'>
       <span class="button__title"
-            [ngClass]="{'is-wait': gameReady, 'is-start': !gameReady}">{{  gameReady? 'Wait!' : 'Start' }}</span>
+            [ngClass]="{'is-wait': gameReady, 'is-start': !gameReady}">{{  gameReady ? 'Wait!' : 'Start' }}</span>
     </button>
 
 
