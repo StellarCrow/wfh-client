@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
 import {DataStoreService} from '../../../../core/services/data-store.service';
@@ -12,11 +12,13 @@ import {Subject} from 'rxjs';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChildren('messengerList') messengerList: QueryList<ElementRef>;
   public messages: IChatMessage[] = [];
   public roomCode: string;
   public username: string;
   public chatForm: FormGroup;
   private notifier = new Subject();
+  private chatScroll = new Subject();
 
   constructor(private socketService: SocketService, private dataStore: DataStoreService, private formBuilder: FormBuilder) {
   }
@@ -47,12 +49,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       username: this.username
     });
     this.chatForm.setValue({messageText: ''});
-    this.scrollToEnd();
   }
 
-  private scrollToEnd() {
-    const container = document.querySelector('.chat__messenger');
-    container.scrollTop = container.scrollHeight;
+  ngAfterViewInit(): void {
+    this.messengerList.changes.pipe(takeUntil(this.chatScroll)).subscribe(item => {
+      const messagesLength: number = this.messages.length;
+      item.first.nativeElement.children[messagesLength - 1].scrollIntoView({block: 'end', behavior: 'smooth', inline: 'end'});
+    });
   }
 
   public ngOnDestroy(): void {
