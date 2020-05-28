@@ -1,4 +1,4 @@
-<div class="canvas-wrapper">
+<div #canvasWrapper class="canvas-wrapper">
   <app-pencil-colors (setPencilColor)="onSetPencilColor($event)"></app-pencil-colors>
   <canvas class="canvas" #canvas
           (mousemove)="mouseMove($event)"
