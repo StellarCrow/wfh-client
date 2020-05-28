@@ -1,0 +1,22 @@
+<form [formGroup]="formUploadFile" class="form" (submit)="onSubmit()">
+  <div class="form__field">
+    <label for="input-file" class="form__label">Choose file</label>
+    <input type="file"
+           accept=".jpg, .jpeg, .png"
+           class="form__input"
+           formControlName="file"
+           id="input-file"
+           required
+           (change)="onFileChange($event)"
+    >
+    <div class="form__error">{{ errorText }}</div>
+    <button class="form__button button" type="submit">Upload</button>
+  </div>
+  <div *ngIf="image" class="form__field">
+    <img
+      class="form__image-preview"
+      [src]="image"
+      alt="Your image"
+    />
+  </div>
+</form>

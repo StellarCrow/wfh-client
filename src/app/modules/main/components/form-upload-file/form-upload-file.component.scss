@@ -1,0 +1,48 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2em;
+
+  &__field {
+    flex: 0 1 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  &__label {
+    padding: 0.25em 0.5em;
+    background-color: $primary-color;
+    cursor: pointer;
+    border-radius: 0.5em;
+    transition: 0.3s ease;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-color--dark;
+    }
+  }
+
+  &__button {
+    border: 2px solid $grey-dark;
+    letter-spacing: 0.1em;
+    margin-top: 1em;
+  }
+
+  &__input {
+    visibility: hidden;
+    height: 1px;
+    width: 1px;
+  }
+
+  &__image-preview {
+    max-width: 200px;
+    max-height: 200px;
+  }
+}
