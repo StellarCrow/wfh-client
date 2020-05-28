@@ -9,15 +9,6 @@
       <app-timer></app-timer>
       <!--Timer component-->
     </div>
-    <!-- <div class="game__playground">
-      <app-canvas></app-canvas>
-      ng-switch
-    </div> -->
-    <!-- <div class="game__column">
-      <div class="game__slogan">
-        Slogan list component-->
-        <!-- <app-slogan></app-slogan> -->
-      <!-- </div> -->
     <div class="game__playground" [ngSwitch]="currentView">
       <app-phrase-view *ngSwitchCase="'phrase-view'"></app-phrase-view>
       <app-tee-vote-view *ngSwitchCase="'tee-vote-view'"></app-tee-vote-view>
