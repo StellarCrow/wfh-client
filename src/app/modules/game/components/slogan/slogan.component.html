@@ -12,7 +12,7 @@
             <button 
             class="slogan__button slogan__button--submit button"
             type="submit" 
-            [disabled]="!this.sloganForm.valid">
+            [disabled]="!this.sloganForm.valid" (submitPhrase)="handleSubmit()">
             Submit
         </button>
         </form>
