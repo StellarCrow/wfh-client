@@ -11,6 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 const modules = [
@@ -24,7 +25,8 @@ const modules = [
   MatToolbarModule,
   MatListModule,
   MatSidenavModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 ];
 @NgModule({
   imports: [...modules],

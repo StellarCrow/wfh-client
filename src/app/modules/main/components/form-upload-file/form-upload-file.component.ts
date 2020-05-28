@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {NotificationService} from '../../../../core/services/notification.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-form-upload-file',
@@ -15,7 +17,11 @@ export class FormUploadFileComponent implements OnInit {
   private imageFile: object;
   private errorDialog = false;
 
-  constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer) {
+  constructor(private formBuilder: FormBuilder,
+              private sanitizer: DomSanitizer,
+              private notificationService: NotificationService,
+              private dataStoreService: DataStoreService
+  ) {
   }
 
   ngOnInit(): void {
@@ -27,11 +33,10 @@ export class FormUploadFileComponent implements OnInit {
   public onSubmit(): void {
     const file = this.formUploadFile.value.file;
     if (file) {
-      //send to the server
+      const userId = this.dataStoreService.currentUser._id;
     } else {
-      this.errorText = 'Please, choose file.';
+      this.notificationService.notification$.next('Please, choose file.');
     }
-    console.log(this.formUploadFile.value);
   }
 
   public onFileChange(event: any): void {
