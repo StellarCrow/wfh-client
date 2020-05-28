@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {GameRoutingModule} from './game-routing.module';
-import {SharedModule} from '../../shared/shared.module';
-import {LobbyComponent} from './pages/lobby/lobby.component';
-import {ChatComponent} from './components/chat/chat.component';
+import { GameRoutingModule } from './game-routing.module';
+import { SharedModule } from '../../shared/shared.module';
+import { LobbyComponent } from './pages/lobby/lobby.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { VideoComponent } from './components/video/video.component';
 import { GameComponent } from './pages/game/game.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
@@ -17,6 +17,7 @@ import { DrawViewComponent } from './pages/game/game-views/draw-view/draw-view.c
 import { PhraseViewComponent } from './pages/game/game-views/phrase-view/phrase-view.component';
 import { TeeVoteViewComponent } from './pages/game/game-views/tee-vote-view/tee-vote-view.component';
 import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/tee-result-view.component';
+import { PlayersListComponent } from './components/players-list/players-list.component';
 
 
 @NgModule({
@@ -33,15 +34,16 @@ import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/
     DrawViewComponent,
     PhraseViewComponent,
     TeeVoteViewComponent,
-    TeeResultViewComponent
+    TeeResultViewComponent,
+    PlayersListComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     GameRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class GameModule {
 }

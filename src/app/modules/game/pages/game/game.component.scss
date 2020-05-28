@@ -33,4 +33,21 @@
     margin: 0 auto;
   }
 
+  &__players {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.mat-icon-button {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+}
+
+.mat-sidenav-container,
+.sidenav {
+  position: relative;
+  border: none;
+  background: transparent;
 }

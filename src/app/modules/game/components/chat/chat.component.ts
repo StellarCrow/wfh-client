@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList} from '@angular/core';
+import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList, Output, EventEmitter} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import { HideContentService } from '../../services/hide-content.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,13 +15,26 @@ import {Subject} from 'rxjs';
 export class ChatComponent implements OnInit, OnDestroy {
   @ViewChildren('messengerList') messengerList: QueryList<ElementRef>;
   public messages: IChatMessage[] = [];
+
   public roomCode: string;
+
   public username: string;
+
   public chatForm: FormGroup;
   private notifier = new Subject();
   private chatScroll = new Subject();
 
-  constructor(private socketService: SocketService, private dataStore: DataStoreService, private formBuilder: FormBuilder) {
+  constructor(private socketService: SocketService,
+    private dataStore: DataStoreService,
+    private formBuilder: FormBuilder,
+    private sidenavService:HideContentService) {
+  }
+
+  @Output() hideComponent = new EventEmitter<string>();
+
+  public toggleSidenav(id): void {
+    this.sidenavService.toggle(id);
+    this.hideComponent.emit('right');
   }
 
   ngOnInit(): void {
@@ -28,7 +42,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.username = this.dataStore.getUserName();
     this.listenNewMessage();
     this.chatForm = this.formBuilder.group({
-      messageText: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(300)]]
+      messageText: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(300)]],
     });
   }
 
@@ -46,7 +60,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.emit('new-chat-message', {
       message: newMessage,
       room: this.roomCode,
-      username: this.username
+      username: this.username,
     });
     this.chatForm.setValue({messageText: ''});
   }
