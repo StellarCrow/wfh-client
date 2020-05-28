@@ -1,8 +1,23 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
 .video {
   width: 100%;
-  border: 2px solid #cec4ce;
+  border: $chat-border;
+  border-radius: 1em;
     &__wrapper {
-    width: 100px;
-    border: 2px solid #c5f3e6;
-  }
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;    
+  };
+    &__title {
+      @include text-stroke();
+      font-family: $ff-header-solid;
+      color: $primary-color;
+      letter-spacing: 0.1em;
+      font-size: 1.2em;
+      text-align: center;
+    }
 }
