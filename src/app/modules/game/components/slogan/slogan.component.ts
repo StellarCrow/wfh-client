@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SocketService } from "../../services/socket.service";
 import { ISlogans } from "../../interfaces/islogans";
@@ -14,6 +14,8 @@ export class SloganComponent implements OnInit {
   public roomCode: string;
   public sloganForm: FormGroup;
   public slogans: ISlogans[] = [];
+
+  @Output() submitPhrase: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -52,5 +54,9 @@ export class SloganComponent implements OnInit {
     });
     console.log(newSlogan);
     this.sloganForm.setValue({ sloganText: "" });
+  }
+
+  handleSubmit(): void {
+    this.submitPhrase.emit();
   }
 }
