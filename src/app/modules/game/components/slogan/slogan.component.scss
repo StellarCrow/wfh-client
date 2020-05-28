@@ -2,9 +2,20 @@
 @import "plugins/mixins";
 
 .slogan {
-  width: 100%;
-  margin: 50% auto;
-  
+  margin: 20% auto 0;
+
+  &__container {
+    width: 90%;
+    margin: 3rem auto;
+  }
+
+  &__title {
+    font-family: $ff-header-solid;
+    font-size: 2.5rem;
+    @include text-stroke();
+    color: $white;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -12,7 +23,7 @@
     text-align: center;
   }
 
-  &__input {
+  &__message {
     padding: 1rem;
     max-width: 100%;
     border: 2px solid black;
@@ -25,7 +36,8 @@
 
   &__button {
     margin: 1rem auto 0;
-    width: 100px;
+    width: 150px;
+    padding: .5rem;
     font-size: 1.3rem;
     letter-spacing: 0.1rem;
     border-radius: 10px;

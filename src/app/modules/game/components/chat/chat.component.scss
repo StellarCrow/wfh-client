@@ -2,6 +2,7 @@
 @import "plugins/mixins";
 
 .chat {
+  margin: 50% auto 0;
   &__title {
     @include text-stroke();
     font-family: $ff-header-solid;
@@ -45,6 +46,7 @@
     border: 1px solid #000000;
     letter-spacing: 0.2em;
     width: 25%;
+    background-color: #d8e5ad;
   }
 }
 

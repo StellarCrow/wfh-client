@@ -13,11 +13,16 @@
       <app-canvas></app-canvas>
       ng-switch
     </div> -->
-    <div class="game__column">
+    <!-- <div class="game__column">
       <div class="game__slogan">
-        <!--Slogan list component-->
-        <app-slogan></app-slogan>
-      </div>
+        Slogan list component-->
+        <!-- <app-slogan></app-slogan> -->
+      <!-- </div> -->
+    <div class="game__playground" [ngSwitch]="currentView">
+      <app-phrase-view *ngSwitchCase="'phrase-view'"></app-phrase-view>
+      <app-tee-vote-view *ngSwitchCase="'tee-vote-view'"></app-tee-vote-view>
+      <app-tee-result-view *ngSwitchCase="'tee-result-view'"></app-tee-result-view>
+      <app-draw-view *ngSwitchDefault></app-draw-view>
     </div>
   </div>
   <div class="game__column">

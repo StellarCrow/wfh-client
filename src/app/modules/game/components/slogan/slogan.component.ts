@@ -10,7 +10,7 @@ import { DataStoreService } from "../../../../core/services/data-store.service";
   styleUrls: ["./slogan.component.scss"]
 })
 export class SloganComponent implements OnInit {
-  // public username: string;
+  public username: string;
   public roomCode: string;
   public sloganForm: FormGroup;
   public slogans: ISlogans[] = [];
@@ -23,7 +23,7 @@ export class SloganComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomCode = this.dataStore.getRoomCode();
-    // this.username = this.dataStore.getUserName();
+    this.username = this.dataStore.getUserName();
     this.listenNewSlogan();
 
     this.sloganForm = this.formBuilder.group({
@@ -45,13 +45,12 @@ export class SloganComponent implements OnInit {
 
   public submitSlogan(): void {
     const newSlogan = this.sloganForm.value.sloganText;
-    this.slogans.push({ username: "You", slogan: newSlogan });
     this.socketService.emit("new-slogan", {
       slogan: newSlogan,
       room: this.roomCode,
-      // username: this.username
+      username: this.username
     });
-    console.log(newSlogan)
+    console.log(newSlogan);
     this.sloganForm.setValue({ sloganText: "" });
   }
 }
