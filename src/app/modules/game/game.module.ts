@@ -12,10 +12,12 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { CanvasBackgroundComponent } from './components/canvas-background/canvas-background.component';
 import { PencilColorsComponent } from './components/pencil-colors/pencil-colors.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { SloganComponent } from './components/slogan/slogan.component';
 import { DrawViewComponent } from './pages/game/game-views/draw-view/draw-view.component';
 import { PhraseViewComponent } from './pages/game/game-views/phrase-view/phrase-view.component';
 import { TeeVoteViewComponent } from './pages/game/game-views/tee-vote-view/tee-vote-view.component';
 import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/tee-result-view.component';
+
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/
     CanvasBackgroundComponent,
     PencilColorsComponent,
     TimerComponent,
+    SloganComponent,
     DrawViewComponent,
     PhraseViewComponent,
     TeeVoteViewComponent,
-    TeeResultViewComponent,
+    TeeResultViewComponent
   ],
   imports: [
     CommonModule,

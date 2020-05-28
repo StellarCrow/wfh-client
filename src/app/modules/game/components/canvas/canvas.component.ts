@@ -16,7 +16,7 @@ export class CanvasComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
 
   @Input() public width = 400;
-  @Input() public height = 400;
+  @Input() public height = 350;
 
   @Output() submitDraw: EventEmitter<void> = new EventEmitter();
 

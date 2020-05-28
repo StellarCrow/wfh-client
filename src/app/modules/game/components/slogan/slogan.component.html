@@ -1,0 +1,20 @@
+<div class="slogan">
+    <div class="slogan__title">Pick a phrase!</div>
+    <div class="slogan__container">
+        <form class="slogan__form" [formGroup]="sloganForm" (ngSubmit)="submitSlogan()">
+            <input 
+            class="slogan__message" 
+            matInput 
+            formControlName="sloganText"
+            placeholder="Enter your phrase here..." 
+            required
+            type="text"/>
+            <button 
+            class="slogan__button slogan__button--submit button"
+            type="submit" 
+            [disabled]="!this.sloganForm.valid">
+            Submit
+        </button>
+        </form>
+    </div>
+</div>
