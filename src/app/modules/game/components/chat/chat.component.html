@@ -5,7 +5,7 @@
 <div class="chat">
   <div class="chat__title">Chat</div>
   <div class="chat__messenger messenger">
-    <ul class="messenger__list">
+    <ul #messengerList class="messenger__list">
       <li *ngFor="let message of messages" class="messenger__message message"
           [ngClass]="message.username === 'You' ? 'message--incoming' : 'message--outcoming'">
         <div class="message__name" *ngIf="message.username">

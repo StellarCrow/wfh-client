@@ -28,9 +28,11 @@
       <app-timer></app-timer>
       <!--Timer component-->
     </div>
-    <div class="game__playground">
-      <app-canvas></app-canvas>
-      <!--ng-switch-->
+    <div class="game__playground" [ngSwitch]="currentView">
+      <app-phrase-view *ngSwitchCase="'phrase-view'"></app-phrase-view>
+      <app-tee-vote-view *ngSwitchCase="'tee-vote-view'"></app-tee-vote-view>
+      <app-tee-result-view *ngSwitchCase="'tee-result-view'"></app-tee-result-view>
+      <app-draw-view *ngSwitchDefault></app-draw-view>
     </div>
   </div>
 

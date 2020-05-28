@@ -1,16 +1,31 @@
 .game {
   display: flex;
   flex-flow: row nowrap;
+  background-image: url("./../../../../../assets/backgrounds/game-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
 
   &__column {
     flex: 0 1 33.33%;
     text-align: center;
   }
 
+  &__slogan {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
   &__timer {
     display: flex;
     justify-content: center;
-    margin: 35px 0;
+    // margin: 35px 0;
   }
 
   &__chat {

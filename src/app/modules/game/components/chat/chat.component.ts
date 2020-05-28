@@ -1,10 +1,10 @@
-import {
-  AfterViewInit, Component, OnInit, Output, EventEmitter,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SocketService } from '../../services/socket.service';
-import { IChatMessage } from '../../interfaces/ichat-message';
-import { DataStoreService } from '../../../../core/services/data-store.service';
+import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList, Output, EventEmitter} from '@angular/core';
+import {SocketService} from '../../services/socket.service';
+import {IChatMessage} from '../../interfaces/ichat-message';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import { HideContentService } from '../../services/hide-content.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { HideContentService } from '../../services/hide-content.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChildren('messengerList') messengerList: QueryList<ElementRef>;
   public messages: IChatMessage[] = [];
 
   public roomCode: string;
@@ -20,6 +21,8 @@ export class ChatComponent implements OnInit {
   public username: string;
 
   public chatForm: FormGroup;
+  private notifier = new Subject();
+  private chatScroll = new Subject();
 
   constructor(private socketService: SocketService,
     private dataStore: DataStoreService,
@@ -45,25 +48,35 @@ export class ChatComponent implements OnInit {
 
   public listenNewMessage(): void {
     this.socketService.listen('chat-message')
-      .subscribe(({ payload }) => {
-        this.messages = [...this.messages, { username: payload.username, message: payload.message }];
+      .pipe(takeUntil(this.notifier))
+      .subscribe(({payload}) => {
+        this.messages = [...this.messages, {username: payload.username, message: payload.message}];
       });
   }
 
   public sendMessage(): void {
     const newMessage = this.chatForm.value.messageText;
-    this.messages.push({ username: 'You', message: newMessage });
+    this.messages.push({username: 'You', message: newMessage});
     this.socketService.emit('new-chat-message', {
       message: newMessage,
       room: this.roomCode,
       username: this.username,
     });
-    this.chatForm.setValue({ messageText: '' });
-    this.scrollToEnd();
+    this.chatForm.setValue({messageText: ''});
   }
 
-  private scrollToEnd() {
-    const container = document.querySelector('.chat__messenger');
-    container.scrollTop = container.scrollHeight;
+  ngAfterViewInit(): void {
+    this.messengerList.changes.pipe(takeUntil(this.chatScroll)).subscribe(item => {
+      const messagesLength: number = this.messages.length;
+      item.first.nativeElement.children[messagesLength - 1].scrollIntoView({block: 'end', behavior: 'smooth', inline: 'end'});
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+
+    this.chatScroll.next();
+    this.chatScroll.complete();
   }
 }

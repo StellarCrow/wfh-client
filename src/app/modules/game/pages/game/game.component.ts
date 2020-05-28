@@ -3,7 +3,9 @@ import {
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { HideContentService } from '../../services/hide-content.service';
-
+import { GameViewService } from '../../services/game-view.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-game',
@@ -15,8 +17,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('rightSidenav') public rightSidenav: MatSidenav;
 
-  constructor(private sidenavService:HideContentService) { }
+  constructor(private sidenavService:HideContentService, private gameViewService: GameViewService) { }
 
+  currentView: string;
+
+  private notifier = new Subject();
 
   rightArrowShow=true;
 
@@ -43,6 +48,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.initGameView();
   }
 
 
@@ -54,5 +60,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.sidenavService.removeSidenav('leftSidenav');
     this.sidenavService.removeSidenav('rightSidenav');
+    this.notifier.next();
+    this.notifier.complete();
+  }
+
+  initGameView(): void {
+    this.gameViewService.currentView$
+      .pipe(takeUntil(this.notifier))
+      .subscribe((view: string) => {
+        this.currentView = view;
+      });
   }
 }

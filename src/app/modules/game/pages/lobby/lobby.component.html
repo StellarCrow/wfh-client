@@ -8,14 +8,14 @@
     </div>
     <button class="lobby__button button" (click)="startGame()" *ngIf="!errorMessage" [disabled]='gameReady'>
       <span class="button__title"
-            [ngClass]="{'is-wait': gameReady, 'is-start': !gameReady}">{{  gameReady? 'Wait!' : 'Start' }}</span>
+            [ngClass]="{'is-wait': gameReady, 'is-start': !gameReady}">{{  gameReady ? 'Wait!' : 'Start' }}</span>
     </button>
 
 
     <div class="lobby__sidebar">
       <ul class="lobby__users">
         <li *ngFor="let user of users" class="lobby__user user">
-          <span class="user__name">{{ user }}</span>
+          <span class="user__name">{{ user.username }}</span>
         </li>
       </ul>
     </div>
