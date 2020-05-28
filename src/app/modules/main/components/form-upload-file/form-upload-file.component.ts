@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {NotificationService} from '../../../../core/services/notification.service';
-import {DataStoreService} from '../../../../core/services/data-store.service';
+import {DataService} from '../../../../core/services/data.service';
+import {LocalStorageService} from '../../../../core/services/local-storage.service';
+import {IUser} from '../../../../shared/interfaces/user';
+import {IServerResponse} from '../../../../shared/interfaces/iserver-response';
 
 @Component({
   selector: 'app-form-upload-file',
@@ -14,13 +17,14 @@ export class FormUploadFileComponent implements OnInit {
   public image: SafeResourceUrl = '';
   public errorText = '';
   private maxSize = 5120;
-  private imageFile: object;
+  private imageFile: string;
   private errorDialog = false;
 
   constructor(private formBuilder: FormBuilder,
               private sanitizer: DomSanitizer,
               private notificationService: NotificationService,
-              private dataStoreService: DataStoreService
+              private localStorageService: LocalStorageService,
+              private dataService: DataService
   ) {
   }
 
@@ -33,7 +37,20 @@ export class FormUploadFileComponent implements OnInit {
   public onSubmit(): void {
     const file = this.formUploadFile.value.file;
     if (file) {
-      const userId = this.dataStoreService.currentUser._id;
+      const data = new FormData();
+      data.append('image', this.imageFile);
+      const user: IUser = this.localStorageService.getItem('user');
+
+      this.dataService.uploadAvatar(user._id, data).subscribe((response: IServerResponse) => {
+          if (response.success) {
+            this.notificationService.notification$.next('Avatar was successfully updated.');
+          } else {
+            this.notificationService.notification$.next(response.error.message);
+          }
+        },
+        error => {
+          this.notificationService.notification$.next(error);
+        });
     } else {
       this.notificationService.notification$.next('Please, choose file.');
     }
