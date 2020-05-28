@@ -1,0 +1,30 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
+.settings {
+  padding: $padding-welcome-page;
+  padding-top: $header-height;
+  min-height: 100vh;
+  background: url(/assets/backgrounds/settings-background.jpg/) no-repeat center top / cover;
+  box-sizing: border-box;
+
+  &__header {
+    margin-bottom: 2em;
+  }
+
+  &__title {
+    @include text-stroke();
+    font-family: $ff-header-solid;
+    color: $primary-color;
+    font-size: 2em;
+  }
+
+  &__content {
+    padding: 5%;
+    border-radius: 3em;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px $grey--light;
+    max-width: 50%;
+  }
+}
+
