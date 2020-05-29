@@ -20,9 +20,7 @@ export class CanvasComponent implements AfterViewInit {
     this.room = this.dataStore.getRoomCode();
   }
 
-  linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
-  isMouseDown = false;
-  lineCount = 0;
+  
 
   linesArray: ICanvasLines[] = [];
   isMouseDown: boolean = false;
