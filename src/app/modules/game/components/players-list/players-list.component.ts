@@ -1,7 +1,7 @@
-import {
-  Component, OnInit, Output, EventEmitter,
-} from '@angular/core';
-import { HideContentService } from '../../services/hide-content.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {HideContentService} from '../../services/hide-content.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {IPlayer} from '../../../../shared/interfaces/iplayer';
 
 @Component({
   selector: 'app-players-list',
@@ -9,6 +9,8 @@ import { HideContentService } from '../../services/hide-content.service';
   styleUrls: ['./players-list.component.scss'],
 })
 export class PlayersListComponent implements OnInit {
+  public users: IPlayer[];
+  public finishedUsers: string[];
   @Output() hideComponent = new EventEmitter<string>();
 
   public toggleSidenav(id): void {
@@ -17,8 +19,13 @@ export class PlayersListComponent implements OnInit {
   }
 
 
-  constructor(private sidenavService:HideContentService) { }
+  constructor(
+    private sidenavService: HideContentService,
+    private dataStore: DataStoreService) {
+  }
 
   ngOnInit(): void {
+    this.users = this.dataStore.getRoomsUsers();
+    this.finishedUsers = this.dataStore.getFinishedUsers();
   }
 }

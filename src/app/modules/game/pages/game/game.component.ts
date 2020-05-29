@@ -1,11 +1,12 @@
-import {
-  Component, OnInit, ViewChild, AfterViewInit, OnDestroy,
-} from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { HideContentService } from '../../services/hide-content.service';
-import { GameViewService } from '../../services/game-view.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MatSidenav} from '@angular/material/sidenav';
+import {HideContentService} from '../../services/hide-content.service';
+import {GameViewService} from '../../services/game-view.service';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {SocketService} from '../../services/socket.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-game',
@@ -14,18 +15,31 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('leftSidenav') public leftSidenav: MatSidenav;
-
   @ViewChild('rightSidenav') public rightSidenav: MatSidenav;
 
-  constructor(private sidenavService:HideContentService, private gameViewService: GameViewService) { }
+  private readonly finishedUsers: string[];
+  private readonly loadedUsers: string[];
+  private readonly room: string;
+
+
+  constructor(
+    private sidenavService: HideContentService,
+    private gameViewService: GameViewService,
+    private socketService: SocketService,
+    private dataStore: DataStoreService,
+    private snackBar: MatSnackBar) {
+    this.finishedUsers = this.dataStore.getFinishedUsers();
+    this.loadedUsers = this.dataStore.getLoadedUsers();
+    this.room = this.dataStore.getRoomCode();
+  }
 
   currentView: string;
 
   private notifier = new Subject();
 
-  rightArrowShow=true;
+  rightArrowShow = true;
 
-  leftArrowShow=true;
+  leftArrowShow = true;
 
   toggleDisplay(arrow: string) {
     if (arrow === 'rightArrowShow') {
@@ -48,11 +62,18 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.listenUserLoaded();
+    this.listenUserFinishPainting();
+    this.listenNotification();
     this.initGameView();
   }
 
 
   ngAfterViewInit(): void {
+    this.socketService.emit('user-loaded', {
+      room: this.room,
+      username: this.dataStore.getUserName()
+    });
     this.sidenavService.setSidenav(this.leftSidenav, 'leftSidenav');
     this.sidenavService.setSidenav(this.rightSidenav, 'rightSidenav');
   }
@@ -64,11 +85,49 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.notifier.complete();
   }
 
+
+  private listenUserLoaded(): void {
+    this.socketService.listen('new-user-loaded')
+      .pipe(takeUntil(this.notifier))
+      .subscribe(({payload}) => {
+        this.dataStore.setLoadedUsers(payload);
+        if (this.userIsLast(this.loadedUsers)) {
+          this.socketService.emit('all-loaded', {room: this.room});
+        }
+      });
+
+  }
+
+  private listenUserFinishPainting() {
+    this.socketService.listen('user-finish-painting')
+      .pipe(takeUntil(this.notifier))
+      .subscribe(({payload}) => {
+        this.dataStore.setFinishedUser(payload);
+        if (this.userIsLast(this.finishedUsers)) {
+          this.socketService.emit('all-finish-painting', {room: this.room});
+          return;
+        }
+      });
+  }
+
+
+  private listenNotification() {
+    this.socketService.listen('image-saved')
+      .pipe(takeUntil(this.notifier))
+      .subscribe(({answer}) => this.snackBar.open(answer, 'Close', {duration: 2000}));
+  }
+
   initGameView(): void {
     this.gameViewService.currentView$
       .pipe(takeUntil(this.notifier))
       .subscribe((view: string) => {
         this.currentView = view;
       });
+  }
+
+  private userIsLast(array): boolean {
+    const userIsLast = this.dataStore.getUserName() === array.slice().pop();
+    const allUsersFinished = array.length === this.dataStore.getRoomsUsers().length;
+    return allUsersFinished && userIsLast;
   }
 }

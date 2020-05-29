@@ -5,6 +5,7 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {IPlayer} from '../../../../shared/interfaces/iplayer';
 
 @Component({
   selector: 'app-lobby',
@@ -12,7 +13,7 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./lobby.component.scss']
 })
 export class LobbyComponent implements OnInit, OnDestroy {
-  public users: string[] = [];
+  public users: IPlayer[] = [];
   public roomCode: string;
   public errorMessage: string;
   public username: string;
@@ -73,7 +74,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe((data: ISocket) => {
         this.users = this.users.filter(
-          (username: string) => username !== data.payload.username
+          (user: IPlayer) => user.username !== data.payload.username
         );
         this.checkGameStatus();
         this.dataStore.setRoomsUsers(this.users);
