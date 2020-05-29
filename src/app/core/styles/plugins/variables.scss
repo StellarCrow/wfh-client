@@ -74,7 +74,7 @@ $padding-top-bottom--large: 10%;
 $padding-left-right--large: 8%;
 
 //--------pages------------
-$padding-welcome-page: 4%;
+$padding-welcome-page: $header-height 4% 4%;
 
 //--------header------------
 $padding-app-header: 1em 2em 0;
