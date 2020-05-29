@@ -132,6 +132,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   handleSubmit(): void {
+    // TODO: uncomment in production mode
     // const payload = {
     //     userID: JSON.parse(localStorage.getItem('user'))._id,
     //     canvas: this.canvas.nativeElement.toDataURL(),

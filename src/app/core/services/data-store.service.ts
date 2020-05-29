@@ -9,6 +9,7 @@ export class DataStoreService {
   public currentUser: IUser;
   public roomCode: string;
   public users: IPlayer[];
+  public loadedUsers: string[] = [];
   public finishedUsers: string[] = [];
 
   constructor() {
@@ -56,6 +57,14 @@ export class DataStoreService {
 
   public setRoomsUsers(usersList: IPlayer[]): void {
     this.users = [...usersList];
+  }
+
+  public getLoadedUsers(): string[] {
+    return this.loadedUsers;
+  }
+
+  public setLoadedUsers(user: string): void {
+    this.loadedUsers.push(user);
   }
 
 }
