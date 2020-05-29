@@ -2,22 +2,59 @@
 @import "plugins/mixins";
 
 .video {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  border: $chat-border;
+  height: 100%;
+  border: 0;
   border-radius: 1em;
-    &__wrapper {
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin: auto;    
-  };
-    &__title {
-      @include text-stroke();
-      font-family: $ff-header-solid;
-      color: $primary-color;
-      letter-spacing: 0.1em;
-      font-size: 1.2em;
-      text-align: center;
-    }
+
+  background-color: $tertiary-color;
+  cursor: pointer;
+  object-fit: cover;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  &__overlay-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 1rem;
+  }
 }
+
+// .video {
+//   width: 100%;
+//   border: $chat-border;
+//   border-radius: 1em;
+//     &__wrapper {
+//       width: 80%;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: center;
+//       margin: auto;    
+//   };
+//     &__title {
+//       @include text-stroke();
+//       font-family: $ff-header-solid;
+//       color: $primary-color;
+//       letter-spacing: 0.1em;
+//       font-size: 1.2em;
+//       text-align: center;
+//     }
+// }
