@@ -1,4 +1,6 @@
-import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {SocketService} from '../../services/socket.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-canvas',
@@ -6,9 +8,14 @@ import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEm
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements AfterViewInit {
+  private readonly room: string;
+  private picturesCounter = 0;
 
-  constructor() {
+
+  constructor(private socketService: SocketService, private dataStore: DataStoreService) {
+    this.room = this.dataStore.getRoomCode();
   }
+
   linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
   isMouseDown = false;
   lineCount = 0;
@@ -22,8 +29,6 @@ export class CanvasComponent implements AfterViewInit {
 
   private ctx: CanvasRenderingContext2D;
 
-  ngOnInit(): void {
-  }
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -127,7 +132,18 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   handleSubmit(): void {
-    this.submitDraw.emit();
+    // const payload = {
+    //     userID: JSON.parse(localStorage.getItem('user'))._id,
+    //     canvas: this.canvas.nativeElement.toDataURL(),
+    //     room: this.room,
+    //     pictureNumber: this.picturesCounter
+    //   }
+    // ;
+    // this.socketService.emit('save-image', payload);
+    this.picturesCounter++;
+    if (this.picturesCounter === 3) {
+      this.socketService.emit('finish-painting', {username: this.dataStore.getUserName(), room: this.room});
+    }
   }
 
 }
