@@ -2,16 +2,25 @@
         matTooltip="Show filters" color="accent" class="arrow-button">
   <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
 </button>
-<app-video></app-video>
 <ul *ngFor="let user of users" class="players-list">
   <li class="players-list__player player"
       [class.players-list__player--is-finished]="finishedUsers.includes(user.username)">
-  <div class="player__avatar"></div>
+    <div class="player__avatar"></div>
   </li>
 </ul>
 
+<h3>You</h3>
+<h5>{{ roomCode }}</h5>
+<div class="players-list__video-container">
+  <video muted autoplay playsinline #userVideo class="user-video"></video>
+</div>
 
-
+<h3>Your peers</h3>
+  <ul *ngFor="let peer of peerService.peers" class="players-list">
+    <li class="players-list__video-container">
+    <app-video [peer]="peer"></app-video>
+  </li>
+</ul>
 
 
 
