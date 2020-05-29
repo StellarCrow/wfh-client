@@ -1,4 +1,5 @@
-import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { ICanvasLines } from '../../interfaces/icanvas-lines';
 
 @Component({
   selector: 'app-canvas',
@@ -6,17 +7,16 @@ import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEm
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements AfterViewInit {
-
   constructor() {
   }
-  linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
-  isMouseDown = false;
-  lineCount = 0;
+  linesArray: ICanvasLines[] = [];
+  isMouseDown: boolean = false;
+  lineCount: number = 0;
+  width: number;
+  height: number;
 
   @ViewChild('canvas') public canvas: ElementRef;
-
-  @Input() public width = 400;
-  @Input() public height = 350;
+  @ViewChild('canvasWrapper') public canvasWrapper: ElementRef;
 
   @Output() submitDraw: EventEmitter<void> = new EventEmitter();
 
@@ -27,10 +27,11 @@ export class CanvasComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
+    const canvasWrap: HTMLElement = this.canvasWrapper.nativeElement;
     this.ctx = canvasEl.getContext('2d');
 
-    canvasEl.width = this.width;
-    canvasEl.height = this.height;
+    canvasEl.width = this.width = canvasWrap.clientWidth;
+    canvasEl.height = this.height = canvasWrap.clientWidth;
 
     this.ctx.lineWidth = 3;
     this.ctx.lineCap = 'round';
@@ -50,7 +51,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   store(lineNumber: number, x: number, y: number, color: string) {
-    const line = {
+    const line: ICanvasLines = {
       lineNumber: lineNumber,
       x: x,
       y: y,
@@ -60,7 +61,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   redraw(): void {
-    const lines = this.linesArray;
+    const lines: ICanvasLines[] = this.linesArray;
     for (let i = 1; i < lines.length; i++) {
       if (lines[i].lineNumber !== 0 && lines[i - 1].lineNumber !== 0) {
         this.ctx.beginPath();
@@ -108,7 +109,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   undo(): void {
-    let maxId = 0;
+    let maxId: number = 0;
 
     this.linesArray.forEach(item => {
       if (item.lineNumber > maxId) {
@@ -116,7 +117,7 @@ export class CanvasComponent implements AfterViewInit {
       }
     });
 
-    const newLinesArray = this.linesArray.filter(item => {
+    const newLinesArray: ICanvasLines[] = this.linesArray.filter(item => {
       return item.lineNumber !== maxId;
     });
 
@@ -129,5 +130,4 @@ export class CanvasComponent implements AfterViewInit {
   handleSubmit(): void {
     this.submitDraw.emit();
   }
-
 }
