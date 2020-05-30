@@ -1,0 +1,16 @@
+@import "plugins/variables";
+
+.done {
+  &__title {
+    font-size: 1.5em;
+    font-family: 'JandaManateeSolid';
+    color: $white;
+    -webkit-text-stroke: 1px $black;
+  }
+
+  &__mark {
+    font-size: 9em;
+    color: $light-brown;
+    -webkit-text-stroke: 5px $dark-brown;
+  }
+}

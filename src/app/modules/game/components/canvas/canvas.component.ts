@@ -1,8 +1,9 @@
-
 import {SocketService} from '../../services/socket.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import { Component, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { ICanvasLines } from '../../interfaces/icanvas-lines';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {ICanvasLines} from '../../interfaces/icanvas-lines';
+import {GameViewService} from '../../services/game-view.service';
+import {DONE} from '../../constants/game-views';
 
 
 @Component({
@@ -16,11 +17,11 @@ export class CanvasComponent implements AfterViewInit {
   private picturesCounter = 0;
 
 
-  constructor(private socketService: SocketService, private dataStore: DataStoreService) {
+  constructor(private socketService: SocketService,
+              private dataStore: DataStoreService,
+              private gameViewService: GameViewService) {
     this.room = this.dataStore.getRoomCode();
   }
-
-  
 
   linesArray: ICanvasLines[] = [];
   isMouseDown: boolean = false;
@@ -151,6 +152,7 @@ export class CanvasComponent implements AfterViewInit {
     // this.socketService.emit('save-image', payload);
     this.picturesCounter++;
     if (this.picturesCounter === 3) {
+      this.gameViewService.setCurrentView(DONE);
       this.socketService.emit('finish-painting', {username: this.dataStore.getUserName(), room: this.room});
     }
   }
