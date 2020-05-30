@@ -17,9 +17,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('leftSidenav') public leftSidenav: MatSidenav;
   @ViewChild('rightSidenav') public rightSidenav: MatSidenav;
 
-  private readonly finishedUsers: string[];
+
   private readonly loadedUsers: string[];
+  private readonly finishedUsers: string[];
   private readonly room: string;
+  private gameStage: string;
 
 
   constructor(
@@ -28,8 +30,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private socketService: SocketService,
     private dataStore: DataStoreService,
     private snackBar: MatSnackBar) {
-    this.finishedUsers = this.dataStore.getFinishedUsers();
     this.loadedUsers = this.dataStore.getLoadedUsers();
+    this.finishedUsers = this.dataStore.getFinishedUsers();
+
     this.room = this.dataStore.getRoomCode();
   }
 
@@ -62,10 +65,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subscribeGameStage();
     this.listenUserLoaded();
-    this.listenUserFinishPainting();
     this.listenNotification();
     this.initGameView();
+    this.listenUserFinishAction('user-finish-painting');
+    this.listenUserFinishAction('user-finish-phrases');
   }
 
 
@@ -85,31 +90,32 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.notifier.complete();
   }
 
+  private subscribeGameStage() {
+    this.dataStore.getGameStage().subscribe(stage => this.gameStage = stage);
+  }
 
   private listenUserLoaded(): void {
     this.socketService.listen('new-user-loaded')
       .pipe(takeUntil(this.notifier))
       .subscribe(({payload}) => {
         this.dataStore.setLoadedUsers(payload);
-        if (this.userIsLast(this.loadedUsers)) {
-          this.socketService.emit('all-loaded', {room: this.room});
+        if (this.dataStore.userIsLast(this.loadedUsers)) {
+          this.socketService.emit('all-users-loaded', {room: this.room});
         }
       });
 
   }
 
-  private listenUserFinishPainting() {
-    this.socketService.listen('user-finish-painting')
-      .pipe(takeUntil(this.notifier))
+
+  private listenUserFinishAction(event: string) {
+    this.socketService.listen(event)
       .subscribe(({payload}) => {
         this.dataStore.setFinishedUser(payload);
-        if (this.userIsLast(this.finishedUsers)) {
-          this.socketService.emit('all-finish-painting', {room: this.room});
-          return;
+        if (this.dataStore.userIsLast(this.finishedUsers)) {
+          this.socketService.emit(`all-finish-${this.gameStage}`, {room: this.room});
         }
       });
   }
-
 
   private listenNotification() {
     this.socketService.listen('image-saved')
@@ -123,11 +129,5 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((view: string) => {
         this.currentView = view;
       });
-  }
-
-  private userIsLast(array): boolean {
-    const userIsLast = this.dataStore.getUserName() === array.slice().pop();
-    const allUsersFinished = array.length === this.dataStore.getRoomsUsers().length;
-    return allUsersFinished && userIsLast;
   }
 }

@@ -1,9 +1,12 @@
 import {SocketService} from '../../services/socket.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ICanvasLines} from '../../interfaces/icanvas-lines';
 import {GameViewService} from '../../services/game-view.service';
 import {DONE} from '../../constants/game-views';
+import {Stages} from '../../constants/stages.enum';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -11,16 +14,19 @@ import {DONE} from '../../constants/game-views';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
-export class CanvasComponent implements AfterViewInit {
+export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
 
   private readonly room: string;
+  private readonly finishedUsers: string[];
   private picturesCounter = 0;
+  private notifier = new Subject();
 
 
   constructor(private socketService: SocketService,
               private dataStore: DataStoreService,
               private gameViewService: GameViewService) {
     this.room = this.dataStore.getRoomCode();
+    this.finishedUsers = this.dataStore.getFinishedUsers();
   }
 
   linesArray: ICanvasLines[] = [];
@@ -51,6 +57,11 @@ export class CanvasComponent implements AfterViewInit {
     this.ctx.strokeStyle = '#000';
     this.ctx.fillStyle = '#231746';
     this.ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+  }
+
+  ngOnInit(): void {
+    this.dataStore.getGameStage().pipe(takeUntil(this.notifier)).subscribe(console.log);
+    this.dataStore.setGameStage(Stages.painting);
   }
 
   onSetPencilColor(color: string): void {
@@ -138,6 +149,12 @@ export class CanvasComponent implements AfterViewInit {
     this.linesArray = newLinesArray;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.redraw();
+  }
+
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
   }
 
   handleSubmit(): void {
