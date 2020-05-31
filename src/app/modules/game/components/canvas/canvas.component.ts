@@ -1,9 +1,11 @@
 import {SocketService} from '../../services/socket.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ICanvasLines} from '../../interfaces/icanvas-lines';
 import {GameViewService} from '../../services/game-view.service';
-import {DONE} from '../../constants/game-views';
+import {Stages} from '../../constants/stages.enum';
+import {Subject} from 'rxjs';
+import {ActionService} from '../../../../core/services/action.service';
 
 
 @Component({
@@ -11,16 +13,14 @@ import {DONE} from '../../constants/game-views';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
-export class CanvasComponent implements AfterViewInit {
-
-  private readonly room: string;
-  private picturesCounter = 0;
+export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
+  private notifier = new Subject();
 
 
   constructor(private socketService: SocketService,
               private dataStore: DataStoreService,
-              private gameViewService: GameViewService) {
-    this.room = this.dataStore.getRoomCode();
+              private gameViewService: GameViewService,
+              private actionService: ActionService) {
   }
 
   linesArray: ICanvasLines[] = [];
@@ -51,6 +51,10 @@ export class CanvasComponent implements AfterViewInit {
     this.ctx.strokeStyle = '#000';
     this.ctx.fillStyle = '#231746';
     this.ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+  }
+
+  ngOnInit(): void {
+    this.dataStore.setGameStage(Stages.painting);
   }
 
   onSetPencilColor(color: string): void {
@@ -140,6 +144,12 @@ export class CanvasComponent implements AfterViewInit {
     this.redraw();
   }
 
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+  }
+
   handleSubmit(): void {
     // TODO: uncomment in production mode
     // const payload = {
@@ -150,10 +160,7 @@ export class CanvasComponent implements AfterViewInit {
     //   }
     // ;
     // this.socketService.emit('save-image', payload);
-    this.picturesCounter++;
-    if (this.picturesCounter === 3) {
-      this.gameViewService.setCurrentView(DONE);
-      this.socketService.emit('finish-painting', {username: this.dataStore.getUserName(), room: this.room});
-    }
+    this.actionService.registerAction();
+
   }
 }
