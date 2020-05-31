@@ -91,7 +91,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private subscribeGameStage() {
-    this.dataStore.getGameStage().subscribe(stage => this.gameStage = stage);
+    this.dataStore.getGameStage()
+      .pipe(takeUntil(this.notifier))
+      .subscribe(stage => this.gameStage = stage);
   }
 
   private listenUserLoaded(): void {
@@ -100,7 +102,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(({payload}) => {
         this.dataStore.setLoadedUsers(payload);
         if (this.dataStore.userIsLast(this.loadedUsers)) {
-          this.socketService.emit('all-users-loaded', {room: this.room});
+          this.socketService.emit('all-loaded', {room: this.room});
         }
       });
 

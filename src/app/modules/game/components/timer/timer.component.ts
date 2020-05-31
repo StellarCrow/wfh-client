@@ -16,7 +16,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   private readonly loadedUsers: string [];
   private notifier = new Subject();
   public subscription: Subscription;
-  public duration = 75;
+  public duration: number;
   public gameStage: string;
 
   constructor(
@@ -47,11 +47,12 @@ export class TimerComponent implements OnInit, OnDestroy {
       .subscribe(_ => {
         this.gameViewService.currentView = nextView;
         this.dataStore.clearFinishedUsers();
-        this.duration = 75;
+        this.startTimer(75);
       });
   }
 
-  private startTimer(): void {
+  private startTimer(duration: number): void {
+    this.duration = duration;
     this.subscription = interval(1000).subscribe(t => {
       this.startCount();
     });
@@ -59,7 +60,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private listenStartTimer(): void {
     this.socketService.listen('all-users-loaded').subscribe(_ => {
-      this.startTimer();
+      this.startTimer(75);
       this.dataStore.setGameStage(Stages.painting);
     });
   }

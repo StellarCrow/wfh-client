@@ -3,10 +3,9 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
 import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ICanvasLines} from '../../interfaces/icanvas-lines';
 import {GameViewService} from '../../services/game-view.service';
-import {DONE} from '../../constants/game-views';
 import {Stages} from '../../constants/stages.enum';
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {ActionService} from '../../../../core/services/action.service';
 
 
 @Component({
@@ -15,18 +14,13 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
-
-  private readonly room: string;
-  private readonly finishedUsers: string[];
-  private picturesCounter = 0;
   private notifier = new Subject();
 
 
   constructor(private socketService: SocketService,
               private dataStore: DataStoreService,
-              private gameViewService: GameViewService) {
-    this.room = this.dataStore.getRoomCode();
-    this.finishedUsers = this.dataStore.getFinishedUsers();
+              private gameViewService: GameViewService,
+              private actionService: ActionService) {
   }
 
   linesArray: ICanvasLines[] = [];
@@ -60,7 +54,6 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.dataStore.getGameStage().pipe(takeUntil(this.notifier)).subscribe(console.log);
     this.dataStore.setGameStage(Stages.painting);
   }
 
@@ -167,10 +160,7 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
     //   }
     // ;
     // this.socketService.emit('save-image', payload);
-    this.picturesCounter++;
-    if (this.picturesCounter === 3) {
-      this.gameViewService.setCurrentView(DONE);
-      this.socketService.emit('finish-painting', {username: this.dataStore.getUserName(), room: this.room});
-    }
+    this.actionService.registerAction();
+
   }
 }

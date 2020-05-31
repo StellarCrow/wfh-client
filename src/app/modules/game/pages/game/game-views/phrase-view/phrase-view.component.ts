@@ -1,24 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SocketService} from '../../../../services/socket.service';
 import {DataStoreService} from '../../../../../../core/services/data-store.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Stages} from '../../../../constants/stages.enum';
 import {GameViewService} from '../../../../services/game-view.service';
-import {DONE} from '../../../../constants/game-views';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {ActionService} from '../../../../../../core/services/action.service';
 
 @Component({
   selector: 'app-phrase-view',
   templateUrl: './phrase-view.component.html',
   styleUrls: ['./phrase-view.component.scss']
 })
-export class PhraseViewComponent implements OnInit {
-  private readonly room: string;
-  private readonly finishedUsers: string[];
+export class PhraseViewComponent implements OnInit, OnDestroy {
+  private  room: string;
   public username: string;
-  public roomCode: string;
   public phraseForm: FormGroup;
-  public phraseCounter = 0;
+  private notifier = new Subject();
 
 
   constructor(
@@ -26,16 +26,15 @@ export class PhraseViewComponent implements OnInit {
     private dataStore: DataStoreService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private gameViewService: GameViewService
+    private gameViewService: GameViewService,
+    private actionService: ActionService
   ) {
-    this.room = this.dataStore.getRoomCode();
-    this.finishedUsers = this.dataStore.getFinishedUsers();
   }
 
   ngOnInit(): void {
     this.dataStore.setGameStage(Stages.phrases);
     this.listenNewPhrase();
-    this.roomCode = this.dataStore.getRoomCode();
+    this.room = this.dataStore.getRoomCode();
     this.username = this.dataStore.getUserName();
 
     this.phraseForm = this.formBuilder.group({
@@ -47,26 +46,26 @@ export class PhraseViewComponent implements OnInit {
   }
 
   private listenNewPhrase(): void {
-    this.socketService.listen('new-phrase-saved').subscribe(({answer}) => {
-      this.snackBar.open(answer, 'Close', {duration: 2000});
-    });
+    this.socketService.listen('new-phrase-saved')
+      .pipe(takeUntil(this.notifier))
+      .subscribe(({answer}) => {
+        this.snackBar.open(answer, 'Close', {duration: 2000});
+      });
   }
-
 
 
   public submitPhrase(): void {
     this.socketService.emit('new-phrase', {
       phrase: this.phraseForm.value.phraseText,
-      room: this.roomCode,
+      room: this.room,
       userID: JSON.parse(localStorage.getItem('user'))._id,
     });
     this.phraseForm.setValue({phraseText: ''});
-    this.phraseCounter++;
-    if (this.phraseCounter === 3) {
-      this.gameViewService.setCurrentView(DONE);
-      this.socketService.emit('finish-phrases', {room: this.room, username: this.dataStore.getUserName()});
-    }
+    this.actionService.registerAction();
   }
 
-
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+  }
 }

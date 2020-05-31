@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {IUser} from '../../shared/interfaces/user';
 import {IPlayer} from '../../shared/interfaces/iplayer';
 import {Observable, Subject} from 'rxjs';
+import {GameViewService} from '../../modules/game/services/game-view.service';
+import {DONE} from '../../modules/game/constants/game-views';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class DataStoreService {
   public loadedUsers: string[] = [];
   public finishedUsers: string[] = [];
   public gameStage: Subject<string> = new Subject();
+
 
   constructor() {
   }
@@ -82,5 +85,6 @@ export class DataStoreService {
     const allUsersFinished = array.length === this.users.length;
     return allUsersFinished && userIsLast;
   }
+
 
 }
