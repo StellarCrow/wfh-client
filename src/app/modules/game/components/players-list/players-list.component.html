@@ -8,15 +8,6 @@
   <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
 </button>
 
-<ul *ngFor="let user of users" class="players-list">
-  <li
-    class="players-list__player player"
-    [class.players-list__player--is-finished]="finishedUsers.includes(user.username)"
-  >
-    <div class="player__avatar"></div>
-  </li>
-</ul>
-
 <!-- <video
   muted
   autoplay
