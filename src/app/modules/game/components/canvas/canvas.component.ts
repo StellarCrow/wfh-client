@@ -15,12 +15,14 @@ import {ActionService} from '../../../../core/services/action.service';
 })
 export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   private notifier = new Subject();
+  private readonly room: string;
 
 
   constructor(private socketService: SocketService,
               private dataStore: DataStoreService,
               private gameViewService: GameViewService,
               private actionService: ActionService) {
+    this.room = this.dataStore.getRoomCode();
   }
 
   linesArray: ICanvasLines[] = [];
@@ -55,6 +57,7 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataStore.setGameStage(Stages.painting);
+
   }
 
   onSetPencilColor(color: string): void {
@@ -151,16 +154,14 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   handleSubmit(): void {
-    // TODO: uncomment in production mode
+    // TODO: uncomment it in production mode
     // const payload = {
-    //     userID: JSON.parse(localStorage.getItem('user'))._id,
     //     canvas: this.canvas.nativeElement.toDataURL(),
     //     room: this.room,
-    //     pictureNumber: this.picturesCounter
+    //     pictureNumber: this.actionService.getActions()
     //   }
     // ;
     // this.socketService.emit('save-image', payload);
     this.actionService.registerAction();
-
   }
 }

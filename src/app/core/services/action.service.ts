@@ -36,6 +36,10 @@ export class ActionService implements OnDestroy {
       .subscribe(stage => this.gameStage = stage);
   }
 
+  public getActions() {
+    return this.usersActions;
+  }
+
   ngOnDestroy(): void {
     this.notifier.next();
     this.notifier.complete();

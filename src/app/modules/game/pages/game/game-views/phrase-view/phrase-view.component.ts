@@ -57,8 +57,7 @@ export class PhraseViewComponent implements OnInit, OnDestroy {
   public submitPhrase(): void {
     this.socketService.emit('new-phrase', {
       phrase: this.phraseForm.value.phraseText,
-      room: this.room,
-      userID: JSON.parse(localStorage.getItem('user'))._id,
+      room: this.room
     });
     this.phraseForm.setValue({phraseText: ''});
     this.actionService.registerAction();

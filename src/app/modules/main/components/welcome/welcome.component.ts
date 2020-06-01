@@ -23,6 +23,7 @@ export class WelcomeComponent implements OnDestroy {
     private dataStore: DataStoreService
   ) {
     this.roomCode = this.generateRoomCode(4);
+    this.socketService.emit('start-match', {room: '3est'});
   }
 
   public openDialog(): void {
