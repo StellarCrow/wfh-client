@@ -2,12 +2,14 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {AuthGuard} from './core/guards/auth.guard';
+import {LoginGuard} from './core/guards/login/login.guard';
 
 const routes: Routes = [
   {
     path: 'game',
     loadChildren: () =>
-      import('./modules/game/game.module').then(m => m.GameModule)
+      import('./modules/game/game.module').then(m => m.GameModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'main',
@@ -18,9 +20,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/home/home.module').then(m => m.HomeModule)
+      import('./modules/home/home.module').then(m => m.HomeModule),
+    canActivate: [LoginGuard]
   },
-  { path: '**', component: NotFoundComponent }
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

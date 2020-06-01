@@ -1,0 +1,7 @@
+<ul class="pencil">
+  <li class="pencil__color"
+      (click)="onSetPencilColor(color)"
+      [style.background-color]="color"
+      [style.border-color]="color"
+      *ngFor="let color of colors;"></li>
+</ul>

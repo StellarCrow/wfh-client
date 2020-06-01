@@ -1,22 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../../core/services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalJoinRoomComponent} from '../modal-join-room/modal-join-room.component';
 import {SocketService} from '../../../game/services/socket.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent {
+export class WelcomeComponent implements OnDestroy {
   public roomCode: string;
+  private notifier = new Subject();
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private dialog: MatDialog,
     private socketService: SocketService,
     private dataStore: DataStoreService
@@ -30,9 +31,11 @@ export class WelcomeComponent {
       minWidth: '40%',
       position: {right: '10%'}
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.notifier))
+      .subscribe((result) => {
+        console.log('The dialog was closed');
+      });
   }
 
   public createRoom(): void {
@@ -49,5 +52,10 @@ export class WelcomeComponent {
     const arr = new Uint8Array((codeLength + 1) / 2);
     window.crypto.getRandomValues(arr);
     return Array.from(arr, dec2alphanum).join('');
+  }
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
   }
 }

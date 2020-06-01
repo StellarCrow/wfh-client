@@ -1,0 +1,6 @@
+<ul class="canvas-bg">
+  <li class="canvas-bg__color"
+      (click)="onSetCanvasBg(color)"
+      [style.background-color]="color"
+      *ngFor="let color of colors;"></li>
+</ul>

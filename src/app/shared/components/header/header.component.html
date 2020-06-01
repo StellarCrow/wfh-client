@@ -4,7 +4,16 @@
       <img src="assets/logo-orange.png" alt="logo" class="header__img">
     </a>
   </div>
+  <div class="user">
+    <div class="user__avatar">
+      <img [src]="currentUser.avatar" alt="avatar" class="user__image">
+    </div>
+    <div class="user__name">{{currentUser.firstName}}</div>
+  </div>
   <ul class="header__menu menu">
+    <li class="menu__item">
+      <a class="menu__link" routerLink="/main/settings">Settings</a>
+    </li>
     <li class="menu__item">
       <a class="menu__link" routerLink="/main/about">About</a>
     </li>

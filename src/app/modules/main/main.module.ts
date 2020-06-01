@@ -9,6 +9,8 @@ import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ModalJoinRoomComponent} from './components/modal-join-room/modal-join-room.component';
 import {FormJoinRoomComponent} from './components/form-join-room/form-join-room.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { FormUploadFileComponent } from './components/form-upload-file/form-upload-file.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import {FormJoinRoomComponent} from './components/form-join-room/form-join-room.
     AboutComponent,
     FormJoinRoomComponent,
     ModalJoinRoomComponent,
+    SettingsComponent,
+    FormUploadFileComponent,
   ],
   imports: [
     CommonModule,
