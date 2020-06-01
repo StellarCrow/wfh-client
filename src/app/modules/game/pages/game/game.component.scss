@@ -2,16 +2,8 @@
   display: flex;
   flex-flow: row nowrap;
   position: relative;
-  background-image: url("./../../../../../assets/backgrounds/game-background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
+  background: url(/assets/backgrounds/game-background.jpg) no-repeat fixed center center / cover ;
+  min-height: 100vh;
 
   &__room-code {
     position: absolute;

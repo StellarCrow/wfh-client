@@ -24,10 +24,11 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   linesArray: ICanvasLines[] = [];
-  isMouseDown: boolean = false;
-  lineCount: number = 0;
+  isMouseDown = false;
+  lineCount = 0;
   width: number;
   height: number;
+  canvasBackground = '#231746';
 
 
   @ViewChild('canvas') public canvas: ElementRef;
@@ -62,6 +63,7 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   onSetCanvasBg(color: string): void {
+    this.canvasBackground = color;
     this.ctx.fillStyle = color;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.redraw();
@@ -69,10 +71,10 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
 
   store(lineNumber: number, x: number, y: number, color: string) {
     const line: ICanvasLines = {
-      lineNumber: lineNumber,
-      x: x,
-      y: y,
-      color: color
+      lineNumber,
+      x,
+      y,
+      color
     };
     this.linesArray.push(line);
   }
@@ -126,7 +128,7 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   undo(): void {
-    let maxId: number = 0;
+    let maxId = 0;
 
     this.linesArray.forEach(item => {
       if (item.lineNumber > maxId) {
@@ -144,6 +146,14 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
     this.redraw();
   }
 
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.linesArray = [];
+    this.lineCount = 0;
+    this.ctx.fillStyle = this.canvasBackground;
+    this.ctx.fillRect(0, 0, this.width, this.height);
+  }
+
 
   ngOnDestroy(): void {
     this.notifier.next();
@@ -152,15 +162,15 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
 
   handleSubmit(): void {
     // TODO: uncomment in production mode
-    // const payload = {
-    //     userID: JSON.parse(localStorage.getItem('user'))._id,
-    //     canvas: this.canvas.nativeElement.toDataURL(),
-    //     room: this.room,
-    //     pictureNumber: this.picturesCounter
-    //   }
-    // ;
-    // this.socketService.emit('save-image', payload);
+    const payload = {
+      userID: JSON.parse(localStorage.getItem('user'))._id,
+      canvas: this.canvas.nativeElement.toDataURL(),
+      room: this.dataStore.roomCode,
+      pictureNumber: this.actionService.usersActions,
+      canvasBackground: this.canvasBackground
+    };
+    this.socketService.emit('save-image', payload);
     this.actionService.registerAction();
-
+    this.clearCanvas();
   }
 }
