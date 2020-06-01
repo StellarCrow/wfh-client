@@ -1,0 +1,12 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
+.room-code {
+  font-family: $ff-header-solid;
+  font-size: 2em;
+  color: $primary-color;
+  color: $quaternary-color--darker;
+  transform: rotate(-5deg);
+  @include text-stroke();
+  @include scale-anim(1.5s);
+}

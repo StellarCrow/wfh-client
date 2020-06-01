@@ -1,17 +1,27 @@
-<button mat-icon-button (click)="toggleSidenav('leftSidenav')"
-        matTooltip="Show filters" color="accent" class="arrow-button">
+<button
+  mat-icon-button
+  (click)="toggleSidenav('leftSidenav')"
+  matTooltip="Show filters"
+  color="accent"
+  class="arrow-button"
+>
   <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
 </button>
-<app-video></app-video>
-<ul *ngFor="let user of users" class="players-list">
-  <li class="players-list__player player"
-      [class.players-list__player--is-finished]="finishedUsers.includes(user.username)">
-  <div class="player__avatar"></div>
-  </li>
-</ul>
 
-
-
-
-
-
+<div class="players-list__container">
+  <video
+    muted
+    autoplay
+    playsinline
+    #userVideo
+    class="players-list__user-video"
+  ></video>
+  
+  <ul *ngFor="let peer of peerService.peers" class="players-list">
+    <li class="players-list__player player">
+      <div class="player__avatar">
+        <app-video [peer]="peer"></app-video>
+      </div>
+    </li>
+  </ul>
+</div>
