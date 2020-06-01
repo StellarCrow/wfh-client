@@ -65,3 +65,11 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 // Special polyfill for simple peer's rc
 // Add global to window, assigning the value of window itself.
 (window as any).global = window;
+
+// Workaround for "process is not defined" ReferenceErrors in RTC
+(window as any).process = {
+  env: { DEBUG: undefined },
+  nextTick: function() {
+    return null;
+  }
+};

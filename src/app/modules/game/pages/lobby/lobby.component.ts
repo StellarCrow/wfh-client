@@ -90,7 +90,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   public checkGameStatus() {
-    this.gameReady = this.users.length < 3;
+    this.gameReady = this.users.length < 3; // TODO: extract to constant
   }
 
   public startGame() {

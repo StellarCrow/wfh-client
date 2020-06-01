@@ -1,55 +1,31 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {MediaService} from '../../services/media.service';
+import {Component, ViewChild, Input, ElementRef, OnInit} from "@angular/core";
+import {IWSPeer} from "../../interfaces/iwspeer";
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  selector: "app-video",
+  templateUrl: "./video.component.html",
+  styleUrls: ["./video.component.scss"],
 })
-export class VideoComponent implements AfterViewInit {
-  @Input() id: number;
-  @ViewChild('videoPlayer') videoPlayer: ElementRef;
+export class VideoComponent implements OnInit {
+  isMuted = false;
 
-  constructor(private mediaService: MediaService) {
+  @Input() peer: IWSPeer;
+  @ViewChild("videoPlayer") videoPlayer: ElementRef;
+
+  get vp(): any {
+    return this.videoPlayer.nativeElement;
   }
 
-  ngAfterViewInit(): void {
-    this.configureMediaEventHandlers();
+  ngOnInit(): void {
+    this.peer.data.on("stream", (stream: MediaStream) => {
+      this.vp.srcObject = stream;
+    });
   }
 
-  private configureMediaEventHandlers(): void {
-    this.getMediaStream();
-    this.createPeer();
-    this.backOffer();
-    this.backAnswer();
-    this.removePeer();
-  }
+  toggleMute(): void {
+    this.isMuted = !this.isMuted;
 
-  private getMediaStream(): void {
-    // TODO: return observable with stream as data,
-    // so that we don't have to operate with the videoPlayer in the service
-    this.mediaService.getMediaStream(this.videoPlayer.nativeElement);
-
-    // nativeVideoPlayer.srcObject = stream; // Redirect media stream to videoPlayer source
-    // nativeVideoPlayer.play()
-  }
-
-  private createPeer(): void {
-    this.mediaService.createPeer();
-    // TODO: create and play peer's video, configure mute layout
-  }
-
-  private backOffer(): void {
-    this.mediaService.backOffer();
-  }
-
-  private backAnswer(): void {
-    this.mediaService.backAnswer();
-  }
-
-  private removePeer(): void {
-    this.mediaService.removePeer();
-    // TODO: add necessary layout and logic changes
-    // once the peer is removed successfully
+    // If implementing volume slider, use vp.volume range [0, ..., 1]
+    // this.vp.volume = Number(!this.vp.volume);
   }
 }

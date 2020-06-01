@@ -19,6 +19,7 @@ import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/
 import { PlayersListComponent } from './components/players-list/players-list.component';
 import { DoneViewComponent } from './pages/game/game-views/done-view/done-view.component';
 import { MatchingViewComponent } from './pages/game/game-views/matching-view/matching-view.component';
+import { RoomCodeComponent } from './components/room-code/room-code.component';
 
 
 @NgModule({
@@ -37,7 +38,9 @@ import { MatchingViewComponent } from './pages/game/game-views/matching-view/mat
     TeeResultViewComponent,
     PlayersListComponent,
     DoneViewComponent,
-    MatchingViewComponent
+    MatchingViewComponent,
+    PlayersListComponent,
+    RoomCodeComponent
   ],
   imports: [
     CommonModule,

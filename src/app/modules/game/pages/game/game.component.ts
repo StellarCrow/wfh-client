@@ -20,8 +20,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private readonly loadedUsers: string[];
   private readonly finishedUsers: string[];
-  private readonly room: string;
   private gameStage: string;
+  public readonly room: string;
 
 
   constructor(
