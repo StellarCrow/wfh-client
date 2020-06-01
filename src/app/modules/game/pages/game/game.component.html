@@ -1,9 +1,9 @@
 
 <div class="game">
 
-  <!-- TODO: remove / improve later -->
-  <h5>{{ room }}</h5>
-  
+  <div class="game__room-code">
+    <app-room-code></app-room-code>
+  </div>
 
   <div class="game__column">
     <button mat-icon-button (click)="toggleSidenav('leftSidenav')" (click)="toggleDisplay('leftArrowShow')" *ngIf="leftArrowShow"

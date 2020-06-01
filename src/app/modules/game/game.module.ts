@@ -18,6 +18,7 @@ import { PhraseViewComponent } from './pages/game/game-views/phrase-view/phrase-
 import { TeeVoteViewComponent } from './pages/game/game-views/tee-vote-view/tee-vote-view.component';
 import { TeeResultViewComponent } from './pages/game/game-views/tee-result-view/tee-result-view.component';
 import { PlayersListComponent } from './components/players-list/players-list.component';
+import { RoomCodeComponent } from './components/room-code/room-code.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PlayersListComponent } from './components/players-list/players-list.com
     PhraseViewComponent,
     TeeVoteViewComponent,
     TeeResultViewComponent,
-    PlayersListComponent
+    PlayersListComponent,
+    RoomCodeComponent
   ],
   imports: [
     CommonModule,
