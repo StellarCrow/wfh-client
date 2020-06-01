@@ -1,9 +1,27 @@
 @import "plugins/variables";
 .players-list {
+  // height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__user-video {
+    border-radius: 1em;
+    width: 16rem;
+    height: 9rem;
+    object-fit: cover;
+    border: 3px solid #2c2828;
+    margin: 5%;
+  }
 
   &__player, .player{
     display: flex;
@@ -13,7 +31,7 @@
     height: 9rem;
     border-radius: 50%;
     background-color: #fae89e;
-    margin: 7%;
+    margin: 5%;
 
     &--is-finished {
       border: 2px solid $light-green;
@@ -26,11 +44,6 @@
       background-color: #dbfbf8;
       border: 3px solid #2c2828;
     }
-  }
-
-  &__video-container {
-    width: 5em;
-    height: 5em;
   }
 }
 
