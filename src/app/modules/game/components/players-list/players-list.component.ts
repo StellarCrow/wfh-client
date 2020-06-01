@@ -19,9 +19,9 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
   @Output() hideComponent = new EventEmitter<string>();
   @ViewChild('userVideo') userVideo: ElementRef;
 
-  get uv(): any {
-    return this.userVideo.nativeElement;
-  }
+  // get uv(): any {
+    // return this.userVideo.nativeElement;
+  // }
 
   constructor(
     private sidenavService: HideContentService,
@@ -49,8 +49,8 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
-        this.uv.srcObject = stream;
-        this.uv.muted = true;
+        // this.uv.srcObject = stream;
+        // this.uv.muted = true;
 
         const socketID = this.socketService.socket.id;
 

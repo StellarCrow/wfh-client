@@ -9,8 +9,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
+    width: 9rem;
+    height: 9rem;
     border-radius: 50%;
     background-color: #fae89e;
     margin: 7%;
@@ -20,30 +20,17 @@
     }
 
     &__avatar {
-      font-size: 2.6em;
-      font-family: $ff-header-solid;
-      width: 100px;
-      height: 100px;
-      color: #2c2828;
-      line-height: 100px;
-      vertical-align: middle;
-      display: inline-block;
+      width: 80%;
+      height: 80%;
       border-radius: 50%;
       background-color: #dbfbf8;
       border: 3px solid #2c2828;
-      transform: rotate(10deg);
     }
   }
 
   &__video-container {
     width: 5em;
     height: 5em;
-
-    .user-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   }
 }
 
