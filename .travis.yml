@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 sudo: false
 
 language: node_js
@@ -8,18 +8,15 @@ node_js:
 addons:
   chrome: stable
 
-cache:
-  directories:
-    - ./node_modules
-
 before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 762E3157
 
 install:
   - npm install
 
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm run test -- --watch=false --browsers=ChromeHeadlessNoSandbox
 branches:
   only:
   - feature/Travis_tests
