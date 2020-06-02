@@ -3,8 +3,8 @@ import Peer from 'simple-peer';
 import {HideContentService} from '../../services/hide-content.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
-import { PeerService } from '../../services/peer.service';
-import { SocketService } from '../../services/socket.service';
+import {PeerService} from '../../services/peer.service';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-players-list',
