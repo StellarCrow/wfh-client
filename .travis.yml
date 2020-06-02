@@ -1,27 +1,29 @@
+dist: trusty
+sudo: false
+
 language: node_js
 node_js:
-- '12'
+  - '12'
+
 addons:
   apt:
+    sources:
+      - google-chrome
     packages:
-      - xvfb
-before_install:
-- npm install -g @angular/cli
-- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-- export CHROME_BIN=google-chrome
-install: 
+      - google-chrome-stable
+
+cache:
+  directories:
+    - ./node_modules
+
+install:
   - npm install
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
 script:
-  - npm run test --watch=false --browsers=ChromeHeadlessNoSandbox
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 branches:
   only:
   - feature/Travis_tests
-stages:
-  - compile
-  - test
-  - deploy
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
