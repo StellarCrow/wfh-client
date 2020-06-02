@@ -44,11 +44,14 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   leftArrowShow = true;
 
+  hidden = true;
+
   toggleDisplay(arrow: string) {
     if (arrow === 'rightArrowShow') {
       this.rightArrowShow = !this.rightArrowShow;
     } else if (arrow === 'leftArrowShow') {
       this.leftArrowShow = !this.leftArrowShow;
+      this.hidden=!this.hidden;
     }
   }
 

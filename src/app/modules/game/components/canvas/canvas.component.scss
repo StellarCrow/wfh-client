@@ -1,11 +1,13 @@
 .canvas-wrapper {
-  max-width: 400px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .canvas {
   display: block;
   border-radius: 15px;
+  width: 80%;
+  margin: auto;
 }
 
 .canvas-controls {

@@ -1,15 +1,16 @@
 
 <div class="game">
-
-  <div class="game__room-code">
-    <app-room-code></app-room-code>
-  </div>
-
-
-  <div class="game__column">
-    <button mat-icon-button (click)="toggleSidenav('leftSidenav')" (click)="toggleDisplay('leftArrowShow')" *ngIf="leftArrowShow"
-      matTooltip="Show filters" color="accent">
-      <mat-icon aria-hidden="false">keyboard_arrow_right</mat-icon>
+    <div class="game__column">
+    <div class="game__room-code">
+      <app-room-code></app-room-code>
+    </div>
+    <button mat-icon-button class="hide-button left" (click)="toggleSidenav('leftSidenav')" (click)="toggleDisplay('leftArrowShow')" *ngIf="!leftArrowShow"
+    >
+    <mat-icon class="icon-arrow" ></mat-icon>
+    </button>
+    <button mat-icon-button class="show-button left" (click)="toggleSidenav('leftSidenav')" (click)="toggleDisplay('leftArrowShow')" *ngIf="leftArrowShow"
+    >
+      <mat-icon class="icon-arrow left"></mat-icon>
     </button>
     <div class="game__players">
 
@@ -18,7 +19,7 @@
       <mat-sidenav-container >
 
         <mat-sidenav #leftSidenav [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0" mode="side" class="sidenav">
-          <app-players-list (hideComponent)="closeArrow($event)"></app-players-list>
+          <app-players-list ></app-players-list>
         </mat-sidenav>
       </mat-sidenav-container>
 
@@ -45,13 +46,16 @@
 
   <div class="game__column">
     <div class="game__chat">
-      <button mat-icon-button (click)="toggleSidenav('rightSidenav')" (click)="toggleDisplay('rightArrowShow')" *ngIf="rightArrowShow"
-        matTooltip="Show filters" color="accent">
-        <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon></button>
+      <button mat-icon-button class="show-button right" (click)="toggleSidenav('rightSidenav')" (click)="toggleDisplay('rightArrowShow')" *ngIf="rightArrowShow"
+      >
+        <mat-icon class="icon-arrow"></mat-icon></button>
+        <button mat-icon-button class="hide-button right" (click)="toggleSidenav('rightSidenav')" (click)="toggleDisplay('rightArrowShow')" *ngIf="!rightArrowShow"
+      >
+        <mat-icon class="icon-arrow"></mat-icon></button>
       <!--Chat component-->
       <mat-sidenav-container>
         <mat-sidenav #rightSidenav   mode="side" [fixedInViewport]="true" position="end" class="sidenav">
-          <app-chat (hideComponent)="closeArrow($event)"></app-chat>
+          <app-chat></app-chat>
         </mat-sidenav>
       </mat-sidenav-container>
 
