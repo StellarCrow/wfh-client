@@ -40,23 +40,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private notifier = new Subject();
 
-  rightArrowShow = true;
+  isHideButtonRight = false;
 
-  leftArrowShow = true;
+  isHideButtonLeft = false;
 
-  toggleDisplay(arrow: string) {
-    if (arrow === 'rightArrowShow') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (arrow === 'leftArrowShow') {
-      this.leftArrowShow = !this.leftArrowShow;
-    }
-  }
-
-  closeArrow(closed: string) {
-    if (closed === 'right') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (closed === 'left') {
-      this.leftArrowShow = !this.leftArrowShow;
+  public toggleArrow(arrow: string) {
+    if (arrow === 'rightArrow') {
+      this.isHideButtonRight = !this.isHideButtonRight;
+    } else if (arrow === 'leftArrow') {
+      this.isHideButtonLeft = !this.isHideButtonLeft;
     }
   }
 

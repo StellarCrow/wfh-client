@@ -1,19 +1,16 @@
 <div class="login">
   <mat-card class="login__container">
-    <mat-card-title class="login__title">Sign In / Sign Up</mat-card-title>
-    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="tabChanged($event)">
-      <mat-tab class="login__signin signin" label="Sign In">
-        <mat-card-content class="signin__list">
-          <app-signin></app-signin>
-        </mat-card-content>
-      </mat-tab>
 
-      <mat-tab class="login__signup" label="Sign Up">
-        <mat-card-content class="signup__list">
-          <app-signup (signupEvent)="moveToSigninTab()"></app-signup>
-        </mat-card-content>
+    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex"
+      (selectedTabChange)="tabChanged($event)">
+      <mat-tab class="login__slider" label="Sign Up">
+        <app-signup (signupEvent)="moveToSigninTab()"></app-signup>
+      </mat-tab>
+      <mat-tab class="login__slider" label="Sign In">
+        <app-signin></app-signin>
       </mat-tab>
     </mat-tab-group>
+
     <alert></alert>
   </mat-card>
 </div>
