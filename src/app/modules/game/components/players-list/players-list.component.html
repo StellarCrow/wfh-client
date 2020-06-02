@@ -7,30 +7,10 @@
     class="players-list__user-video"
   ></video>
   
-  <ul class="players-list">
+  <ul *ngFor="let peer of peerService.peers" class="players-list">
     <li class="players-list__player player">
       <div class="player__avatar">
-        
-      </div>
-    </li>
-    <li class="players-list__player player">
-      <div class="player__avatar">
-        
-      </div>
-    </li>
-    <li class="players-list__player player">
-      <div class="player__avatar">
-        
-      </div>
-    </li>
-    <li class="players-list__player player">
-      <div class="player__avatar">
-        
-      </div>
-    </li>
-    <li class="players-list__player player">
-      <div class="player__avatar">
-        
+        <app-video [peer]="peer"></app-video>
       </div>
     </li>
   </ul>

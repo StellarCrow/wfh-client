@@ -41,7 +41,7 @@
   }
 }
 
-.show-button,.hide-button {
+.showButton, .hideButton {
   position: fixed;
   top: 50%;
   z-index: 5;
@@ -51,15 +51,15 @@
   padding: 0;
 }
 
-.hide-button.left {
+.hideButton.left {
   left: 0;
 }
 
-.hide-button.right{
+.hideButton.right{
   right: 0;
 }
 
-.show-button.left, .hide-button.right{
+.showButton.left, .hideButton.right{
   transform:scaleX(-1);
 }
 
