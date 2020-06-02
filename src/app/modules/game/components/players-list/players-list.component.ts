@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/
 import Peer from 'simple-peer';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
-import { PeerService } from '../../services/peer.service';
-import { SocketService } from '../../services/socket.service';
+import {PeerService} from '../../services/peer.service';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-players-list',

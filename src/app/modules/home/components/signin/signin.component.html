@@ -1,27 +1,38 @@
-<form [formGroup]="signinForm" (ngSubmit)="signin()">
-  <mat-form-field class="signin__item">
-    <input matInput formControlName="email" class="signin__email" placeholder="Email" required name="email"
-           type="email">
-    <mat-error *ngIf="getSigninControls.email.invalid">Email is required (name@example.com)</mat-error>
-    <mat-icon matSuffix class="signin__mail-icon icon">email</mat-icon>
-  </mat-form-field>
+<div class="signin">
+  <div class="signin__background"></div>
+  <mat-card-content class="signin__list">
+    <mat-card-title class="signin__title">Sign In</mat-card-title>
 
-  <mat-form-field class="signin__item">
-    <input matInput formControlName="password" class="signin__password" placeholder="Password" type="password"
-           required minlength="6" name="password">
-    <mat-error *ngIf="getSigninControls.password.errors && getSigninControls.password.errors.required">
-      Password is required
-    </mat-error>
-    <mat-error *ngIf="getSigninControls.password.errors && getSigninControls.password.errors.minlength">
-      Password must be at least 6 characters long with 1 symbol
-    </mat-error>
-    <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
-  </mat-form-field>
-  <small class="signin__message">* - field is required</small>
-  <button mat-raised-button color="primary" class="signin__button button" [disabled]="loading">
-    <span *ngIf="loading"></span>
-    Sign In
-  </button>
+    <form [formGroup]="signinForm" (ngSubmit)="signin()">
+      <mat-form-field class="signin__item">
+        <input matInput formControlName="email" class="signin__email" placeholder="Email" required name="email"
+          type="email">
+        <mat-error *ngIf="getSigninControls.email.invalid">Email is required (name@example.com)</mat-error>
+        <mat-icon matSuffix class="signin__mail-icon icon">email</mat-icon>
+      </mat-form-field>
 
-
-</form>
+      <mat-form-field class="signin__item">
+        <input matInput formControlName="password" class="signin__password" placeholder="Password" type="password"
+          required minlength="6" name="password">
+        <mat-error *ngIf="getSigninControls.password.errors && getSigninControls.password.errors.required">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="getSigninControls.password.errors && getSigninControls.password.errors.minlength">
+          Password must be at least 6 characters long with 1 symbol
+        </mat-error>
+        <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
+      </mat-form-field>
+      <small class="signin__message">* - field is required</small>
+      
+      <button mat-raised-button color="primary" class="signin__button signin__button-submit button"
+        [disabled]="loading">
+        <span *ngIf="loading"></span>
+        Sign In
+      </button>
+      <button mat-raised-button color="primary" class="signin__button signin__button-google button">
+        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+        Login with Google
+      </button>
+    </form>
+  </mat-card-content>
+</div>
