@@ -1,0 +1,45 @@
+@import 'plugins/variables';
+
+.tee {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__picture-wrapper,
+  &__phrase-wrapper {
+    z-index: 12;
+    position: absolute;
+    transform: rotate(-18deg);
+  }
+  
+  &__picture-wrapper {
+    height: 45%;
+    width: 45%;
+    left: 30%;
+    bottom: 35%;
+  }
+
+  &__picture {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__phrase-wrapper {
+    width: 50%;
+    left: 40%;
+    bottom: 10%;
+    text-align: center;
+  }
+
+  &__phrase {
+    font-family: $ff-primary;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: $grey-medium;
+  }
+}

@@ -20,6 +20,8 @@ import { PlayersListComponent } from './components/players-list/players-list.com
 import { DoneViewComponent } from './pages/game/game-views/done-view/done-view.component';
 import { MatchingViewComponent } from './pages/game/game-views/matching-view/matching-view.component';
 import { RoomCodeComponent } from './components/room-code/room-code.component';
+import { TeeComponent } from './components/tee/tee.component';
+import { TeeImageComponent } from './components/tee-image/tee-image.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { RoomCodeComponent } from './components/room-code/room-code.component';
     DoneViewComponent,
     MatchingViewComponent,
     PlayersListComponent,
-    RoomCodeComponent
+    RoomCodeComponent,
+    TeeComponent,
+    TeeImageComponent
   ],
   imports: [
     CommonModule,

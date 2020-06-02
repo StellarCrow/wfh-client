@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index: 1;
+    z-index: 10;
 }
 
 .slider-wrapper {
@@ -67,7 +67,7 @@
         transform: translate(0, 0);
 
         & ~ .slide {
-            transform: translate(100%, 0);
+            transform: translate(150%, 0);
         }
     }
 
@@ -79,6 +79,11 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center center;
+
+        &-wrapper {
+            height: 100%;
+            width: 100%;
+        }
     }
 
     &--phrase {
@@ -88,11 +93,6 @@
         color: #fff;
         line-height: 50px;
     }
-}
-
-.tee-img {
-    display: block;
-    height: 250px;
 }
 
 .submit-btn {
