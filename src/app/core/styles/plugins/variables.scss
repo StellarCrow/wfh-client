@@ -1,5 +1,3 @@
-
-
 //----------BREAKPOINTS-------------
 
 $bp-xxsmall: 320px;
@@ -43,26 +41,36 @@ $base-font-size: 16px;
 $title-modal-font-size: 2.3em;
 
 //-------------COLORS----------------
-$background-header: #222222;
 $primary-color: #d5f9f6;
 $primary-color--darker: #d5f9f6;
+$primary-color--dark: #6fb8f7;
 $secondary-color: #ffc3ae;
 $secondary-color--darker: #b47455;
 $tertiaty-color: #b0eac1;
 $tertiary-color: #b0eac1;
 $tertiary-color--darker: #57aa56;
+$quaternary-color: #fced9e;
+$quaternary-color--darker: #f4c95d;
 $grey-dark: #787878;
 $grey-medium: #ccc;
+$grey--light: #e9e9e9;
 $black: #000;
 $white: #fff;
+$error-color: #f44336;
+$light-green: #76ff03;
+$light-brown:#f5cc53;
+$dark-brown: #231f20;
+
+
 
 
 $text-color--light: #ffffff;
 $text-color--dark: #000000;
 
 
-
 //-------------PADDINGS----------------
+
+$header-height: 100px;
 
 $padding-top-bottom: 6%;
 $padding-left-right: 8%;
@@ -71,8 +79,12 @@ $padding-top-bottom--large: 10%;
 $padding-left-right--large: 8%;
 
 //--------pages------------
-$padding-welcome-page: 4%;
+$padding-welcome-page: $header-height 4% 4%;
 
 //--------header------------
 $padding-app-header: 1em 2em 0;
+
+//chat
+$padding-chat-input: 1em 1.5em;
+$chat-border: 2px solid #000000;
 

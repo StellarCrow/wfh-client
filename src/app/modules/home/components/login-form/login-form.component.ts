@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { DataStoreService } from '../../../../core/services/data-store.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {MatTabChangeEvent} from '@angular/material/tabs';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-login-form',
@@ -19,9 +19,11 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+  }
 
-  tabChanged(event: MatTabChangeEvent) {}
+  tabChanged(event: MatTabChangeEvent) {
+  }
 
   moveToSigninTab() {
     this.selectedTabIndex = 0;

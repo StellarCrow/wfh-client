@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { ILoginResponse } from '../../../../shared/interfaces/i-login-response';
-import { DataStoreService } from '../../../../core/services/data-store.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-signin',
@@ -22,7 +22,8 @@ export class SigninComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private dataStore: DataStoreService
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.signinForm = this.formBuilderSignin.group({
@@ -50,8 +51,7 @@ export class SigninComponent implements OnInit {
         if (!data.success) {
           return this.alertService.error(data.error.message);
         }
-        localStorage.setItem('firstName', JSON.stringify(data.payload.userData.firstName));
-        localStorage.setItem('token', JSON.stringify(data.payload.token));
+        this.setItemsToLocalStorage(data);
         this.dataStore.setCurrentUser(data.payload.userData);
         this.router.navigate(['main/welcome']);
       },
@@ -60,5 +60,15 @@ export class SigninComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  private setItemsToLocalStorage(data: ILoginResponse) {
+    const user = data.payload.userData;
+    if (user && user.password) {
+      delete user.password;
+    }
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('firstName', JSON.stringify(data.payload.userData.firstName));
+    localStorage.setItem('token', JSON.stringify(data.payload.token));
   }
 }

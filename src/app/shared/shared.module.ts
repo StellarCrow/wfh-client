@@ -5,11 +5,16 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
-import { ModalComponent } from './components/modal/modal.component';
+import {ModalComponent} from './components/modal/modal.component';
 
 
 @NgModule({
-  declarations: [ModalComponent, HeaderComponent, FooterComponent, AlertComponent],
+  declarations: [
+    ModalComponent,
+    HeaderComponent,
+    FooterComponent,
+    AlertComponent
+  ],
   imports: [
     RouterModule,
     CommonModule,

@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { IRegisterResponse } from '../../../../shared/interfaces/iregister-response';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
 
 @Component({
   selector: 'app-signup',
@@ -10,16 +10,18 @@ import { IRegisterResponse } from '../../../../shared/interfaces/iregister-respo
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  @Output() signupEvent = new EventEmitter();
   public signupForm: FormGroup;
   public loading = false;
   public submitted = false;
-  @Output() signupEvent = new EventEmitter();
+
 
   constructor(
     private formBuilderSignup: FormBuilder,
     private authService: AuthService,
     private alertService: AlertService
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.signupForm = this.formBuilderSignup.group({
@@ -42,23 +44,25 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    this.authService.registerUser(this.signupForm.value).subscribe(
-      (data: IRegisterResponse) => {
-        if (!data.success) {
-          this.alertService.error(data.error.message);
-        } else {
-          this.alertService.success('Registration successful', true);
-          this.signupSuccess();
+    this.authService.registerUser(this.signupForm.value)
+      .subscribe(
+        (data: IRegisterResponse) => {
+          if (!data.success) {
+            this.alertService.error(data.error.message);
+          } else {
+            this.alertService.success('Registration successful', true);
+            this.signupSuccess();
+          }
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
         }
-      },
-      error => {
-        this.alertService.error(error);
-        this.loading = false;
-      }
-    );
+      );
   }
 
   signupSuccess() {
     this.signupEvent.emit();
   }
+
 }
