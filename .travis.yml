@@ -16,7 +16,7 @@ install:
   - npm install
 
 script:
-  - npm run test -- --watch=false --browsers=ChromeHeadlessNoSandbox
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 branches:
   only:
   - feature/Travis_tests
