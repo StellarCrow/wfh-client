@@ -24,14 +24,14 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
-        flags: ['--disable-setuid-sandbox', '--no-sandbox']
+        flags: ['--no-sandbox']
       }
     },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'ChromeHeadlessNoSandbox'],
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessNoSandbox'],
     singleRun: false,
     restartOnFileChange: true
   });
