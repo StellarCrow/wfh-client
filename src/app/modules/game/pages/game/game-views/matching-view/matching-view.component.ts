@@ -34,24 +34,9 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataStore.setGameStage(Stages.matching);
-    this.listenCreateTee();
-
-    // TODO: remove once we receive actual data from BE
-    this.mockData();
-  }
-
-  // TODO: remove, same reason as above
-  mockData(): void {
-    this.pictures = [
-      {url: 'assets/images/tee-img.jpg', created_by: 'peer1', background: 'rgb(95, 0, 0)'},
-      {url: 'assets/images/tee-img2.jpg', created_by: 'peer2', background: 'rgb(34, 54, 24)'},
-      {url: 'assets/images/tee-img3.jpg', created_by: 'peer3', background: 'rgb(35, 23, 70)'}
-    ];
-    this.phrases = [
-      {phrase: 'Blad zakonav mene v mogylu', created_by: 'peer2'},
-      {phrase: 'Applying for junior position at EPAM', created_by: 'peer1'},
-      {phrase: 'Lol kek cheburek', created_by: 'peer3'}
-    ];
+    this.listenTeeCreated();
+    this.listenPairsCreated();
+    this.initCreatePairs();
   }
 
   previousPicture(): void {
@@ -78,7 +63,11 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  private listenCreateTee(): void {
+  private initCreatePairs(): void {
+    this.socketService.emit('create-pairs', {room: this.dataStore.getRoomCode()});
+  }
+
+  private listenTeeCreated(): void {
     this.socketService.listen('new-tee-created')
       .pipe(takeUntil(this.notifier))
       .subscribe(({answer}) => {
@@ -86,20 +75,23 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  submit(): void {
-    this.resultTee = {
-      picture: this.pictures[this.currentPicture],
-      phrase: this.phrases[this.currentPhrase]
-    };
-    console.log(this.resultTee);
-
-    // TODO: add 'create-tee' event in BE to receive the created tee
-    this.socketService.emit('create-tee', {
-      tee: this.resultTee,
-      room: this.dataStore.getRoomCode(),
-      userID: JSON.parse(localStorage.getItem('user'))._id,
+  private listenPairsCreated(): void {
+    this.socketService.listen('pairs-created').subscribe(({payload}) => {
+      this.pictures = payload.map(item => item.picture);
+      this.phrases = payload.map(item => item.phrase);
     });
-    this.actionService.registerAction();
+  }
+
+  submit(): void {
+    const picture = this.pictures[this.currentPicture];
+    const phrase = this.phrases[this.currentPhrase];
+    this.resultTee = {picture, phrase};
+
+    this.socketService.emit('new-tee', {
+      tee: this.resultTee,
+      room: this.dataStore.getRoomCode()
+    });
+    this.actionService.registerAction(true);
   }
 
   ngOnDestroy(): void {
