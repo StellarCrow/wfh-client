@@ -1,10 +1,35 @@
 @import "plugins/variables.scss";
 
 .signup {
+  display: flex;
+  &__background {
+    background-image: url(/assets/backgrounds/signup-background.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  &__list {
+    margin-top: 7%;
+    width: 50%;
+  }
+
   &__item {
     width: 80%;
     display: block;
     margin: auto;
+  }
+
+  &__title {
+    margin: 1rem 4rem;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: bold;
   }
 
   &__message {
@@ -15,13 +40,17 @@
   }
 
   &__button {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     display: block;
     width: 80%;
     margin: 1rem auto;
-    background-color: $primary-color;
-    color: $black;
-    border: 1px solid $grey-medium;
+    background-color: #72b8f9;
+    color: $white;
+    border: 1px solid $grey-dark;
+    font-family: 'Roboto', sans-serif;
+    &:hover {
+      background-color: darken(#72b8f9, 10%);
+    }
   }
 }
 
