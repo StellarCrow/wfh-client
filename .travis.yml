@@ -13,6 +13,10 @@ script:
 branches:
   only:
   - feature/Travis_tests
+stages:
+  - compile
+  - test
+  - deploy
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
