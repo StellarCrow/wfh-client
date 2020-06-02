@@ -1,0 +1,97 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.wrapper {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-phase {
+    color: #f4cc52;
+    text-align: center;
+
+    &__title {
+        font-family: "JandaManateeSolid";
+        font-size: 2em;
+        -webkit-text-stroke: 3px #242628;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    &__hint {
+        margin: 0;
+        line-height: 0;
+    }
+}
+
+.tee-vote-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.versus {
+    font-family: "JandaManateeSolid";
+    font-size: 4em;
+    -webkit-text-stroke: 3px #242628;
+    text-transform: uppercase;
+    margin: 0;
+    color: #f4cc52;
+    transform: rotate(-8deg);
+}
+
+.tee {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__img {
+        display: block;
+        width: 200px;
+        margin: 20px 0 8px 0;
+        user-select: none;
+    }
+    
+    &__text {
+        width: 200px;
+        font-size: 1.2em;
+        font-weight: 600;
+        text-align: center;
+        color: #fff;
+        margin: 0;
+        user-select: none;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    
+    &--left {
+        transform: rotate(-16deg);
+    }
+    
+    &--right {
+        transform: rotate(16deg);
+    }
+}
