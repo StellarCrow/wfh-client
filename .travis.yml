@@ -6,7 +6,6 @@ addons:
 before_install:
 - npm install -g @angular/cli
 - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-- sudo apt-get install google-chrome
 - export CHROME_BIN=google-chrome
 install: npm install
 script:
