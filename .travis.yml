@@ -6,7 +6,7 @@ before_install:
 install: npm install
 branches:
   only:
-  - feature/Travis_tests
+  - master
 deploy:
   provider: heroku
   app: real-super-cool-modern-app-wfh
