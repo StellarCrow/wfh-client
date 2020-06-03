@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { ABOUTBACKGROUND, ABOUTBACKGROUND_HD } from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  public defaultImage = '/assets/backgrounds/about-background.png';
+  public defaultBackground = ABOUTBACKGROUND;
 
-  public highResImage = 'https://wfh-storage.s3.eu-north-1.amazonaws.com/backgrounds/about-backgroundHighRes.png';
+  public highResBackground = ABOUTBACKGROUND_HD;
 
   constructor() {
   }

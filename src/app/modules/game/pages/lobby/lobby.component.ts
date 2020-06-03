@@ -6,6 +6,7 @@ import { SocketService } from '../../services/socket.service';
 import { ISocket } from '../../interfaces/isocket';
 import { DataStoreService } from '../../../../core/services/data-store.service';
 import { IPlayer } from '../../../../shared/interfaces/iplayer';
+import { LOBBYBACKGROUND, LOBBYBACKGROUND_HD } from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-lobby',
@@ -25,9 +26,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   public notifier = new Subject();
 
-  public defaultImage = '/assets/backgrounds/lobby-background.gif';
+  public defaultBackground = LOBBYBACKGROUND;
 
-  public highResImage = 'https://wfh-storage.s3.eu-north-1.amazonaws.com/backgrounds/lobby-backgroundHighRes.gif';
+  public highResBackground = LOBBYBACKGROUND_HD;
 
   constructor(
     private socketService: SocketService,

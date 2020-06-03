@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
 import { AlertService } from '../../../../core/services/alert.service';
 import { IRegisterResponse } from '../../../../shared/interfaces/iregister-response';
+import { SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD } from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signup',
@@ -20,9 +21,9 @@ export class SignupComponent implements OnInit {
 
   public submitted = false;
 
-  public defaultImage = '/assets/backgrounds/signup-background.gif';
+  public defaultBackground = SIGNUPBACKGROUND;
 
-  public highResImage = 'https://wfh-storage.s3.eu-north-1.amazonaws.com/backgrounds/signup-background_HighRes.gif';
+  public highResBackground = SIGNUPBACKGROUND_HD;
 
 
   constructor(
