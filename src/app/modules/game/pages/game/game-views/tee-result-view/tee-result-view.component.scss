@@ -29,6 +29,21 @@
     margin: 0;
     transform: rotate(-5deg);
   }
+  &__button {
+    margin: 1rem auto;
+    width: 200px;
+    padding: 1rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background-color: #d8e5ad;
+    color: #fff;
+    border: 3px solid #2c2828;
+    &:hover {
+      background-color: darken(#d8e5ad, 10%);
+    }
+  }
 }
 
 .tee {
@@ -49,7 +64,7 @@
       cursor: pointer;
     }
   }
-  
+
   &__img {
     display: block;
     width: 200px;
@@ -71,4 +86,5 @@
     overflow: hidden;
     text-transform: uppercase;
   }
+
 }
