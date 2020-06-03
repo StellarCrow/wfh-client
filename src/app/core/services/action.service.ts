@@ -21,11 +21,11 @@ export class ActionService implements OnDestroy {
     this.subscribeGameStage();
   }
 
-  public registerAction(isVotingPhase = false) {
+  public registerAction() {
     this.usersActions++;
 
     let neededActions;
-    if (isVotingPhase) {
+    if (this.gameStage === 'matching') {
       neededActions = 1;
     } else {
       neededActions = 3;
