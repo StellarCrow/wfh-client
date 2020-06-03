@@ -23,7 +23,10 @@
         <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
       </mat-form-field>
       <small class="signin__message">* - field is required</small>
-      
+      <div class="alert">
+          <alert></alert>
+        </div>
+   
       <button mat-raised-button color="primary" class="signin__button signin__button-submit button"
         [disabled]="loading">
         <span *ngIf="loading"></span>
