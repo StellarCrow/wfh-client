@@ -20,6 +20,7 @@ import { PlayersListComponent } from './components/players-list/players-list.com
 import { DoneViewComponent } from './pages/game/game-views/done-view/done-view.component';
 import { MatchingViewComponent } from './pages/game/game-views/matching-view/matching-view.component';
 import { RoomCodeComponent } from './components/room-code/room-code.component';
+import { GameCoreComponent } from './game-core.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RoomCodeComponent } from './components/room-code/room-code.component';
     DoneViewComponent,
     MatchingViewComponent,
     PlayersListComponent,
-    RoomCodeComponent
+    RoomCodeComponent,
+    GameCoreComponent
   ],
   imports: [
     CommonModule,

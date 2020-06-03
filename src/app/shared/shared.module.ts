@@ -6,6 +6,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
 import {ModalComponent} from './components/modal/modal.component';
+import { ModalGameStartedComponent } from './components/modal-game-started/modal-game-started.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {ModalComponent} from './components/modal/modal.component';
     ModalComponent,
     HeaderComponent,
     FooterComponent,
-    AlertComponent
+    AlertComponent,
+    ModalGameStartedComponent
   ],
   imports: [
     RouterModule,
