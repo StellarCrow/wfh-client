@@ -59,10 +59,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeGameStage();
     this.listenUserLoaded();
-    this.listenNotification();
+    this.listenNotification('image-saved');
+    this.listenNotification('new-tee-created');
     this.initGameView();
     this.listenUserFinishAction('user-finish-painting');
     this.listenUserFinishAction('user-finish-phrases');
+    this.listenUserFinishAction('user-finish-matching');
   }
 
 
@@ -111,8 +113,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  private listenNotification() {
-    this.socketService.listen('image-saved')
+  private listenNotification(event) {
+    this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
       .subscribe(({answer}) => this.snackBar.open(answer, 'Close', {duration: 2000}));
   }
