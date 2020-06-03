@@ -85,6 +85,4 @@ export class DataStoreService {
     const allUsersFinished = array.length === this.users.length;
     return allUsersFinished && userIsLast;
   }
-
-
 }

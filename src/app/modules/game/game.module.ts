@@ -23,6 +23,7 @@ import { MatchingViewComponent } from './pages/game/game-views/matching-view/mat
 import { RoomCodeComponent } from './components/room-code/room-code.component';
 import { TeeComponent } from './components/tee/tee.component';
 import { TeeImageComponent } from './components/tee-image/tee-image.component';
+import { GameCoreComponent } from './game-core.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { TeeImageComponent } from './components/tee-image/tee-image.component';
     MatchingViewComponent,
     PlayersListComponent,
     RoomCodeComponent,
+    GameCoreComponent,
     TeeComponent,
     TeeImageComponent,
   ],

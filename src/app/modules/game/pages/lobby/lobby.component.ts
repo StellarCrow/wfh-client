@@ -65,7 +65,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   private listenGameStarted(): void {
     this.socketService.listen('game-started')
       .pipe(takeUntil(this.notifier))
-      .subscribe((data) => this.router.navigate(['game/play']));
+      .subscribe((data) => this.router.navigate(['game/play'], { state: { fromLobby: true } }));
   }
 
   private listenReconnectUser(): void {
