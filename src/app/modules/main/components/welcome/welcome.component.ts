@@ -29,6 +29,7 @@ export class WelcomeComponent implements OnDestroy {
     const dialogRef = this.dialog.open(ModalJoinRoomComponent, {
       panelClass: 'custom-dialog',
       minWidth: '40%',
+      maxWidth: '40%',
       position: {right: '10%'}
     });
     dialogRef.afterClosed()
