@@ -1,5 +1,5 @@
-<div class="lobby">
-  <div class="lobby__container">
+<div class="lobby" >
+  <div class="lobby__container" [defaultImage]="defaultImage" [lazyLoad]="highResImage">
     <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>

@@ -15,6 +15,8 @@ import {Subject} from 'rxjs';
 export class WelcomeComponent implements OnDestroy {
   public roomCode: string;
   private notifier = new Subject();
+  public defaultImage = '/assets/backgrounds/welcome-background.gif';
+  public highResImage = 'https://wfh-storage.s3.eu-north-1.amazonaws.com/backgrounds/welcome-backgroundHighRes.gif';
 
   constructor(
     private router: Router,
