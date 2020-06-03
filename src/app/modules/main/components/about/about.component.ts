@@ -7,6 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  public defaultImage = '/assets/backgrounds/about-background.png';
+
+  public highResImage = 'https://wfh-storage.s3.eu-north-1.amazonaws.com/backgrounds/about-backgroundHighRes.png';
+
   constructor() {
   }
 

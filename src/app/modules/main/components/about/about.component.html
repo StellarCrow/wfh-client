@@ -1,7 +1,7 @@
 <div class="about">
   <app-header></app-header>
   <div class="about__container">
-    <img class="about__background" src="../../../../../assets/backgrounds/about-background.png" alt="about-background"/>
+    <img class="about__background" [defaultImage]="defaultImage" [lazyLoad]="highResImage"/>
     <div class="about__title">"We are individually diverse, yet banded together in common purpose and resolve."</div>
   </div>
   <div class="about__values values">
