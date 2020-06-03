@@ -25,7 +25,7 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
   private notifier = new Subject();
 
   constructor(
-    private dataStore: DataStoreService, 
+    private dataStore: DataStoreService,
     private snackBar: MatSnackBar,
     private socketService: SocketService,
     private actionService: ActionService
@@ -91,7 +91,7 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
       tee: this.resultTee,
       room: this.dataStore.getRoomCode()
     });
-    this.actionService.registerAction(true);
+    this.actionService.registerAction();
   }
 
   ngOnDestroy(): void {
