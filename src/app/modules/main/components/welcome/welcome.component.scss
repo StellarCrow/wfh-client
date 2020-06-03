@@ -32,7 +32,7 @@
 }
 
 .game {
-  background: url(/assets/images/shirt.png/) no-repeat left top / contain;
+  background: url(/assets/images/shirt.png) no-repeat left top / contain;
   padding: $padding-top-bottom $padding-left-right;
 
   &__heading {
