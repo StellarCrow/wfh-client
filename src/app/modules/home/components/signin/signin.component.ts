@@ -1,34 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth.service';
-import {AlertService} from '../../../../core/services/alert.service';
-import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
-import {DataStoreService} from '../../../../core/services/data-store.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth.service';
+import { AlertService } from '../../../../core/services/alert.service';
+import { ILoginResponse } from '../../../../shared/interfaces/i-login-response';
+import { DataStoreService } from '../../../../core/services/data-store.service';
+import { SIGNINBACKGROUND, SIGNINBACKGROUND_HD } from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
   public signinForm: FormGroup;
+
   public loading = false;
+
   public submitted = false;
+
+  public defaultBackground = SIGNINBACKGROUND;
+
+  public highResBackground = SIGNINBACKGROUND_HD;
 
   constructor(
     private formBuilderSignin: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService,
-    private dataStore: DataStoreService
+    private dataStore: DataStoreService,
   ) {
   }
 
   public ngOnInit() {
     this.signinForm = this.formBuilderSignin.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.min(6)]]
+      password: ['', [Validators.required, Validators.min(6)]],
     });
   }
 
@@ -55,10 +62,10 @@ export class SigninComponent implements OnInit {
         this.dataStore.setCurrentUser(data.payload.userData);
         this.router.navigate(['main/welcome']);
       },
-      error => {
+      (error) => {
         this.alertService.error(error);
         this.loading = false;
-      }
+      },
     );
   }
 

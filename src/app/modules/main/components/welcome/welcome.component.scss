@@ -4,7 +4,7 @@
 .welcome {
   min-height: 100vh;
   position: relative;
-  background: url(/assets/backgrounds/welcome-background.gif) no-repeat center top / cover;
+  background: no-repeat center center / cover;
   transform: scaleX(-1);
   padding: $padding-welcome-page;
   box-sizing: border-box;
@@ -32,7 +32,7 @@
 }
 
 .game {
-  background: url(/assets/images/shirt.png/) no-repeat left top / contain;
+  background: url(/assets/images/shirt.png) no-repeat left top / contain;
   padding: $padding-top-bottom $padding-left-right;
 
   &__heading {
