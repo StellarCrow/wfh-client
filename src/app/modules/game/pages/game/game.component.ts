@@ -40,23 +40,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private notifier = new Subject();
 
-  rightArrowShow = true;
+  isHideButtonRight = false;
 
-  leftArrowShow = true;
+  isHideButtonLeft = false;
 
-  toggleDisplay(arrow: string) {
-    if (arrow === 'rightArrowShow') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (arrow === 'leftArrowShow') {
-      this.leftArrowShow = !this.leftArrowShow;
-    }
-  }
-
-  closeArrow(closed: string) {
-    if (closed === 'right') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (closed === 'left') {
-      this.leftArrowShow = !this.leftArrowShow;
+  public toggleArrow(arrow: string) {
+    if (arrow === 'rightArrow') {
+      this.isHideButtonRight = !this.isHideButtonRight;
+    } else if (arrow === 'leftArrow') {
+      this.isHideButtonLeft = !this.isHideButtonLeft;
     }
   }
 
@@ -67,10 +59,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeGameStage();
     this.listenUserLoaded();
-    this.listenNotification();
+    this.listenNotification('image-saved');
+    this.listenNotification('new-tee-created');
     this.initGameView();
     this.listenUserFinishAction('user-finish-painting');
     this.listenUserFinishAction('user-finish-phrases');
+    this.listenUserFinishAction('user-finish-matching');
   }
 
 
@@ -119,8 +113,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  private listenNotification() {
-    this.socketService.listen('image-saved')
+  private listenNotification(event) {
+    this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
       .subscribe(({answer}) => this.snackBar.open(answer, 'Close', {duration: 2000}));
   }

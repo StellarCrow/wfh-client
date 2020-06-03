@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {MatTabChangeEvent} from '@angular/material/tabs';
-import {DataStoreService} from '../../../../core/services/data-store.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataStoreService } from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-login-form',
@@ -12,20 +11,16 @@ export class LoginFormComponent implements OnInit {
   public selectedTabIndex: number;
 
   constructor(private router: Router, private dataStore: DataStoreService) {
-    this.selectedTabIndex = 1;
+    this.selectedTabIndex = 0;
 
     if (this.dataStore.getCurrentUser()) {
       this.router.navigate(['/']);
     }
   }
 
-  public ngOnInit() {
-  }
-
-  tabChanged(event: MatTabChangeEvent) {
-  }
+  public ngOnInit() {}
 
   moveToSigninTab() {
-    this.selectedTabIndex = 0;
+    this.selectedTabIndex = 1;
   }
 }
