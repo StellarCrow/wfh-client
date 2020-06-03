@@ -1,8 +1,7 @@
 <div class="login">
   <mat-card class="login__container">
 
-    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex"
-      (selectedTabChange)="tabChanged($event)">
+    <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex">
       <mat-tab class="login__slider" label="Sign Up">
         <app-signup (signupEvent)="moveToSigninTab()"></app-signup>
       </mat-tab>
