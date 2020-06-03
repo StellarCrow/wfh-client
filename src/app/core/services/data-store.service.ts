@@ -15,7 +15,6 @@ export class DataStoreService {
   public loadedUsers: string[] = [];
   public finishedUsers: string[] = [];
   public gameStage: Subject<string> = new Subject();
-  private isGameOn = false;
 
 
   constructor() {
@@ -86,18 +85,4 @@ export class DataStoreService {
     const allUsersFinished = array.length === this.users.length;
     return allUsersFinished && userIsLast;
   }
-
-  public startGame(): void {
-    this.isGameOn = true;
-  }
-
-  public stopGame(): void {
-    this.isGameOn = false;
-  }
-
-  public isGameStarted(): boolean {
-    return this.isGameOn;
-  }
-
-
 }
