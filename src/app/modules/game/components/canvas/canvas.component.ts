@@ -47,7 +47,7 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
     canvasEl.width = this.width = canvasWrap.clientWidth;
     canvasEl.height = this.height = canvasWrap.clientWidth;
 
-    this.ctx.lineWidth = 3;
+    this.ctx.lineWidth = 6;
     this.ctx.lineCap = 'round';
     this.ctx.strokeStyle = '#000';
     this.ctx.fillStyle = '#231746';
