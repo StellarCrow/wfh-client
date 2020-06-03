@@ -6,6 +6,7 @@ import {AuthorizationInterceptor} from '../../core/interceptors/authorization.in
 import {GameComponent} from './pages/game/game.component';
 import {GameCoreComponent} from './game-core.component';
 import {GameLeaveGuard} from '../../core/guards/game-leave/game-leave.guard';
+import {GameEnterGuard} from '../../core/guards/game-enter/game-enter.guard';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
     component: GameCoreComponent,
     children: [
       { path: 'lobby', component: LobbyComponent, pathMatch: 'full'},
-      { path: 'play', component: GameComponent, canDeactivate: [GameLeaveGuard]}
+      { path: 'play', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
     ]
   }
 ];
