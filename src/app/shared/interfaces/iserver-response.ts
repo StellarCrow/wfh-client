@@ -5,6 +5,6 @@ export interface IServerResponse {
 }
 
 interface IError {
-  status: string;
+  status: number;
   message: string;
 }
