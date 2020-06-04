@@ -23,6 +23,7 @@ import { MatchingViewComponent } from './pages/game/game-views/matching-view/mat
 import { RoomCodeComponent } from './components/room-code/room-code.component';
 import { TeeComponent } from './components/tee/tee.component';
 import { TeeImageComponent } from './components/tee-image/tee-image.component';
+import { RepeatElementPipe } from './pipes/repeat-element.pipe';
 import { GameCoreComponent } from './game-core.component';
 
 
@@ -48,6 +49,7 @@ import { GameCoreComponent } from './game-core.component';
     GameCoreComponent,
     TeeComponent,
     TeeImageComponent,
+    RepeatElementPipe
   ],
   imports: [
     CommonModule,

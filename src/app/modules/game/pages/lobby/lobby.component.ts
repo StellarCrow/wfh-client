@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,12 +9,14 @@ import { DataStoreService } from '../../../../core/services/data-store.service';
 import { IPlayer } from '../../../../shared/interfaces/iplayer';
 import { LOBBYBACKGROUND, LOBBYBACKGROUND_HD } from '../../constants/backgrounds';
 
+
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.scss'],
 })
 export class LobbyComponent implements OnInit, OnDestroy {
+  @ViewChild('sidebar') sidebar: ElementRef;
   public users: IPlayer[] = [];
 
   public roomCode: string;
@@ -25,6 +28,8 @@ export class LobbyComponent implements OnInit, OnDestroy {
   public gameReady: boolean;
 
   public notifier = new Subject();
+  public waveHeight: number;
+  public elementsCount: number;
 
   public defaultBackground = LOBBYBACKGROUND;
 
@@ -37,6 +42,8 @@ export class LobbyComponent implements OnInit, OnDestroy {
   ) {
     this.roomCode = this.dataStore.getRoomCode();
     this.username = this.dataStore.getUserName();
+    this.waveHeight = 5;
+    this.elementsCount = Math.floor(window.innerHeight / this.waveHeight);
   }
 
   ngOnInit(): void {
@@ -105,6 +112,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   public startGame() {
     this.socketService.emit('start-game', { room: this.roomCode });
   }
+
 
   public ngOnDestroy(): void {
     this.notifier.next();
