@@ -58,7 +58,9 @@ $black: #000;
 $white: #fff;
 $error-color: #f44336;
 $light-green: #76ff03;
+$dim-green: #bae18a;
 $light-brown:#f5cc53;
+$lighter-brown:#fcec9e;
 $dark-brown: #231f20;
 $main-blue: #a8e3ff;
 
@@ -89,3 +91,6 @@ $padding-app-header: 1em 2em 0;
 $padding-chat-input: 1em 1.5em;
 $chat-border: 2px solid #000000;
 
+//snackbat
+$snackbar-font-size: 1.1em;
+$snackbar-text-stroke: 1px $black;
