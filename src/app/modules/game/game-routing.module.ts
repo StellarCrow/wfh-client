@@ -11,7 +11,7 @@ import {GameEnterGuard} from '../../core/guards/game-enter/game-enter.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'lobby/:id',
+    redirectTo: 'lobby',
     pathMatch: 'full'
   },
   {
