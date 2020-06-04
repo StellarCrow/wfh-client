@@ -1,0 +1,12 @@
+<app-modal class="modal">
+  <div class="modal__title">
+    Are you sure you want to leave the page?
+  </div>
+  <div class="modal__body">
+    Your progress won't be saved.
+    <div class="modal__choice">
+      <button class="button" [mat-dialog-close]="false">Stay</button>
+      <button class="button button--join" [mat-dialog-close]="true">Leave</button>
+    </div>
+  </div>
+</app-modal>

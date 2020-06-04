@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { GameRoutingModule } from './game-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { LobbyComponent } from './pages/lobby/lobby.component';
@@ -23,6 +24,7 @@ import { RoomCodeComponent } from './components/room-code/room-code.component';
 import { TeeComponent } from './components/tee/tee.component';
 import { TeeImageComponent } from './components/tee-image/tee-image.component';
 import { RepeatElementPipe } from './pipes/repeat-element.pipe';
+import { GameCoreComponent } from './game-core.component';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { RepeatElementPipe } from './pipes/repeat-element.pipe';
     MatchingViewComponent,
     PlayersListComponent,
     RoomCodeComponent,
+    GameCoreComponent,
     TeeComponent,
     TeeImageComponent,
     RepeatElementPipe
@@ -54,6 +57,7 @@ import { RepeatElementPipe } from './pipes/repeat-element.pipe';
     GameRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    LazyLoadImageModule,
   ],
 })
 export class GameModule {

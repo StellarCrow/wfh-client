@@ -15,6 +15,6 @@ export class TeeResultViewComponent implements OnInit {
   handleSubmit(): void {
     // TODO: add game logic to jump back to tee-voting if there are tee pairs left
     // or go to scoreboard page / finish the game otherwise
-    this.gameViewService.setCurrentView(views.TEE_VOTE);
+    this.gameViewService.setCurrentView(views.TEE_RESULT);
   }
 }

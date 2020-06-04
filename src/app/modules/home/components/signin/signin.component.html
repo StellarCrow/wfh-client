@@ -1,5 +1,5 @@
 <div class="signin">
-  <div class="signin__background"></div>
+  <div class="signin__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground"></div>
   <mat-card-content class="signin__list">
     <mat-card-title class="signin__title">Sign In</mat-card-title>
 
@@ -23,7 +23,10 @@
         <mat-icon matSuffix class="signin__password-icon icon">lock</mat-icon>
       </mat-form-field>
       <small class="signin__message">* - field is required</small>
-      
+      <div class="alert">
+          <alert></alert>
+        </div>
+   
       <button mat-raised-button color="primary" class="signin__button signin__button-submit button"
         [disabled]="loading">
         <span *ngIf="loading"></span>

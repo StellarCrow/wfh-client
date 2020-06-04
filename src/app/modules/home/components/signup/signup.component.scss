@@ -2,17 +2,11 @@
 
 .signup {
   display: flex;
+  height: 100vh;
   &__background {
-    background-image: url(/assets/backgrounds/signup-background.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    top: 0;
-    margin: 0;
-    padding: 0;
+    background: no-repeat center center / cover;
     width: 50%;
-    height: 100vh;
-    overflow: hidden;
+    height: 100%;
   }
   &__list {
     margin-top: 7%;
@@ -56,4 +50,9 @@
 
 .icon {
   color: $grey-dark;
+}
+
+.alert {
+  width: 80%;
+  margin: 1rem auto;
 }
