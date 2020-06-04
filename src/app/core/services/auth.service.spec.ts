@@ -4,6 +4,8 @@ import {AuthService} from './auth.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {ILoginResponse} from '../../shared/interfaces/i-login-response';
 import {apiUrl} from '../../../environments/environment';
+import {IRegisterResponse} from '../../shared/interfaces/iregister-response';
+import {IUser} from '../../shared/interfaces/user';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -84,5 +86,21 @@ describe('AuthService', () => {
       expect(req.request.method).toEqual('POST');
       req.flush(loginResponse);
     });
+  });
+  describe('User registration was successful', () => {
+    const userData = {
+      firstName: 'Maxon',
+      lastName: 'Androm',
+      email: 'maxon@gmail.com',
+      password: 'somePas123',
+      avatar: 'avatar url here'
+    } as IUser;
+    const registrationResponse = {
+      success: true,
+      payload: null,
+      status: 'User was successfully registered!'
+    } as IRegisterResponse;
+
+    authService.registerUser(userData);
   });
 });
