@@ -24,7 +24,7 @@
     &__title {
         font-family: "JandaManateeSolid";
         font-size: 2em;
-        -webkit-text-stroke: 3px #242628;
+        -webkit-text-stroke: 2px #242628;
         text-transform: uppercase;
         margin: 0;
     }
@@ -45,54 +45,22 @@
 .versus {
     font-family: "JandaManateeSolid";
     font-size: 4em;
-    -webkit-text-stroke: 3px #242628;
+    -webkit-text-stroke: 4px #242628;
     text-transform: uppercase;
-    margin: 0;
     color: #f4cc52;
     transform: rotate(-8deg);
+    user-select: none;
 }
 
-.tee {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.tee-picture {
     width: 400px;
-    height: 400px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
     z-index: 20;
 
     &:hover {
         cursor: pointer;
     }
 
-    &__img {
-        display: block;
-        width: 200px;
-        margin: 20px 0 8px 0;
-        user-select: none;
-    }
-    
-    &__text {
-        width: 200px;
-        font-size: 1.2em;
-        font-weight: 600;
-        text-align: center;
-        color: #fff;
-        margin: 0;
-        user-select: none;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-    
-    &--left {
-        transform: rotate(-16deg);
-    }
-    
     &--right {
-        transform: rotate(16deg);
+        transform: rotate(32deg);
     }
 }
