@@ -1,10 +1,28 @@
 @import "plugins/variables.scss";
 
 .signin {
+  display: flex;
+  height: 100vh;
+  &__background {
+    background: no-repeat center center / cover;
+    width: 50%;
+  }
+  &__list {
+    margin-top: 10%;
+    width: 50%;
+  }
+
   &__item {
     width: 80%;
     display: block;
     margin: auto;
+  }
+
+  &__title {
+    margin: 1rem 4rem;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: bold;
   }
 
   &__message {
@@ -15,16 +33,40 @@
   }
 
   &__button {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     display: block;
     width: 80%;
     margin: 1rem auto;
-    background-color: $primary-color;
     color: $black;
-    border: 1px solid $grey-medium;
+    border: 1px solid $grey-dark;
+    font-family: "Roboto", sans-serif;
+    &-submit {
+      background-color: $primary-color;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+    &-google {
+      background-color: $white;
+      display: none;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
   }
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+  margin: .5rem;
 }
 
 .icon {
   color: $grey-dark;
+}
+
+.alert {
+  width: 80%;
+  margin: 1rem auto;
 }

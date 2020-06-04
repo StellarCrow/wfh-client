@@ -10,3 +10,60 @@
 @mixin text-stroke() {
   -webkit-text-stroke: 2px $text-color--dark;
 }
+
+@mixin snackbar-style {
+  .mat-snack-bar-container {
+    border: 2px solid $black;
+    background-color: $lighter-brown;
+
+    .mat-simple-snackbar {
+      font-size: $snackbar-font-size;
+      color: $black;
+      font-family: $ff-primary;
+    }
+
+    .mat-button-wrapper {
+      font-size: 2.5em;
+      font-family: $ff-header-solid;
+      color: $dim-green;
+      -webkit-text-stroke: $snackbar-text-stroke;
+    }
+
+  }
+
+}
+
+// Animations
+
+@mixin scale-anim($time, $scaleTo: 1.1) {
+  animation: scale $time infinite;
+
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale($scaleTo);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+}
+
+@mixin fadein-anim($time, $delay: 0) {
+  animation: fadein $time;
+  animation-delay: $delay;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

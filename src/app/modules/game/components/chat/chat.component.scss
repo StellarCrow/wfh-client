@@ -3,6 +3,8 @@
 
 .chat {
   margin: 50% auto 0;
+  margin-right: 1em;
+  width: 80%;
   &__title {
     @include text-stroke();
     font-family: $ff-header-solid;

@@ -1,16 +1,18 @@
 .canvas-wrapper {
-  max-width: 400px;
+  max-width: 80%;
   margin: 0 auto;
 }
 
 .canvas {
   display: block;
   border-radius: 15px;
+  width: 100%;
+  margin: auto;
 }
 
 .canvas-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 24px;
 
   &__btn {

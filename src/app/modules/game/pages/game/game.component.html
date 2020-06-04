@@ -1,7 +1,27 @@
+
 <div class="game">
-  <div class="game__column">
+    <div class="game__column">
+    <div class="game__room-code">
+      <app-room-code></app-room-code>
+    </div>
+    <button mat-icon-button class="left" (click)="toggleSidenav('leftSidenav')" (click)="toggleArrow('leftArrow')" 
+     [ngClass]="{hideButton:isHideButtonLeft, showButton:!isHideButtonLeft}"
+    >
+      <mat-icon class="icon-arrow"></mat-icon>
+    </button>
     <div class="game__players">
+
+
       <!--Players list component-->
+      <mat-sidenav-container >
+
+        <mat-sidenav #leftSidenav [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0" mode="side" class="sidenav">
+          <app-players-list ></app-players-list>
+        </mat-sidenav>
+      </mat-sidenav-container>
+
+
+
     </div>
   </div>
   <div class="game__column">
@@ -11,14 +31,30 @@
     </div>
     <div class="game__playground" [ngSwitch]="currentView">
       <app-phrase-view *ngSwitchCase="'phrase-view'"></app-phrase-view>
+      <app-matching-view *ngSwitchCase="'matching-view'"></app-matching-view>
+      <app-done-view *ngSwitchCase="'done-view'"></app-done-view>
       <app-tee-vote-view *ngSwitchCase="'tee-vote-view'"></app-tee-vote-view>
       <app-tee-result-view *ngSwitchCase="'tee-result-view'"></app-tee-result-view>
       <app-draw-view *ngSwitchDefault></app-draw-view>
     </div>
   </div>
+
+
+
   <div class="game__column">
     <div class="game__chat">
-      <app-chat></app-chat>
+        <button mat-icon-button class="right" (click)="toggleSidenav('rightSidenav')" (click)="toggleArrow('rightArrow')"
+        [ngClass]="{hideButton:isHideButtonRight, showButton:!isHideButtonRight}"
+      >
+        <mat-icon class="icon-arrow"></mat-icon></button>
+      <!--Chat component-->
+      <mat-sidenav-container>
+        <mat-sidenav #rightSidenav mode="side" [fixedInViewport]="true" position="end" class="sidenav">
+          <app-chat></app-chat>
+        </mat-sidenav>
+      </mat-sidenav-container>
+
+
     </div>
   </div>
 </div>

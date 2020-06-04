@@ -3,12 +3,9 @@
 
 .lobby {
   width: 100%;
-
+  
   &__container {
-    background-image: url(/assets/backgrounds/lobby-background.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background: no-repeat center center fixed / cover;
     top: 0;
     margin: 0;
     padding: 0;
@@ -29,12 +26,9 @@
 
   &__sidebar {
     width: 20%;
-    top: 0;
+    top: -5px;
     right: 0;
     min-height: 100vh;
-    z-index: 1;
-    background-color: $primary-color--dark;
-    border-left: 3px solid $black;
     position: absolute;
   }
 
@@ -118,6 +112,7 @@
 
 .user {
   margin: 1rem auto;
+  z-index: 1;
 
   &__name {
     padding: 0.5rem;
@@ -127,5 +122,32 @@
     color: $white;
     background: $quaternary-color--darker;
     border-radius: 50%;
+  }
+}
+
+.lobby__wave {
+transform: rotate(180deg);
+  right: 0;
+  top: 0;
+  background: $main-blue;
+  display:inline-block;
+  height:10px;
+  width:100%;
+  position:absolute;
+  -webkit-animation-name:             wave;
+  -webkit-animation-duration:         3s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-transition-timing-function: ease-in-out;
+
+}
+@-webkit-keyframes wave{
+  0%{
+    width:100%;
+  }
+  50%{
+    width:85%;
+  }
+  100%{
+    width:100%;
   }
 }

@@ -1,5 +1,5 @@
-<div class="lobby">
-  <div class="lobby__container">
+<div class="lobby" >
+  <div class="lobby__container" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground">
     <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>
@@ -13,6 +13,9 @@
 
 
     <div class="lobby__sidebar">
+      <div *ngFor="let i of elementsCount | repeatElement" class="lobby__wave"
+           [ngStyle]="{'top': i * waveHeight  +  'px', 'webkitAnimationDelay': (i/70) + 's'}"
+      ></div>
       <ul class="lobby__users">
         <li *ngFor="let user of users" class="lobby__user user">
           <span class="user__name">{{ user.username }}</span>

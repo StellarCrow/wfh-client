@@ -1,1 +1,21 @@
-<app-slogan (submitPhrase)="handleSubmit()"></app-slogan>
+<div class="phrase">
+  <div class="phrase__title">Pick a phrase!</div>
+  <div class="phrase__container">
+    <form class="phrase__form" [formGroup]="phraseForm" (submit)="submitPhrase()">
+      <input
+        class="phrase__message"
+        matInput
+        formControlName="phraseText"
+        placeholder="Enter your phrase here..."
+        required
+        maxlength="40"
+        type="text"/>
+      <button
+        class="phrase__button phrase__button--submit button"
+        type="submit"
+        [disabled]="this.phraseForm.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

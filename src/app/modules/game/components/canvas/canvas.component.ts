@@ -1,42 +1,61 @@
-import { Component, Input, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {SocketService} from '../../services/socket.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {ICanvasLines} from '../../interfaces/icanvas-lines';
+import {GameViewService} from '../../services/game-view.service';
+import {Stages} from '../../constants/stages.enum';
+import {Subject} from 'rxjs';
+import {ActionService} from '../../../../core/services/action.service';
+
 
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
-export class CanvasComponent implements AfterViewInit {
+export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
+  private notifier = new Subject();
 
-  constructor() {
+
+  constructor(private socketService: SocketService,
+              private dataStore: DataStoreService,
+              private gameViewService: GameViewService,
+              private actionService: ActionService) {
   }
-  linesArray: { lineNumber: number, x: number, y: number, color: string }[] = [];
+
+  linesArray: ICanvasLines[] = [];
   isMouseDown = false;
   lineCount = 0;
+  width: number;
+  height: number;
+  canvasBackground = '#231746';
+
 
   @ViewChild('canvas') public canvas: ElementRef;
-
-  @Input() public width = 400;
-  @Input() public height = 350;
+  @ViewChild('canvasWrapper') public canvasWrapper: ElementRef;
 
   @Output() submitDraw: EventEmitter<void> = new EventEmitter();
 
   private ctx: CanvasRenderingContext2D;
 
-  ngOnInit(): void {
-  }
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
+    const canvasWrap: HTMLElement = this.canvasWrapper.nativeElement;
     this.ctx = canvasEl.getContext('2d');
 
-    canvasEl.width = this.width;
-    canvasEl.height = this.height;
+    canvasEl.width = this.width = canvasWrap.clientWidth;
+    canvasEl.height = this.height = canvasWrap.clientWidth;
 
-    this.ctx.lineWidth = 3;
+    this.ctx.lineWidth = 6;
     this.ctx.lineCap = 'round';
     this.ctx.strokeStyle = '#000';
     this.ctx.fillStyle = '#231746';
     this.ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+  }
+
+  ngOnInit(): void {
+    this.dataStore.setGameStage(Stages.painting);
   }
 
   onSetPencilColor(color: string): void {
@@ -44,23 +63,24 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   onSetCanvasBg(color: string): void {
+    this.canvasBackground = color;
     this.ctx.fillStyle = color;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.redraw();
   }
 
   store(lineNumber: number, x: number, y: number, color: string) {
-    const line = {
-      lineNumber: lineNumber,
-      x: x,
-      y: y,
-      color: color
+    const line: ICanvasLines = {
+      lineNumber,
+      x,
+      y,
+      color
     };
     this.linesArray.push(line);
   }
 
   redraw(): void {
-    const lines = this.linesArray;
+    const lines: ICanvasLines[] = this.linesArray;
     for (let i = 1; i < lines.length; i++) {
       if (lines[i].lineNumber !== 0 && lines[i - 1].lineNumber !== 0) {
         this.ctx.beginPath();
@@ -116,7 +136,7 @@ export class CanvasComponent implements AfterViewInit {
       }
     });
 
-    const newLinesArray = this.linesArray.filter(item => {
+    const newLinesArray: ICanvasLines[] = this.linesArray.filter(item => {
       return item.lineNumber !== maxId;
     });
 
@@ -126,8 +146,31 @@ export class CanvasComponent implements AfterViewInit {
     this.redraw();
   }
 
-  handleSubmit(): void {
-    this.submitDraw.emit();
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.linesArray = [];
+    this.lineCount = 0;
+    this.ctx.fillStyle = this.canvasBackground;
+    this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
+  }
+
+  handleSubmit(): void {
+    // TODO: uncomment in production mode
+    const payload = {
+      userID: JSON.parse(localStorage.getItem('user'))._id,
+      canvas: this.canvas.nativeElement.toDataURL(),
+      room: this.dataStore.roomCode,
+      pictureNumber: this.actionService.usersActions,
+      canvasBackground: this.canvasBackground
+    };
+    this.socketService.emit('save-image', payload);
+    this.actionService.registerAction();
+    this.clearCanvas();
+  }
 }

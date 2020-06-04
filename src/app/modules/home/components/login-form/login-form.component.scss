@@ -1,38 +1,16 @@
 @import "plugins/variables.scss";
 
 .login {
-  background-image: url(/assets/backgrounds/login-background.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-
-  &__title {
-    margin: 1rem;
-    text-align: center;
-  }
-
   &__container {
-    width: 40%;
-    margin: 10% auto;
-    border-radius: 10px;
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 }
 
-.signin {
-  &__list {
-    margin-top: 1.5rem;
-  }
-}
-
-.signup {
-  &__list {
-    margin-top: 1rem;
-  }
+::ng-deep .mat-tab-label:focus {
+  background-color: $primary-color;
+  width: 50% auto;
 }

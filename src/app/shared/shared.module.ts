@@ -6,10 +6,17 @@ import {FooterComponent} from './components/footer/footer.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
 import {ModalComponent} from './components/modal/modal.component';
+import { ModalLeavePage } from './components/modal-leave-page/modal-leave-page';
 
 
 @NgModule({
-  declarations: [ModalComponent, HeaderComponent, FooterComponent, AlertComponent],
+  declarations: [
+    ModalComponent,
+    HeaderComponent,
+    FooterComponent,
+    AlertComponent,
+    ModalLeavePage
+  ],
   imports: [
     RouterModule,
     CommonModule,

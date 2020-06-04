@@ -1,0 +1,48 @@
+@import "plugins/variables";
+.players-list {
+  // height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__user-video {
+    border-radius: 1em;
+    width: 80%;
+    height: 25%;
+    object-fit: cover;
+    border: 3px solid #2c2828;
+    margin: 5%;
+  }
+
+  &__player, .player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    background-color: #fae89e;
+    margin: 5%;
+
+    &--is-finished {
+      border: 2px solid $light-green;
+    }
+
+    &__avatar {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background-color: #dbfbf8;
+      border: 3px solid #2c2828;
+    }
+  }
+}

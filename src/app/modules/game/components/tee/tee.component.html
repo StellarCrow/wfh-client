@@ -1,0 +1,11 @@
+<div class="tee">
+  <app-tee-image class="tee__image" [fillColor]="fillColor"></app-tee-image>
+
+  <div class="tee__picture-wrapper">
+    <img [src]="pictureUrl" alt="tee picture" class="tee__picture" />
+  </div>
+
+  <div class="tee__phrase-wrapper" *ngIf="phrase">
+    <span class="tee__phrase">{{ phrase }}</span>
+  </div>
+</div>
