@@ -53,12 +53,14 @@ At first, we need to mention that our app has two parts [Front-end](https://gith
 
 Now, my friend, You are at Front-end part, so let's setup it:
 
+If this is your second part, skip first 3 points and go strictly to cloning yhe project
+
 - Run `node -v` in console and make sure your version of Node.js is above `v8.11.3`
 - Run `npm -v` in console and make sure your version of npm is above `5.6.0`
 - Run `git --version`in console and make sure your version of Git is above `2.18.0`
 - Clone this project: `git clone https://github.com/StellarCrow/wfh-client`
 - Change directory to directory of the project `cd wfh-client`
-- Change branch to HW3 `git checkout develop`
+- Change branch to develop `git checkout develop`
 - Run `npm install` to install the dependencies
 - Run `ng serve --o` to start the project
 - Voilà, if You already have setup [Back-end](https://github.com/StellarCrow/wfh-backend) part enjoy the project, otherwise go to the setup section of the [second part.  ](https://github.com/StellarCrow/wfh-backend)
