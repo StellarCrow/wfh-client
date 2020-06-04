@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SocketService } from '../../services/socket.service';
-import { DataStoreService } from '../../../../core/services/data-store.service';
-import { GameViewService } from '../../services/game-view.service';
-import { MATCHING, PHRASE, TEE_VOTE } from '../../constants/game-views';
-import { Stages } from '../../constants/stages.enum';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {interval, Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {SocketService} from '../../services/socket.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {GameViewService} from '../../services/game-view.service';
+import {MATCHING, PHRASE, TEE_VOTE, TEE_RESULT} from '../../constants/game-views';
+import {Stages} from '../../constants/stages.enum';
 
 @Component({
   selector: 'app-timer',
@@ -39,6 +39,8 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.listenStopEvent('stop-painting', PHRASE);
     this.listenStopEvent('stop-phrases', MATCHING);
     this.listenStopEvent('stop-matching', TEE_VOTE);
+    this.listenStopEvent('continue-voting', TEE_VOTE);
+    this.listenStopEvent('stop-voting', TEE_RESULT);
   }
 
   startCount(): void {

@@ -65,6 +65,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.listenUserFinishAction('user-finish-painting');
     this.listenUserFinishAction('user-finish-phrases');
     this.listenUserFinishAction('user-finish-matching');
+    this.listenUserFinishAction('user-finish-voting');
   }
 
 
