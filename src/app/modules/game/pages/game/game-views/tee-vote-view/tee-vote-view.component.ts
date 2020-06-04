@@ -27,6 +27,11 @@ export class TeeVoteViewComponent implements OnInit {
     this.setVotingStage();
     this.listenReceiveTeePair();
     this.initVote();
+
+    this.socketService.listen('vote-sent').subscribe(({answer}) => {
+      // TODO: Can use snackbar here
+      console.log(answer);
+    });
   }
 
   private setVotingStage(): void {
@@ -39,10 +44,9 @@ export class TeeVoteViewComponent implements OnInit {
   }
 
   private listenReceiveTeePair() {
-    this.socketService.listen('send-vote-tees').subscribe(({answer, payload}) => {
-      console.log(answer);
+    this.socketService.listen('send-vote-tees').subscribe(({payload}) => {
       if (this.hasVoted) {
-        console.log('Setting new stage, since hasvoted is', this.hasVoted);
+        console.log('Re-Setting the stage', this.hasVoted);
         this.setVotingStage();
       }
 
@@ -59,7 +63,7 @@ export class TeeVoteViewComponent implements OnInit {
     this.submitVote(this.rightTee);
   }
 
-  private submitVote(winner) {
+  private submitVote(winner: ITee) {
     this.hasVoted = true;
     const username = this.dataStore.getUserName();
     const room = this.dataStore.getRoomCode();

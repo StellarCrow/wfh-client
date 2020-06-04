@@ -33,6 +33,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.listenStopEvent('stop-painting', PHRASE);
     this.listenStopEvent('stop-phrases', MATCHING);
     this.listenStopEvent('stop-matching', TEE_VOTE);
+    this.listenStopEvent('continue-voting', TEE_VOTE);
     this.listenStopEvent('stop-voting', TEE_RESULT);
   }
 
