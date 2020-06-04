@@ -6,17 +6,17 @@
         </div>
         <div class="tee-vote-wrapper">
             <app-tee class="tee-picture" 
-                [fillColor]="pictureLeft.picture.background" 
-                [pictureUrl]="pictureLeft.picture.url"
-                [phrase]="pictureLeft.phrase.phrase"
-                (click)="voteForLeftPicture()">
+                [fillColor]="leftTee.picture.background" 
+                [pictureUrl]="leftTee.picture.url"
+                [phrase]="leftTee.phrase.phrase"
+                (click)="voteForLeftTee()">
             </app-tee>
             <div class="versus">VS</div>
             <app-tee class="tee-picture tee-picture--right" 
-                [fillColor]="pictureRight.picture.background" 
-                [pictureUrl]="pictureRight.picture.url"
-                [phrase]="pictureRight.phrase.phrase"
-                (click)="voteForRightPicture()">
+                [fillColor]="rightTee.picture.background" 
+                [pictureUrl]="rightTee.picture.url"
+                [phrase]="rightTee.phrase.phrase"
+                (click)="voteForRightTee()">
             </app-tee>
         </div>
     </div>
