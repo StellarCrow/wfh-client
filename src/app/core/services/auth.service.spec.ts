@@ -63,6 +63,8 @@ describe('AuthService', () => {
       req.flush(loginResponse);
     });
   });
+
+
   describe('User login was failed', () => {
     const loginResponse = {
       success: false,
@@ -86,21 +88,90 @@ describe('AuthService', () => {
       expect(req.request.method).toEqual('POST');
       req.flush(loginResponse);
     });
+    it('Fail login error status should be 400', () => {
+      authService.loginUser('im_your_dream@gmail.com', 'some wrong password')
+        .subscribe((data) => expect(data.error.status).toEqual(400));
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/login`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(loginResponse);
+    });
   });
+
   describe('User registration was successful', () => {
     const userData = {
       firstName: 'Maxon',
       lastName: 'Androm',
       email: 'maxon@gmail.com',
       password: 'somePas123',
-      avatar: 'avatar url here'
     } as IUser;
+
     const registrationResponse = {
       success: true,
       payload: null,
       status: 'User was successfully registered!'
     } as IRegisterResponse;
 
-    authService.registerUser(userData);
+    it('Return success true if user registration was successful', () => {
+      authService.registerUser(userData)
+        .subscribe((res: IRegisterResponse) => expect(res.success).toBeTrue());
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(registrationResponse);
+    });
+
+    it('Payload of successful registration should be null', () => {
+      authService.registerUser(userData)
+        .subscribe((res: IRegisterResponse) => expect(res.payload).toBeNull());
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(registrationResponse);
+    });
   });
-});
+
+  describe('User registration was failed', () => {
+    const userData = {
+      firstName: '',
+      lastName: 'Androm',
+      email: 'maxon@gmail.com',
+      password: 'somePas123',
+    } as IUser;
+
+    const registrationResponse = {
+      success: false,
+      payload: null,
+      error: {status: 400, message: 'Registration was failed!'}
+    } as IRegisterResponse;
+
+    it('Fail registration response  status should be false ', () => {
+      authService.registerUser(userData)
+        .subscribe((res: IRegisterResponse) => expect(res.success).toBeFalse());
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(registrationResponse);
+    });
+    it('Fail registration payload should be null', () => {
+      authService.registerUser(userData)
+        .subscribe((res: IRegisterResponse) => expect(res.payload).toBeNull());
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(registrationResponse);
+    });
+
+    it('Fail registration error status should be 400', () => {
+      authService.registerUser(userData)
+        .subscribe((res: IRegisterResponse) => expect(res.error.status).toEqual(400));
+
+      const req = httpTestingController.expectOne(`${apiUrl}/auth/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(registrationResponse);
+    });
+
+  });
+
+})
+;
