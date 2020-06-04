@@ -48,7 +48,7 @@ export class WelcomeComponent implements OnDestroy {
   public createRoom(): void {
     this.dataStore.setRoomCode(this.roomCode);
     this.socketService.emit('create-room', { username: this.dataStore.getUserName(), code: this.roomCode });
-    this.router.navigate(['game/lobby']);
+    this.router.navigate(['game/lobby', this.roomCode]);
   }
 
   // Generates room of length <codeLength> (must be an even number),

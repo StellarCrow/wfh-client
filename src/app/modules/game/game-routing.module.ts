@@ -18,8 +18,8 @@ const routes: Routes = [
     path: '',
     component: GameCoreComponent,
     children: [
-      { path: 'lobby', component: LobbyComponent, pathMatch: 'full'},
-      { path: 'play', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
+      { path: 'lobby/:id', component: LobbyComponent, pathMatch: 'full'},
+      { path: 'play/:id', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
     ]
   }
 ];
