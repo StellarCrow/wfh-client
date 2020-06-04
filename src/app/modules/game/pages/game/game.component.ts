@@ -116,7 +116,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   private listenNotification(event) {
     this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
-      .subscribe(({answer}) => this.snackBar.open(answer, 'Close', {duration: 2000}));
+      .subscribe(({answer}) => {
+        this.snackBar.open(answer, 'Close', {duration: 200000});});
   }
 
   initGameView(): void {

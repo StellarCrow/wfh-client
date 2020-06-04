@@ -7,6 +7,7 @@ import { ModalJoinRoomComponent } from '../modal-join-room/modal-join-room.compo
 import { SocketService } from '../../../game/services/socket.service';
 import { DataStoreService } from '../../../../core/services/data-store.service';
 import { WELCOMEBACKGROUND, WELCOMEBACKGROUND_HD } from '../../constants/backgrounds';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,7 @@ export class WelcomeComponent implements OnDestroy {
     private router: Router,
     private dialog: MatDialog,
     private socketService: SocketService,
-    private dataStore: DataStoreService,
+    private dataStore: DataStoreService
   ) {
     this.roomCode = this.generateRoomCode(4);
   }
