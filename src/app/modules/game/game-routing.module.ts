@@ -11,15 +11,15 @@ import {GameEnterGuard} from '../../core/guards/game-enter/game-enter.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'lobby',
+    redirectTo: 'lobby/:id',
     pathMatch: 'full'
   },
   {
     path: '',
     component: GameCoreComponent,
     children: [
-      { path: 'lobby', component: LobbyComponent, pathMatch: 'full'},
-      { path: 'play', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
+      { path: 'lobby/:id', component: LobbyComponent, pathMatch: 'full'},
+      { path: 'play/:id', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
     ]
   }
 ];
