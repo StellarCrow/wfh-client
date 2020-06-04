@@ -40,7 +40,7 @@ export class PhraseViewComponent implements OnInit, OnDestroy {
     this.phraseForm = this.formBuilder.group({
       phraseText: [
         '',
-        [Validators.required, Validators.minLength(1)]
+        [Validators.required, Validators.minLength(1), Validators.maxLength(35)]
       ]
     });
   }
