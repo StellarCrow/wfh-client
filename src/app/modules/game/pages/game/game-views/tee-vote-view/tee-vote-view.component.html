@@ -4,7 +4,7 @@
       <h3 class="game-phase__title">Vote</h3>
       <p class="game-phase__hint">(click on shirt)</p>
     </div>
-    <div class="tee-vote-wrapper">
+    <div class="tee-vote-wrapper" *ngIf="leftTee && rightTee">
       <app-tee class="tee-picture"
                [fillColor]="leftTee.picture.background"
                [pictureUrl]="leftTee.picture.url"
