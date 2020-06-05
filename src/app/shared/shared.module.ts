@@ -7,6 +7,7 @@ import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
 import {ModalComponent} from './components/modal/modal.component';
 import {ModalLeavePage} from './components/modal-leave-page/modal-leave-page';
+import {TeeImageComponent} from './components/tee-image/tee-image.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ModalLeavePage} from './components/modal-leave-page/modal-leave-page';
     HeaderComponent,
     FooterComponent,
     AlertComponent,
-    ModalLeavePage
+    ModalLeavePage,
+    TeeImageComponent
   ],
   imports: [
     RouterModule,
@@ -27,7 +29,8 @@ import {ModalLeavePage} from './components/modal-leave-page/modal-leave-page';
     HeaderComponent,
     FooterComponent,
     AlertComponent,
-    ModalComponent
+    ModalComponent,
+    TeeImageComponent
   ]
 })
 export class SharedModule {

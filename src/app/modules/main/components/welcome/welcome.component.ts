@@ -22,6 +22,8 @@ export class WelcomeComponent implements OnDestroy {
 
   public highResBackground = WELCOMEBACKGROUND_HD;
 
+  public fillColor: string = "#fcfbf9";
+
   constructor(
     private router: Router,
     private dialog: MatDialog,

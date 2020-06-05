@@ -22,7 +22,6 @@ import {DoneViewComponent} from './pages/game/game-views/done-view/done-view.com
 import {MatchingViewComponent} from './pages/game/game-views/matching-view/matching-view.component';
 import {RoomCodeComponent} from './components/room-code/room-code.component';
 import {TeeComponent} from './components/tee/tee.component';
-import {TeeImageComponent} from './components/tee-image/tee-image.component';
 import {RepeatElementPipe} from './pipes/repeat-element.pipe';
 import {GameCoreComponent} from './game-core.component';
 
@@ -48,7 +47,6 @@ import {GameCoreComponent} from './game-core.component';
     RoomCodeComponent,
     GameCoreComponent,
     TeeComponent,
-    TeeImageComponent,
     RepeatElementPipe
   ],
   imports: [
