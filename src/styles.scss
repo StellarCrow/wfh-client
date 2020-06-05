@@ -1,4 +1,5 @@
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 //core
 @import "./src/app/core/styles/core/generic";
@@ -10,3 +11,10 @@
 
 
 @include snackbar-style();
+
+.mat-ripple {
+  @include hugeScreen {
+    font-size: 1em;
+  }
+}
+
