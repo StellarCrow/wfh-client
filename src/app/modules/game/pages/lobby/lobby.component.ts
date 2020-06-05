@@ -46,6 +46,11 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.dataStore.users$
+      .pipe(takeUntil(this.notifier))
+      .subscribe(data => {
+        this.users = data;
+      });
     this.configSocketListeners();
     this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
   }
@@ -55,6 +60,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.listenGameStarted();
     this.listenReconnectUser();
     this.listenUserDisconnected();
+    this.listenUserLeftRoom();
     this.listenErrorEvent();
   }
 
@@ -62,9 +68,9 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.socketService.listen('new-user-connected')
       .pipe(takeUntil(this.notifier))
       .subscribe((data: ISocket) => {
-        this.users = [...data.payload];
+        const users = [...data.payload];
+        this.dataStore.setRoomsUsers(users);
         this.checkGameStatus();
-        this.dataStore.setRoomsUsers(this.users);
       });
   }
 
@@ -78,9 +84,22 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.socketService.listen('reconnect-user')
       .pipe(takeUntil(this.notifier))
       .subscribe((data: ISocket) => {
-        this.users = [...data.payload];
+        const users = [...data.payload];
+        this.dataStore.setRoomsUsers(users);
         this.checkGameStatus();
-        this.dataStore.setRoomsUsers(this.users);
+      });
+  }
+
+  private listenUserLeftRoom(): void {
+    this.socketService.listen('user-left-room')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        const users = [...data.payload.users];
+        this.dataStore.setRoomsUsers(users);
+        this.checkGameStatus();
+        if (data.payload.creator) {
+          this.router.navigate(['/main/welcome'], { state: { roomDeleted: true } });
+        }
       });
   }
 
@@ -88,11 +107,11 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.socketService.listen('user-disconnected')
       .pipe(takeUntil(this.notifier))
       .subscribe((data: ISocket) => {
-        this.users = this.users.filter(
+        const users = this.users.filter(
           (user: IPlayer) => user.username !== data.payload.username,
         );
+        this.dataStore.setRoomsUsers(users);
         this.checkGameStatus();
-        this.dataStore.setRoomsUsers(this.users);
       });
   }
 

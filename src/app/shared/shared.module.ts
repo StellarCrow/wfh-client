@@ -6,8 +6,9 @@ import {FooterComponent} from './components/footer/footer.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
 import {ModalComponent} from './components/modal/modal.component';
-import {ModalLeavePage} from './components/modal-leave-page/modal-leave-page';
 import {TeeImageComponent} from './components/tee-image/tee-image.component';
+import { ModalLeavePage } from './components/modal-leave-page/modal-leave-page';
+import { ModalRoomDeletedComponent } from './components/modal-room-deleted/modal-room-deleted.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {TeeImageComponent} from './components/tee-image/tee-image.component';
     FooterComponent,
     AlertComponent,
     ModalLeavePage,
-    TeeImageComponent
+    TeeImageComponent,
+    ModalRoomDeletedComponent
   ],
   imports: [
     RouterModule,

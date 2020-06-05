@@ -7,6 +7,8 @@ import {takeUntil} from 'rxjs/operators';
 import {SocketService} from '../../services/socket.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DataStoreService} from '../../../../core/services/data-store.service';
+import {ISocket} from '../../interfaces/isocket';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -29,7 +31,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private gameViewService: GameViewService,
     private socketService: SocketService,
     private dataStore: DataStoreService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router) {
     this.loadedUsers = this.dataStore.getLoadedUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
 
@@ -59,6 +62,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeGameStage();
     this.listenUserLoaded();
+    this.listenUserLeftRoom();
     this.listenNotification('image-saved');
     this.listenNotification('new-tee-created');
     this.initGameView();
@@ -100,7 +104,18 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
           this.socketService.emit('all-loaded', {room: this.room});
         }
       });
+  }
 
+  private listenUserLeftRoom(): void {
+    this.socketService.listen('user-left-room')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        const users = [...data.payload.users];
+        this.dataStore.setRoomsUsers(users);
+        if (data.payload.creator) {
+          this.router.navigate(['/main/welcome'], { state: { roomDeleted: true } });
+        }
+      });
   }
 
 

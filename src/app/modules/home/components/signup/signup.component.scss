@@ -1,4 +1,5 @@
 @import "plugins/variables.scss";
+@import "plugins/media-mixins";
 
 .signup {
   display: flex;
@@ -19,6 +20,9 @@
     width: 80%;
     display: block;
     margin: auto;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
   }
 
   &__title {
@@ -26,6 +30,19 @@
     text-align: left;
     font-size: 2.5rem;
     font-weight: bold;
+    @include phone {
+      font-size: 1rem;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    @include tablet {
+      font-size: 2rem;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    @include  hugeScreen {
+      text-align: center;
+    }
   }
 
   &__message {
@@ -33,6 +50,9 @@
     display: block;
     color: $grey-dark;
     margin: 1rem auto;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
   }
 
   &__button {
@@ -44,6 +64,9 @@
     color: $white;
     border: 1px solid $grey-dark;
     font-family: 'Roboto', sans-serif;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
 
     &:hover {
       background-color: darken(#72b8f9, 10%);
