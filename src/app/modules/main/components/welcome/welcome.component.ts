@@ -28,7 +28,6 @@ export class WelcomeComponent implements OnDestroy {
     private socketService: SocketService,
     private dataStore: DataStoreService
   ) {
-    this.roomCode = this.generateRoomCode(4);
   }
 
   public openDialog(): void {
@@ -46,6 +45,8 @@ export class WelcomeComponent implements OnDestroy {
   }
 
   public createRoom(): void {
+    this.roomCode = this.generateRoomCode(4);
+    console.log(this.roomCode);
     this.dataStore.setRoomCode(this.roomCode);
     this.socketService.emit('create-room', {username: this.dataStore.getUserName(), code: this.roomCode});
     this.router.navigate(['game/lobby', this.roomCode]);

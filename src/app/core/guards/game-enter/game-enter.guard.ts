@@ -11,7 +11,6 @@ export class GameEnterGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log(this.router.getCurrentNavigation());
     const isFromLobby = this.router.getCurrentNavigation().extras.state && this.router.getCurrentNavigation().extras.state.fromLobby;
     if (isFromLobby) {
       return true;
