@@ -4,7 +4,10 @@
           (mousemove)="mouseMove($event)"
           (mousedown)="mouseDown($event)"
           (mouseup)="mouseUp()"
-          (mouseleave)="mouseLeave()"></canvas>
+          (mouseleave)="mouseLeave()"
+          (touchmove)="touchMove($event)"
+          (touchstart)="touchStart($event)"
+          (touchend)="touchEnd()"></canvas>
   <app-canvas-background (setCanvasBg)="onSetCanvasBg($event)"></app-canvas-background>
 
   <div class="canvas-controls">
