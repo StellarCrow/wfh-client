@@ -42,9 +42,15 @@
   }
 }
 
+.tee {
+  position: absolute;
+  width: 34%;
+  z-index: -1;
+}
+
 .game {
-  background: url(/assets/images/shirt.png) no-repeat left top / contain;
-  padding: $padding-top-bottom $padding-left-right;
+  // background: url(/assets/images/shirt.png) no-repeat left top / contain;
+  // padding: $padding-top-bottom $padding-left-right;
 
   &__heading {
     text-align: center;
