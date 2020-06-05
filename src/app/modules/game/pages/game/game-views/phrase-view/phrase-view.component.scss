@@ -26,11 +26,13 @@
   &__message {
     padding: 1rem;
     max-width: 100%;
+    width: inherit;
     border: 2px solid black;
     border-radius: 10px;
     background: #ffffff;
     font-family: $ff-primary;
     font-size: 1rem;
+    text-align: left;
     outline: none;
   }
 

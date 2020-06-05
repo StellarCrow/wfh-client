@@ -24,11 +24,12 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   linesArray: ICanvasLines[] = [];
-  isMouseDown = false;
-  lineCount = 0;
+  isMouseDown: boolean = false;
+  isTouched: boolean = false;
+  lineCount: number = 0;
   width: number;
   height: number;
-  canvasBackground = '#231746';
+  canvasBackground: string = '#231746';
 
 
   @ViewChild('canvas') public canvas: ElementRef;
@@ -103,20 +104,16 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
   mouseMove(e: MouseEvent): void {
     if (this.isMouseDown) {
       const currentPosition = this.getMousePos(e);
-      this.ctx.lineTo(currentPosition.x, currentPosition.y);
-      this.ctx.stroke();
-      this.store(this.lineCount, currentPosition.x, currentPosition.y, this.ctx.strokeStyle.toString());
+      this.startPaint(currentPosition);
     }
   }
 
   mouseUp(): void {
-    this.isMouseDown = false;
-    this.store(0, 0, 0, '#fff');
+    this.stopPaint();
   }
 
   mouseLeave(): void {
-    this.isMouseDown = false;
-    this.store(0, 0, 0, '#fff');
+    this.stopPaint();
   }
 
   getMousePos(e: MouseEvent): { x: number, y: number } {
@@ -125,6 +122,54 @@ export class CanvasComponent implements AfterViewInit, OnInit, OnDestroy {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
     };
+  }
+
+  touchMove(e: TouchEvent): void {
+    const currentPosition = this.getTouchPos(e);
+    this.touchLeave(currentPosition);
+
+    if (this.isTouched) {
+      this.startPaint(currentPosition);
+    }
+  }
+
+  touchLeave(currentPosition: { x: number, y: number }): void {
+    if (currentPosition.x < 0 || currentPosition.y < 0 || 
+        currentPosition.x > this.width || currentPosition.y > this.height) {
+      this.stopPaint();
+    }
+  }
+
+  getTouchPos(e: TouchEvent): { x: number, y: number } {
+    const rect = this.canvas.nativeElement.getBoundingClientRect();
+    return {
+      x: e.touches[0].clientX - rect.left,
+      y: e.touches[0].clientY - rect.top
+    };
+  }
+
+  touchStart(e: TouchEvent) {
+    this.isTouched = true;
+    const currentPosition = this.getTouchPos(e);
+    this.ctx.moveTo(currentPosition.x, currentPosition.y)
+    this.ctx.beginPath();
+    this.lineCount += 1;
+  }
+
+  touchEnd(): void {
+    this.stopPaint();
+  }
+
+  startPaint(currentPosition: { x: number, y: number }): void {
+    this.ctx.lineTo(currentPosition.x, currentPosition.y)
+    this.ctx.stroke();
+    this.store(this.lineCount, currentPosition.x, currentPosition.y, this.ctx.strokeStyle.toString());
+  }
+
+  stopPaint(): void {
+    this.isTouched = false;
+    this.isMouseDown = false;
+    this.store(0, 0, 0, '#fff');
   }
 
   undo(): void {
