@@ -1,66 +1,66 @@
 .overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .wrapper {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .game-phase {
-    color: #f4cc52;
-    text-align: center;
+  color: #f4cc52;
+  text-align: center;
 
-    &__title {
-        font-family: "JandaManateeSolid";
-        font-size: 2em;
-        -webkit-text-stroke: 2px #242628;
-        text-transform: uppercase;
-        margin: 0;
-    }
+  &__title {
+    font-family: "JandaManateeSolid";
+    font-size: 2em;
+    -webkit-text-stroke: 2px #242628;
+    text-transform: uppercase;
+    margin: 0;
+  }
 
-    &__hint {
-        margin: 0;
-        line-height: 0;
-    }
+  &__hint {
+    margin: 0;
+    line-height: 0;
+  }
 }
 
 .tee-vote-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .versus {
-    font-family: "JandaManateeSolid";
-    font-size: 4em;
-    -webkit-text-stroke: 4px #242628;
-    text-transform: uppercase;
-    color: #f4cc52;
-    transform: rotate(-8deg);
-    user-select: none;
+  font-family: "JandaManateeSolid";
+  font-size: 4em;
+  -webkit-text-stroke: 4px #242628;
+  text-transform: uppercase;
+  color: #f4cc52;
+  transform: rotate(-8deg);
+  user-select: none;
 }
 
 .tee-picture {
-    width: 400px;
-    z-index: 20;
+  width: 400px;
+  z-index: 20;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 
-    &--right {
-        transform: rotate(32deg);
-    }
+  &--right {
+    transform: rotate(32deg);
+  }
 }

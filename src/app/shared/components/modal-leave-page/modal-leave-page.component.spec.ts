@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ModalLeavePage } from './modal-leave-page';
+import {ModalLeavePage} from './modal-leave-page';
 
 describe('ModalGameStartedComponent', () => {
   let component: ModalLeavePage;
@@ -8,9 +8,9 @@ describe('ModalGameStartedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalLeavePage ]
+      declarations: [ModalLeavePage]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

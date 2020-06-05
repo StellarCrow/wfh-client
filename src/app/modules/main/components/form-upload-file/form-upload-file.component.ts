@@ -60,7 +60,7 @@ export class FormUploadFileComponent implements OnInit {
 
   public onFileChange(event: any): void {
     const file = event.target.files;
-    const { maxSize } = this;
+    const {maxSize} = this;
     const imageFile = file[0];
 
     // check if user actually selected a file

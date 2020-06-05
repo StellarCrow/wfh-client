@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angul
 import {MatDialog} from '@angular/material/dialog';
 import {ModalLeavePage} from '../../../shared/components/modal-leave-page/modal-leave-page';
 import {tap} from 'rxjs/operators';
-import {Observable, ObservedValueOf} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class GameLeaveGuard implements CanDeactivate<Observable<any>> {
 
   canDeactivate(component: any, currentRoute: ActivatedRouteSnapshot,
                 currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot) {
-    const dialogRef = this.dialog.open(ModalLeavePage, { panelClass: 'custom-dialog', maxWidth: '40%' });
+    const dialogRef = this.dialog.open(ModalLeavePage, {panelClass: 'custom-dialog', maxWidth: '40%'});
     return dialogRef.afterClosed().pipe(
       tap(() => {
         console.log('close dialog');

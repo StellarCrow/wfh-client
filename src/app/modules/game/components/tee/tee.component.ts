@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tee',
@@ -10,5 +10,6 @@ export class TeeComponent implements OnInit {
   @Input() pictureUrl: string;
   @Input() phrase: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

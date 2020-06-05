@@ -1,11 +1,9 @@
-import {
-  Component, EventEmitter, OnInit, Output,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { IRegisterResponse } from '../../../../shared/interfaces/iregister-response';
-import { SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD } from '../../constants/backgrounds';
+import {Component, EventEmitter, OnInit, Output,} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
+import {SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signup',

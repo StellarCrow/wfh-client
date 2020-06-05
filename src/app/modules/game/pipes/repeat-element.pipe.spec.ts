@@ -1,4 +1,4 @@
-import { RepeatElementPipe } from './repeat-element.pipe';
+import {RepeatElementPipe} from './repeat-element.pipe';
 
 describe('RepeatElementPipe', () => {
   it('create an instance', () => {

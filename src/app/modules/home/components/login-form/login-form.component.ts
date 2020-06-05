@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataStoreService } from '../../../../core/services/data-store.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +18,8 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+  }
 
   moveToSigninTab() {
     this.selectedTabIndex = 1;
