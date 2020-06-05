@@ -5,15 +5,19 @@
             <p class="game-phase__hint">(click on shirt)</p>
         </div>
         <div class="tee-vote-wrapper">
-            <div class="tee tee--left" [ngStyle]="{backgroundImage: 'url(assets/images/tee-red.png)'}">
-                <img src="assets/images/tee-img2.jpg" class="tee__img" alt="tee" />
-                <p class="tee__text">Hello world</p>
-            </div>
+            <app-tee class="tee-picture" 
+                [fillColor]="leftTee.picture.background" 
+                [pictureUrl]="leftTee.picture.url"
+                [phrase]="leftTee.phrase.phrase"
+                (click)="voteForLeftTee()">
+            </app-tee>
             <div class="versus">VS</div>
-            <div class="tee tee--right" [ngStyle]="{backgroundImage: 'url(assets/images/tee-gray.png)'}">
-                <img src="assets/images/tee-img.jpg" class="tee__img" alt="tee" />
-                <p class="tee__text">Hey...</p>
-            </div>
+            <app-tee class="tee-picture tee-picture--right" 
+                [fillColor]="rightTee.picture.background" 
+                [pictureUrl]="rightTee.picture.url"
+                [phrase]="rightTee.phrase.phrase"
+                (click)="voteForRightTee()">
+            </app-tee>
         </div>
     </div>
 </div>
