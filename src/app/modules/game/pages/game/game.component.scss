@@ -1,4 +1,6 @@
 @import "plugins/variables";
+@import "plugins/mixins";
+
 .game {
   display: flex;
   flex-flow: row nowrap;
@@ -45,8 +47,8 @@
   position: fixed;
   top: 50%;
   z-index: 5;
-  color: $white;
-  -webkit-text-stroke: 5px $dark-brown;
+  color: $text-color--light;
+  -webkit-text-stroke: 5px $black;
   margin: 0;
   padding: 0;
 }

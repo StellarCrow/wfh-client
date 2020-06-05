@@ -1,4 +1,5 @@
-@import "../../../../core/styles/plugins/variables";
+@import "plugins/variables";
+@import "plugins/mixins";
 
 .about {
   width: 100%;
@@ -34,7 +35,7 @@
   &__title {
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: $bold;
     font-size: 2.5rem;
     padding: 1rem;
   }
@@ -54,13 +55,13 @@
     background-color: $primary-color;
 
     &:hover {
-      background-color: $secondary-color;
+      background-color: $secondary-color--medium;
     }
   }
 
   &__subtitle {
     text-align: center;
-    font-weight: bold;
+    font-weight: $bold;
     font-size: 1.5rem;
     padding: 1rem 0.5rem;
   }

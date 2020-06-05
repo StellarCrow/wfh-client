@@ -1,3 +1,6 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
 .overlay {
     position: fixed;
     width: 100%;
@@ -18,13 +21,13 @@
 }
 
 .game-phase {
-    color: #f4cc52;
+    color: $quaternary-color--dark;
     text-align: center;
 
     &__title {
-        font-family: "JandaManateeSolid";
+        font-family: $ff-header-solid;
         font-size: 2em;
-        -webkit-text-stroke: 2px #242628;
+        -webkit-text-stroke: 2px $black;
         text-transform: uppercase;
         margin: 0;
     }
@@ -43,11 +46,11 @@
 }
 
 .versus {
-    font-family: "JandaManateeSolid";
+    font-family: $ff-header-solid;
     font-size: 4em;
-    -webkit-text-stroke: 4px #242628;
+    -webkit-text-stroke: 4px $black;
     text-transform: uppercase;
-    color: #f4cc52;
+    color: $quaternary-color--dark;
     transform: rotate(-8deg);
     user-select: none;
 }

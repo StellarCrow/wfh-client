@@ -19,7 +19,7 @@
     width: 80%;
     height: 25%;
     object-fit: cover;
-    border: 3px solid #2c2828;
+    border: 3px solid $black;
     margin: 5%;
   }
 
@@ -30,19 +30,19 @@
     width: 6em;
     height: 6em;
     border-radius: 50%;
-    background-color: #fae89e;
+    background-color: $quaternary-color;
     margin: 5%;
 
     &--is-finished {
-      border: 2px solid $light-green;
+      border: 2px solid $tertiary-color;
     }
 
     &__avatar {
       width: 80%;
       height: 80%;
       border-radius: 50%;
-      background-color: #dbfbf8;
-      border: 3px solid #2c2828;
+      background-color: $primary-color;
+      border: 3px solid $black;
     }
   }
 }

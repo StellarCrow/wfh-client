@@ -14,19 +14,19 @@
 @mixin snackbar-style {
   .mat-snack-bar-container {
     border: 2px solid $black;
-    background-color: $lighter-brown;
+    background-color: $quaternary-color;
 
     .mat-simple-snackbar {
       font-size: $snackbar-font-size;
-      color: $black;
+      color: $text-color--dark;
       font-family: $ff-primary;
     }
 
     .mat-button-wrapper {
       font-size: 2.5em;
       font-family: $ff-header-solid;
-      color: $dim-green;
-      -webkit-text-stroke: $snackbar-text-stroke;
+      color: $tertiary-color--dark;
+      @include text-stroke();
     }
 
   }

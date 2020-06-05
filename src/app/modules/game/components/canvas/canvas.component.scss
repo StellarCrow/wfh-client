@@ -1,3 +1,6 @@
+@import "plugins/variables";
+@import "plugins/mixins";
+
 .canvas-wrapper {
   max-width: 80%;
   margin: 0 auto;
@@ -18,17 +21,23 @@
   &__btn {
     font-size: 1.3em;
     letter-spacing: 0.1em;
-    color: #fff;
-    border: 3px solid #2c2828;
+    color: $text-color--light;
+    border: 3px solid $black;
     border-radius: 10px;
     text-transform: uppercase;
 
     &--undo {
-      background-color: #ddab91;
+      background-color: $secondary-color--medium;
+      &:hover {
+        background-color: darken($secondary-color--medium, 10%);
+      }
     }
 
     &--submit {
-      background-color: #d8e5ad;
+      background-color: $tertiary-color--medium;
+      &:hover {
+        background-color: darken($tertiary-color--medium, 10%);
+      }
     }
   }
 }

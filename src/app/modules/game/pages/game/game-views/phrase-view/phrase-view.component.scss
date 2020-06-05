@@ -13,7 +13,7 @@
     font-family: $ff-header-solid;
     font-size: 2.5rem;
     @include text-stroke();
-    color: $white;
+    color: $text-color--light;
   }
 
   &__form {
@@ -44,11 +44,11 @@
     text-transform: uppercase;
 
     &--submit {
-      background-color: #d8e5ad;
-      color: #fff;
-      border: 3px solid #2c2828;
+      background-color: $tertiary-color--medium;
+      color: $text-color--light;
+      border: 3px solid $black;
       &:hover {
-        background-color: darken(#d8e5ad, 10%);
+        background-color: darken($tertiary-color--medium, 10%);
       }
     }
   }

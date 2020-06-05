@@ -16,19 +16,19 @@
   &__container {
     text-align: left;
     background-color: $white;
-    color: $black;
+    color: $text-color--dark;
     width: 30%;
     position: absolute;
     top: 40%;
     left: 10%;
     padding: 4rem 3rem;
     border-radius: 40px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: $ff-primary;
   }
 
   &__error {
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: $bold;
     text-align: left;
   }
 
@@ -45,9 +45,9 @@
     padding: .5rem 0;
     width: 100%;
     background-color: $tertiaty-color;
-    color: $white;
+    color: $text-color--light;
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: $bold;
 
     &:hover {
       background: darken($tertiaty-color, 10%);

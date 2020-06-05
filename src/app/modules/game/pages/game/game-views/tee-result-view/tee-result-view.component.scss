@@ -23,7 +23,7 @@
     font-family: $ff-header-solid;
     font-size: 3rem;
     @include text-stroke();
-    color: $quaternary-color--darker;
+    color: $quaternary-color--dark;
     text-align: center;
     text-transform: uppercase;
     margin: 0;
@@ -40,11 +40,11 @@
     letter-spacing: 0.1rem;
     border-radius: 10px;
     text-transform: uppercase;
-    background-color: #ffc3ae;
-    color: #fff;
-    border: 3px solid #2c2828;
+    background-color: $secondary-color--medium;
+    color: $text-color--light;
+    border: 3px solid $black;
     &:hover {
-      background-color: darken(#ffc3ae, 10%);
+      background-color: darken($secondary-color--medium, 10%);
     }
   }
 }
@@ -79,9 +79,9 @@
     width: 200px;
     height: 2.5rem;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: $bold;
     text-align: center;
-    color: #fff;
+    color: $text-color--light;
     margin: 0;
     user-select: none;
     white-space: wrap;

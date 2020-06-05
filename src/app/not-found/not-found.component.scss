@@ -16,7 +16,7 @@
   &__container {
     text-align: left;
     background-color: $white;
-    color: $black;
+    color: $text-color--dark;
     width: 30%;
     position: absolute;
     top: 40%;
@@ -28,7 +28,7 @@
 
   &__error {
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: $bold;
     text-align: left;
   }
 
@@ -44,9 +44,12 @@
     margin: 1.2rem 0;
     padding: .5rem 0;
     width: 100%;
-    background-color: $tertiaty-color;
-    color: $white;
+    background-color: $tertiary-color;
+    color: $text-color--light;
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: $bold;
+    &:hover {
+      background-color: darken($tertiary-color, 10%);
+    }
   }
 }

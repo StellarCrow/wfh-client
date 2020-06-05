@@ -23,7 +23,7 @@
     margin: 1rem 4rem;
     text-align: left;
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: $bold;
   }
 
   &__message {
@@ -38,12 +38,12 @@
     display: block;
     width: 80%;
     margin: 1rem auto;
-    background-color: #72b8f9;
-    color: $white;
+    background-color: $primary-color--medium;
+    color: $text-color--light;
     border: 1px solid $grey-dark;
     font-family: 'Roboto', sans-serif;
     &:hover {
-      background-color: darken(#72b8f9, 10%);
+      background-color: darken($primary-color--medium, 10%);
     }
   }
 }
