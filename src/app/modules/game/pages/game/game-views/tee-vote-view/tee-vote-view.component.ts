@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {DataStoreService} from '../../../../../../core/services/data-store.service';
 import {Stages} from '../../../../constants/stages.enum';
 import {ITee} from 'src/app/modules/game/interfaces/itee';
 import {SocketService} from 'src/app/modules/game/services/socket.service';
 import {ActionService} from 'src/app/core/services/action.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tee-vote-view',
@@ -20,8 +21,10 @@ export class TeeVoteViewComponent implements OnInit {
   constructor(
     private dataStore: DataStoreService,
     private socketService: SocketService,
-    private actionService: ActionService
-  ) {}
+    private actionService: ActionService,
+    private snackBar: MatSnackBar
+  ) {
+  }
 
   ngOnInit(): void {
     this.setVotingStage();
@@ -29,8 +32,7 @@ export class TeeVoteViewComponent implements OnInit {
     this.initVote();
 
     this.socketService.listen('vote-sent').subscribe(({answer}) => {
-      // TODO: Can use snackbar here
-      console.log(answer);
+      this.snackBar.open(answer, 'Close', {duration: 2000});
     });
   }
 

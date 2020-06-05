@@ -1,4 +1,5 @@
 @import "plugins/variables";
+
 .players-list {
   // height: 100%;
   display: flex;
@@ -23,7 +24,7 @@
     margin: 5%;
   }
 
-  &__player, .player{
+  &__player, .player {
     display: flex;
     justify-content: center;
     align-items: center;

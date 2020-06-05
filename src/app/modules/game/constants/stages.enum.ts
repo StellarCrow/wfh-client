@@ -2,5 +2,6 @@ export enum Stages {
   painting = 'painting',
   phrases = 'phrases',
   matching = 'matching',
-  voting = 'voting'
+  voting = 'voting',
+  finish = 'finish'
 }

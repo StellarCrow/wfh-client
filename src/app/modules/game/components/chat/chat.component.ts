@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
 import {DataStoreService} from '../../../../core/services/data-store.service';
@@ -24,8 +24,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   private chatScroll = new Subject();
 
   constructor(private socketService: SocketService,
-    private dataStore: DataStoreService,
-    private formBuilder: FormBuilder) {
+              private dataStore: DataStoreService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {

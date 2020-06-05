@@ -1,13 +1,12 @@
-
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SocketService } from '../../services/socket.service';
-import { ISocket } from '../../interfaces/isocket';
-import { DataStoreService } from '../../../../core/services/data-store.service';
-import { IPlayer } from '../../../../shared/interfaces/iplayer';
-import { LOBBYBACKGROUND, LOBBYBACKGROUND_HD } from '../../constants/backgrounds';
+import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {SocketService} from '../../services/socket.service';
+import {ISocket} from '../../interfaces/isocket';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {IPlayer} from '../../../../shared/interfaces/iplayer';
+import {LOBBYBACKGROUND, LOBBYBACKGROUND_HD} from '../../constants/backgrounds';
 
 
 @Component({
@@ -48,7 +47,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.configSocketListeners();
-    this.socketService.emit('new-user', { username: this.username, room: this.roomCode });
+    this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
   }
 
   private configSocketListeners(): void {
@@ -72,7 +71,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   private listenGameStarted(): void {
     this.socketService.listen('game-started')
       .pipe(takeUntil(this.notifier))
-      .subscribe((data) => this.router.navigate(['game/play', this.roomCode], { state: { fromLobby: true } }));
+      .subscribe((data) => this.router.navigate(['game/play', this.roomCode], {state: {fromLobby: true}}));
   }
 
   private listenReconnectUser(): void {
@@ -110,7 +109,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   public startGame() {
-    this.socketService.emit('start-game', { room: this.roomCode });
+    this.socketService.emit('start-game', {room: this.roomCode});
   }
 
 

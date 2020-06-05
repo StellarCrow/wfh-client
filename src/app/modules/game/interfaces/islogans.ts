@@ -1,4 +1,4 @@
 export interface ISlogans {
-    username: string;
-    slogan: string;
-  }
+  username: string;
+  slogan: string;
+}

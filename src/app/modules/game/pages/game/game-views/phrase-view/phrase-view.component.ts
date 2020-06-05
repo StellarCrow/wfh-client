@@ -15,7 +15,7 @@ import {ActionService} from '../../../../../../core/services/action.service';
   styleUrls: ['./phrase-view.component.scss']
 })
 export class PhraseViewComponent implements OnInit, OnDestroy {
-  private  room: string;
+  private room: string;
   public username: string;
   public phraseForm: FormGroup;
   private notifier = new Subject();

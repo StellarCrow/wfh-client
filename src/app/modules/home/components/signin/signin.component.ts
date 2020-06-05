@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/services/auth.service';
-import { AlertService } from '../../../../core/services/alert.service';
-import { ILoginResponse } from '../../../../shared/interfaces/i-login-response';
-import { DataStoreService } from '../../../../core/services/data-store.service';
-import { SIGNINBACKGROUND, SIGNINBACKGROUND_HD } from '../../constants/backgrounds';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../core/services/auth.service';
+import {AlertService} from '../../../../core/services/alert.service';
+import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {SIGNINBACKGROUND, SIGNINBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signin',

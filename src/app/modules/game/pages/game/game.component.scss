@@ -1,9 +1,10 @@
 @import "plugins/variables";
+
 .game {
   display: flex;
   flex-flow: row nowrap;
   position: relative;
-  background: url(/assets/backgrounds/game-background.jpg) no-repeat fixed center center / cover ;
+  background: url(/assets/backgrounds/game-background.jpg) no-repeat fixed center center / cover;
   min-height: 100vh;
 
   &__room-code {
@@ -55,12 +56,12 @@
   left: 0;
 }
 
-.hideButton.right{
+.hideButton.right {
   right: 0;
 }
 
-.showButton.left, .hideButton.right{
-  transform:scaleX(-1);
+.showButton.left, .hideButton.right {
+  transform: scaleX(-1);
 }
 
 .mat-sidenav-container,

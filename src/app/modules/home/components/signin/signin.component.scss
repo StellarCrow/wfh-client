@@ -3,10 +3,12 @@
 .signin {
   display: flex;
   height: 100vh;
+
   &__background {
     background: no-repeat center center / cover;
     width: 50%;
   }
+
   &__list {
     margin-top: 10%;
     width: 50%;
@@ -40,15 +42,19 @@
     color: $black;
     border: 1px solid $grey-dark;
     font-family: "Roboto", sans-serif;
+
     &-submit {
       background-color: $primary-color;
+
       &:hover {
         background-color: darken($primary-color, 10%);
       }
     }
+
     &-google {
       background-color: $white;
       display: none;
+
       &:hover {
         background-color: darken($primary-color, 10%);
       }
