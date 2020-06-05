@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { ABOUTBACKGROUND, ABOUTBACKGROUND_HD } from '../../constants/backgrounds';
+import {ABOUTBACKGROUND, ABOUTBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-about',

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DrawViewComponent } from './draw-view.component';
+import {DrawViewComponent} from './draw-view.component';
 
 describe('DrawViewComponent', () => {
   let component: DrawViewComponent;
@@ -8,9 +8,9 @@ describe('DrawViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DrawViewComponent ]
+      declarations: [DrawViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

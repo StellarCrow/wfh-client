@@ -5,14 +5,14 @@
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
       <mat-form-field class="signup__item">
         <input matInput formControlName="firstName" class="signup__firstname" placeholder="First Name" required
-          name="firstName">
+               name="firstName">
         <mat-icon matSuffix class="signup__firstname-icon icon">perm_identity</mat-icon>
         <mat-error *ngIf="getSignupControls.firstName.invalid">First name is required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="signup__item">
         <input matInput formControlName="lastName" class="signup__lastname" placeholder="Last Name" required
-          name="lastName">
+               name="lastName">
         <mat-icon matSuffix class="signup__lastname-icon icon">perm_identity</mat-icon>
         <mat-error *ngIf="getSignupControls.lastName.invalid">Last name is required</mat-error>
       </mat-form-field>
@@ -25,7 +25,7 @@
 
       <mat-form-field class="signup__item">
         <input matInput formControlName="password" class="signup__password" placeholder="Password" type="password"
-          required minlength="6" name="password">
+               required minlength="6" name="password">
         <mat-error *ngIf="getSignupControls.password.errors && getSignupControls.password.errors.required">
           Password is required
         </mat-error>

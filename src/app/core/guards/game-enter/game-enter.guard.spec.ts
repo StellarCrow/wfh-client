@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GameEnterGuard } from './game-enter.guard';
+import {GameEnterGuard} from './game-enter.guard';
 
 describe('GameEnterGuard', () => {
   let guard: GameEnterGuard;

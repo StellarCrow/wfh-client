@@ -1,13 +1,12 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ModalJoinRoomComponent } from '../modal-join-room/modal-join-room.component';
-import { SocketService } from '../../../game/services/socket.service';
-import { DataStoreService } from '../../../../core/services/data-store.service';
-import { WELCOMEBACKGROUND, WELCOMEBACKGROUND_HD } from '../../constants/backgrounds';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Component, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {ModalJoinRoomComponent} from '../modal-join-room/modal-join-room.component';
+import {SocketService} from '../../../game/services/socket.service';
+import {DataStoreService} from '../../../../core/services/data-store.service';
+import {WELCOMEBACKGROUND, WELCOMEBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-home',
@@ -49,7 +48,7 @@ export class WelcomeComponent implements OnDestroy {
     this.roomCode = this.generateRoomCode(4);
     console.log(this.roomCode);
     this.dataStore.setRoomCode(this.roomCode);
-    this.socketService.emit('create-room', { username: this.dataStore.getUserName(), code: this.roomCode });
+    this.socketService.emit('create-room', {username: this.dataStore.getUserName(), code: this.roomCode});
     this.router.navigate(['game/lobby', this.roomCode]);
   }
 

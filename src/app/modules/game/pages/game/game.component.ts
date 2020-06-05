@@ -22,7 +22,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private readonly loadedUsers: string[];
   private readonly finishedUsers: string[];
-  private gameStage: string;
+  public gameStage: string;
   public readonly room: string;
 
 
@@ -69,6 +69,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.listenUserFinishAction('user-finish-painting');
     this.listenUserFinishAction('user-finish-phrases');
     this.listenUserFinishAction('user-finish-matching');
+    this.listenUserFinishAction('user-finish-voting');
   }
 
 
@@ -132,7 +133,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
       .subscribe(({answer}) => {
-        this.snackBar.open(answer, 'Close', {duration: 200000});});
+        this.snackBar.open(answer, 'Close', {duration: 2000});
+      });
   }
 
   initGameView(): void {

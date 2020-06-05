@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Peer from 'simple-peer';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
@@ -25,12 +25,13 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     private dataStore: DataStoreService,
     private socketService: SocketService,
     public peerService: PeerService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.users = this.dataStore.getRoomsUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
-    this.roomCode = this.dataStore.getRoomCode()
+    this.roomCode = this.dataStore.getRoomCode();
   }
 
   ngAfterViewInit(): void {
@@ -39,7 +40,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
 
   arrangePeerConnection(): void {
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getUserMedia({video: true, audio: true})
       .then((stream) => {
         this.uv.srcObject = stream;
         this.uv.muted = true;
@@ -78,7 +79,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
           this.peerService.destroyPeer(payload.id);
         });
 
-        this.socketService.emit('join-room', { roomCode: this.roomCode });
+        this.socketService.emit('join-room', {roomCode: this.roomCode});
       });
   }
 
@@ -100,7 +101,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     peer.on('signal', (signal) => {
       this.socketService.emit('send-signal', {userToSignal, callerID, signal});
     });
-    
+
     return peer;
   }
 

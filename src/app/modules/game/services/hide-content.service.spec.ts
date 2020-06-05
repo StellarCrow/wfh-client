@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { HideContentService } from './hide-content.service';
+import {HideContentService} from './hide-content.service';
 
 describe('HideContentService', () => {
   let service: HideContentService;

@@ -3,11 +3,13 @@
 .signup {
   display: flex;
   height: 100vh;
+
   &__background {
     background: no-repeat center center / cover;
     width: 50%;
     height: 100%;
   }
+
   &__list {
     margin-top: 7%;
     width: 50%;
@@ -42,6 +44,7 @@
     color: $white;
     border: 1px solid $grey-dark;
     font-family: 'Roboto', sans-serif;
+
     &:hover {
       background-color: darken(#72b8f9, 10%);
     }

@@ -4,11 +4,16 @@
           (mousemove)="mouseMove($event)"
           (mousedown)="mouseDown($event)"
           (mouseup)="mouseUp()"
-          (mouseleave)="mouseLeave()"></canvas>
+          (mouseleave)="mouseLeave()"
+          (touchmove)="touchMove($event)"
+          (touchstart)="touchStart($event)"
+          (touchend)="touchEnd()"></canvas>
   <app-canvas-background (setCanvasBg)="onSetCanvasBg($event)"></app-canvas-background>
 
   <div class="canvas-controls">
     <button class="canvas-controls__btn canvas-controls__btn--undo button" (click)="undo()">Erase</button>
-    <button type="submit" class="canvas-controls__btn canvas-controls__btn--submit button" (click)="handleSubmit()">Submit</button>
+    <button type="submit" class="canvas-controls__btn canvas-controls__btn--submit button" (click)="handleSubmit()">
+      Submit
+    </button>
   </div>
 </div>

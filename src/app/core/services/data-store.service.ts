@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {IUser} from '../../shared/interfaces/user';
 import {IPlayer} from '../../shared/interfaces/iplayer';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {GameViewService} from '../../modules/game/services/game-view.service';
-import {DONE} from '../../modules/game/constants/game-views';
 
 @Injectable({
   providedIn: 'root'

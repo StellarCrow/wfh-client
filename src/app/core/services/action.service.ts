@@ -25,7 +25,7 @@ export class ActionService implements OnDestroy {
     this.usersActions++;
 
     let neededActions;
-    if (this.gameStage === 'matching') {
+    if (this.gameStage === 'matching' || this.gameStage === 'voting') {
       neededActions = 1;
     } else {
       neededActions = 3;

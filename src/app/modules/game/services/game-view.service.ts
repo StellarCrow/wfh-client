@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class GameViewService {
   get currentView(): string {
     return this._currentView.getValue();
   }
+
   set currentView(view: string) {
     this._currentView.next(view);
   }
@@ -20,5 +21,6 @@ export class GameViewService {
     this.currentView = view;
   }
 
-  constructor() {}
+  constructor() {
+  }
 }

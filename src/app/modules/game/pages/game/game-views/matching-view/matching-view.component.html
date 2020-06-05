@@ -1,34 +1,38 @@
 <div class="overlay">
-    <div class="slider-wrapper" *ngIf="!resultTee">
-        <div class="slider">
-            <div class="slider__container slider__container--tee">
-                <div class="slide--tee" *ngFor="let picture of pictures; index as i" 
-                    [ngClass]="i === currentPicture ? 'slide active' : 'slide'">
-                    <app-tee class="slide--tee-wrapper" [fillColor]="picture.background"
-                        [pictureUrl]="picture.url"></app-tee>
-                </div>
-            </div>
-            
-            <!-- TODO: Use arrow component here -->
-            <div class="slider__btn slider__btn--prev" *ngIf="currentPicture !== 0"
-                (click)="previousPicture()">&#10094;</div>
-            <div class="slider__btn slider__btn--next" *ngIf="currentPicture !== pictures.length - 1"
-                (click)="nextPicture()">&#10095;</div>
+  <div class="slider-wrapper" *ngIf="!resultTee">
+    <div class="slider">
+      <div class="slider__container slider__container--tee">
+        <div class="slide--tee" *ngFor="let picture of pictures; index as i"
+             [ngClass]="i === currentPicture ? 'slide active' : 'slide'">
+          <app-tee class="slide--tee-wrapper" [fillColor]="picture.background"
+                   [pictureUrl]="picture.url"></app-tee>
         </div>
-    
-        <div class="slider">
-            <div class="slider__container slider__container--phrase">
-                <div class="slide--phrase" *ngFor="let phrase of phrases; index as i" 
-                    [ngClass]="i === currentPhrase ? 'slide active' : 'slide'">
-                    {{phrase.phrase}}
-                </div>
-            </div>
-            
-            <!-- TODO: Use arrow component here as well -->
-            <div class="slider__btn slider__btn--prev" *ngIf="currentPhrase !== 0" (click)="previousPhrase()">&#10094;</div>
-            <div class="slider__btn slider__btn--next" *ngIf="currentPhrase !== phrases.length - 1" (click)="nextPhrase()">&#10095;</div>
-        </div>
-        <button type="submit" class="submit-btn button" (click)="submit()">Submit</button>
+      </div>
+
+      <!-- TODO: Use arrow component here -->
+      <div class="slider__btn slider__btn--prev" *ngIf="currentPicture !== 0"
+           (click)="previousPicture()">&#10094;
+      </div>
+      <div class="slider__btn slider__btn--next" *ngIf="currentPicture !== pictures.length - 1"
+           (click)="nextPicture()">&#10095;
+      </div>
     </div>
-    <button class="submit-btn button" *ngIf="resultTee">Next</button>
+
+    <div class="slider">
+      <div class="slider__container slider__container--phrase">
+        <div class="slide--phrase" *ngFor="let phrase of phrases; index as i"
+             [ngClass]="i === currentPhrase ? 'slide active' : 'slide'">
+          {{phrase.phrase}}
+        </div>
+      </div>
+
+      <!-- TODO: Use arrow component here as well -->
+      <div class="slider__btn slider__btn--prev" *ngIf="currentPhrase !== 0" (click)="previousPhrase()">&#10094;</div>
+      <div class="slider__btn slider__btn--next" *ngIf="currentPhrase !== phrases.length - 1" (click)="nextPhrase()">
+        &#10095;
+      </div>
+    </div>
+    <button type="submit" class="submit-btn button" (click)="submit()">Submit</button>
+  </div>
+  <button class="submit-btn button" *ngIf="resultTee">Next</button>
 </div>

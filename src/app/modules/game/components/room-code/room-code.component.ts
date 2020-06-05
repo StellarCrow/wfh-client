@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DataStoreService } from 'src/app/core/services/data-store.service';
+import {Component, OnInit} from '@angular/core';
+import {DataStoreService} from 'src/app/core/services/data-store.service';
 
 @Component({
   selector: 'app-room-code',
@@ -9,7 +9,8 @@ import { DataStoreService } from 'src/app/core/services/data-store.service';
 export class RoomCodeComponent implements OnInit {
   roomCode: string;
 
-  constructor(private dataStore: DataStoreService) { }
+  constructor(private dataStore: DataStoreService) {
+  }
 
   ngOnInit(): void {
     this.roomCode = this.dataStore.getRoomCode();

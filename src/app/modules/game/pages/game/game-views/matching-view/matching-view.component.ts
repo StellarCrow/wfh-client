@@ -19,8 +19,8 @@ export class MatchingViewComponent implements OnInit, OnDestroy {
   public pictures: IPicture[] = [];
   public phrases: IPhrase[] = [];
   public resultTee: ITee;
-  public currentPicture: number = 0;
-  public currentPhrase: number = 0;
+  public currentPicture = 0;
+  public currentPhrase = 0;
 
   private notifier = new Subject();
 
