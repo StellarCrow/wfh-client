@@ -17,4 +17,13 @@
     font-size: 1em;
   }
 }
-
+.custom-dialog{
+  max-width: 40%;
+  min-width: 40%;
+  margin-left: 10%;
+  @include phone {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
