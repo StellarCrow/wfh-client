@@ -56,3 +56,11 @@
   width: 80%;
   margin: 1rem auto;
 }
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  background-color: $secondary-color !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: $secondary-color !important;
+}
