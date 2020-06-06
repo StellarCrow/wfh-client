@@ -99,10 +99,7 @@ export class DataStoreService {
   public clearGameSessionData(): void {
     this.timerState.next(false);
     this.users.splice(0, this.users.length);
-    console.log(this.users)
     this.loadedUsers.splice(0, this.loadedUsers.length);
-    console.log(this.loadedUsers);
     this.finishedUsers.splice(0, this.finishedUsers.length);
-    console.log(this.finishedUsers);
   }
 }

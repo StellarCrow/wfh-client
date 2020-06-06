@@ -47,7 +47,6 @@ export class TimerComponent implements OnInit, OnDestroy {
   startCount(): void {
     this.duration -= 1;
     if (this.duration === 0) {
-      console.log('Im in duration');
       this.subscription.unsubscribe();
       this.finishStage(this.gameStage);
       this.dataStore.setTimerState(false);
@@ -66,12 +65,17 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private startTimer(duration: number): void {
     this.duration = duration;
+    console.log('before timer');
     if (!this.timerState) {
+      console.log('right in timer');
       this.dataStore.setTimerState(true);
+      console.log('right before timer');
       this.subscription = interval(1000).subscribe((t) => {
         this.startCount();
       });
+      console.log('right after timer');
     }
+    console.log('after timer');
   }
 
   private listenStartTimer(): void {
