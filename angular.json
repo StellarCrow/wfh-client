@@ -55,10 +55,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "assets": [
-                "src/favicon.ico",
-                { "glob": "music/", "input": "./assets/", "output": "./assets/" }
-              ],
               "budgets": [
                 {
                   "type": "initial",
