@@ -23,7 +23,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   public gameStage: string;
 
-  public timerStarts = false;
+  public timerState: boolean;
 
   constructor(
     private socketService: SocketService,
@@ -35,6 +35,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initStage();
+    this.listenTimerState();
     this.listenStartTimer();
     this.listenStopEvent('stop-painting', PHRASE);
     this.listenStopEvent('stop-phrases', MATCHING);
@@ -46,9 +47,10 @@ export class TimerComponent implements OnInit, OnDestroy {
   startCount(): void {
     this.duration -= 1;
     if (this.duration === 0) {
+      console.log('Im in duration');
       this.subscription.unsubscribe();
       this.finishStage(this.gameStage);
-      this.timerStarts = false;
+      this.dataStore.setTimerState(false);
     }
   }
 
@@ -64,8 +66,8 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private startTimer(duration: number): void {
     this.duration = duration;
-    if (!this.timerStarts) {
-      this.timerStarts = true;
+    if (!this.timerState) {
+      this.dataStore.setTimerState(true);
       this.subscription = interval(1000).subscribe((t) => {
         this.startCount();
       });
@@ -95,5 +97,10 @@ export class TimerComponent implements OnInit, OnDestroy {
     if (this.dataStore.userIsLast(this.loadedUsers)) {
       return this.socketService.emit(`all-finish-${gameStage}`, {room: this.dataStore.getRoomCode()});
     }
+  }
+
+  private listenTimerState(): void {
+    this.dataStore.getTimerState()
+      .subscribe(state => this.timerState = state);
   }
 }

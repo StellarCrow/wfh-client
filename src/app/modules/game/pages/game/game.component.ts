@@ -11,6 +11,8 @@ import {ISocket} from '../../interfaces/isocket';
 import {Router} from '@angular/router';
 import {AudioService} from '../../services/audio.service';
 import {audiofiles} from '../../../../../environments/environment';
+import {Stages} from '../../constants/stages.enum';
+import {DRAW} from '../../constants/game-views';
 
 @Component({
   selector: 'app-game',
@@ -35,7 +37,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private dataStore: DataStoreService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private audioService: AudioService) {
+    private audioService: AudioService,
+    private viewService: GameViewService) {
     this.loadedUsers = this.dataStore.getLoadedUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
 
@@ -74,6 +77,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.listenUserFinishAction('user-finish-phrases');
     this.listenUserFinishAction('user-finish-matching');
     this.listenUserFinishAction('user-finish-voting');
+    this.dataStore.setGameStage(Stages.painting);
+    this.viewService.setCurrentView(DRAW);
   }
 
 
@@ -117,7 +122,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         const users = [...data.payload.users];
         this.dataStore.setRoomsUsers(users);
         if (data.payload.creator) {
-          this.router.navigate(['/main/welcome'], { state: { roomDeleted: true } });
+          this.router.navigate(['/main/welcome'], {state: {roomDeleted: true}});
         }
       });
   }
