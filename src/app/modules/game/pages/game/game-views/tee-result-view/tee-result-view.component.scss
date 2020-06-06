@@ -40,11 +40,11 @@
     letter-spacing: 0.1rem;
     border-radius: 10px;
     text-transform: uppercase;
-    background-color: $secondary-color--medium;
+    background-color: $secondary-color;
     color: $text-color--light;
     border: 3px solid $black;
     &:hover {
-      background-color: darken($secondary-color--medium, 10%);
+      background-color: darken($secondary-color, 10%);
     }
   }
 }

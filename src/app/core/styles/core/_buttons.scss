@@ -22,10 +22,10 @@
 
 
   &--join {
-    background-color: $secondary-color--medium;
+    background-color: $secondary-color;
 
     &:hover {
-      background-color: darken($secondary-color--medium, 10%);
+      background-color: darken($secondary-color, 10%);
     }
   }
 }

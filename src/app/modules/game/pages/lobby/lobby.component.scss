@@ -72,12 +72,12 @@
   }
 
   .is-start {
-    color: $tertiary-color--dark;
+    color: $tertiary-color--medium;
     font-family: $ff-header-solid;
     @include text-stroke();
 
     &:hover {
-      color: darken($tertiary-color--dark, 10%);
+      color: darken($tertiary-color--medium, 10%);
     }
   }
 }
