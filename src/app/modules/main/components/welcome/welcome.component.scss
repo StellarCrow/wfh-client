@@ -13,6 +13,12 @@
     padding: 200px 4% 4%;
   }
 
+  &__title {
+    @include tablet {
+      font-size: 2.5em;
+    }
+  }
+
   &__container {
     transform: scaleX(-1);
     align-self: stretch;
@@ -35,10 +41,20 @@
       text-align: center;
       max-width: none;
     }
+    @include tablet {
+      width: 100%;
+    }
   }
 
   &__game {
     max-width: 30%;
+    @include phone {
+      max-width: 70%;
+      padding: 0 15% 15% 0;
+    }
+    @include tablet {
+      max-width: 70%;
+    }
   }
 }
 
@@ -46,16 +62,31 @@
   position: absolute;
   width: 34%;
   z-index: -1;
+  @include phone {
+    width: $tee-phone-width;
+    margin-top: 13vw;
+  }
+  @include tablet {
+    width: $tee-tabled-width;
+  }
+
 }
 
 .game {
   // background: url(/assets/images/shirt.png) no-repeat left top / contain;
   // padding: $padding-top-bottom $padding-left-right;
+  &__container {
+    @include phone {
+      margin-top: 30vw;
+    }
+  }
 
   &__heading {
     text-align: center;
     margin-bottom: 1em;
-
+    @include tablet {
+      margin-bottom: 3em;
+    }
   }
 
   &__title {
@@ -63,6 +94,12 @@
     font-size: 2em;
     @include text-stroke();
     color: $primary-color;
+    @include phone {
+      font-size: 1.8em;
+    }
+    @include tablet {
+      font-size: 2.4em;
+    }
   }
 
   &__description {
@@ -70,6 +107,10 @@
     margin-bottom: 2em;
     @include phone {
       margin-bottom: 1.8em;
+      font-size: .9em;
+    }
+    @include tablet {
+      font-size: 1.5em;
     }
   }
 
@@ -97,14 +138,6 @@
   }
 }
 
-@media (max-width: $bp-medium) {
-  .welcome__game {
-    max-width: 40%;
-      padding: 0 5%;
-
-  }
-
-}
 
 @media (min-width: $bp-large) {
   .game {
