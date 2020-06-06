@@ -3,13 +3,14 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 
 import {AuthService} from '../services/auth.service';
+import {LocalStorageService} from '../services/local-storage.service';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {
   private readonly token: string;
 
-  constructor(private authenticationService: AuthService) {
-    this.token = localStorage.getItem('token');
+  constructor(private localStorageService: LocalStorageService) {
+    this.token = this.localStorageService.getItem('token');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
