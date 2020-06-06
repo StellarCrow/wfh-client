@@ -3,7 +3,9 @@
     <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>
-      <span class="join__code" *ngIf="!errorMessage">{{ roomCode }}</span>
+      <div class="join__code-wrapper">
+        <span class="join__code" *ngIf="!errorMessage">{{ roomCode }}</span>
+      </div>
       <mat-error class="join__error" *ngIf="errorMessage">{{ errorMessage }}</mat-error>
     </div>
     <button class="lobby__button button" (click)="startGame()" *ngIf="!errorMessage" [disabled]='gameReady'>

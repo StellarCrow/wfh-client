@@ -35,7 +35,7 @@
 
 // Animations
 
-@mixin scale-anim($time, $scaleTo: 1.1) {
+@mixin scale-anim($time: 1s, $scaleTo: 1.1) {
   animation: scale $time infinite;
 
   @keyframes scale {
@@ -49,21 +49,117 @@
       transform: scale(1);
     }
   }
-
 }
 
-@mixin fadein-anim($time, $delay: 0) {
+@mixin float-anim($time: 3s, $moveTo: 10px) {
+  animation: float $time infinite;
+  transform: translateX(-$moveTo);
+  animation-timing-function: ease-out;
+
+  @keyframes float {
+    20% {
+      transform: translateX($moveTo / 2);
+    }
+    45% {
+      transform: translateX($moveTo);
+    }
+    50% {
+      transform: translateX($moveTo);
+    }
+    70% {
+      transform: translateX(-$moveTo / 2);
+    }
+    95% {
+      transform: translateX(-$moveTo);
+    }
+  }
+}
+
+@mixin pulse-anim($time: 3s, $scaleTo: 1.1) {
+  animation: pulse $time infinite;
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale($scaleTo);
+    }
+    50% {
+      transform: scale(1);
+    }
+    55% {
+      transform: scale($scaleTo);
+    }
+    60% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin pop-anim($optTransform: none, $time: 0.3s, $delay: 0s) {
+  transform: scale(0.9) $optTransform;
+  animation-name: pop;
+  animation-duration: $time;
+  animation-delay: $delay;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+
+  @keyframes pop{
+    0% {
+      transform: scale(0.8) $optTransform;
+    }
+    50% {
+      transform: scale(1) $optTransform;
+    }
+    75% {
+      transform: scale(1.05) $optTransform;
+    }
+    100% {
+      transform: scale(1) $optTransform;
+    }
+  }
+}
+
+@mixin fade-scalein-anim($time: 0.8s, $delay: 0) {
+  // transform: scale(0.7);
+  opacity: 0;
+  animation-name: fadescalein;
+  animation-duration: $time;
+  animation-delay: $delay;
+  animation-fill-mode: forwards;
+
+  @keyframes fadescalein{
+    0% {
+      opacity: 0;
+    }
+    70% {
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin fadein-anim($time: 0.8s, $delay: 0) {
   animation: fadein $time;
   animation-delay: $delay;
   animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
 }
 
 @keyframes fadein {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
-
