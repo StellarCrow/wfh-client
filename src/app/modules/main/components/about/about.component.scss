@@ -1,22 +1,19 @@
 @import "plugins/variables";
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 .about {
   width: 100%;
-  background-color: $primary-color;
-  min-height: 100vh;
 
   .background {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    background-color: $primary-color;
-  
+
     &__image {
-      top: 0;
-      right: 0;
       background: no-repeat center center / cover;
       top: 0;
+      right: 0;
+      bottom: 0;
       margin: 0;
       padding: 0;
       width: 100%;
@@ -27,11 +24,17 @@
   &__container {
     position: absolute;
     width: 95%;
-    top: 10%;
+    top: 20%;
     left: 2.5%;
     right: 2.5%;
-    margin: 1rem auto;
+    margin: 0 auto;
     z-index: 2;
+  }
+  &__title {
+    margin-bottom: 4.5rem;
+    @include phone {
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -42,25 +45,37 @@
   @include text-stroke();
   color: $text-color--light;
   text-transform: uppercase;
-  margin-bottom: 4rem;
+  @include tablet {
+    font-size: 2.5rem;
+  }
+  @include phone {
+    font-size: 2.5rem;
+  }
 }
 
 .values {
-  margin-bottom: 2rem;
   &__list {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
     flex-basis: auto;
+    margin: 1rem;
   }
 
   &__item {
     border: 2px solid $black;
     border-radius: 15px;
-    margin: 0.5rem;
+    margin: 1rem;
     padding: 1.5rem;
-    width: 300px;
+    max-width: 250px;
     background-color: $white;
+    @include tablet {
+      min-width: 80%;
+    }
+    @include phone {
+      min-width: 90%;
+      margin: 0.5rem;
+    }
   }
 
   &__subtitle {
@@ -81,32 +96,45 @@
 
 .network {
   &__title {
-    margin-top: 3rem;
+    margin: 4.5rem 0;
+    @include phone {
+      margin: 1rem 0;
+    }
+  }
+  &__wrapper {
+    border: 2px solid $black;
+    border-radius: 10px;
+    background-color: $white;
+    max-width: 60%;
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+    @include phone {
+      max-width: 100%;
+      margin: 0.5rem;
+    }
   }
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     text-align: center;
-    border: 2px solid $black;
-    border-radius: 10px;
-    background-color: $white;
-    width: 60%;
-    margin: 1rem auto;
+    @include phone {
+      flex-direction: column;
+    }
   }
   &__item {
-    padding: 1.5rem;
     font-weight: $bold;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     color: #83c6f7;
+    padding: 0.5rem;
     &:hover {
       color: darken(#83c6f7, 10%);
     }
     &::after {
-      content: '';
+      content: "";
       display: block;
       height: 10px;
-      border-radius: .1rem;
+      border-radius: 0.2rem;
       background-color: $quaternary-color;
     }
   }
