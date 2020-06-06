@@ -9,6 +9,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {ISocket} from '../../interfaces/isocket';
 import {Router} from '@angular/router';
+import {AudioService} from '../../services/audio.service';
+import {audiofiles} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-game',
@@ -32,7 +34,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private socketService: SocketService,
     private dataStore: DataStoreService,
     private snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    private audioService: AudioService) {
     this.loadedUsers = this.dataStore.getLoadedUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
 
@@ -60,6 +63,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.audioService.setAudio(audiofiles.game);
     this.subscribeGameStage();
     this.listenUserLoaded();
     this.listenUserLeftRoom();

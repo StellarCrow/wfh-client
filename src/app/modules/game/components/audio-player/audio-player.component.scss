@@ -1,0 +1,16 @@
+@import "plugins/animations";
+
+.player {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+
+  &__button {
+    animation: rotation 2s infinite linear;
+
+    &--pause {
+      animation: none;
+    }
+  }
+}

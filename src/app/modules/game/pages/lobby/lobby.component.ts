@@ -7,6 +7,8 @@ import {ISocket} from '../../interfaces/isocket';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
 import {LOBBYBACKGROUND, LOBBYBACKGROUND_HD} from '../../constants/backgrounds';
+import {AudioService} from '../../services/audio.service';
+import {audiofiles} from '../../../../../environments/environment';
 
 
 @Component({
@@ -38,6 +40,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     private socketService: SocketService,
     private dataStore: DataStoreService,
     private router: Router,
+    private audioService: AudioService
   ) {
     this.roomCode = this.dataStore.getRoomCode();
     this.username = this.dataStore.getUserName();
@@ -46,6 +49,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.audioService.setAudio(audiofiles.lobby);
     this.dataStore.users$
       .pipe(takeUntil(this.notifier))
       .subscribe(data => {
