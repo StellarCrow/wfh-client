@@ -1,42 +1,81 @@
 <div class="about">
-  <app-header></app-header>
-  <div class="about__container">
-    <img class="about__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground"/>
-    <div class="about__title">"We are individually diverse, yet banded together in common purpose and resolve."</div>
-  </div>
-  <div class="about__values values">
-    <div class="values__title">PGH Values</div>
-    <div class="values__list">
-      <div class="values__item">
-        <div class="values__subtitle">We are millions</div>
-        <div class="values__description">We have our fingers on the pulse for the latest global games industry
-          trends. We select the best ideas, and bring them to life using the latest tech and world-class
-          industry talents. This allows us to create games and services that reach millions of people
-          globally.
+  <div class="about__background background">
+    <img class="background__image background__image--orange"
+      src='./../../../../../assets/backgrounds/about-background.png' alt="about-background-orange" />
+    <img class="background__image background__image--blue"
+      src='./../../../../../assets/backgrounds/about-background2.png' alt="about-background-blue" />
+    <!-- <img class="about__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground" /> -->
+    <!-- <img class="about__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground" /> -->
+
+    <app-header></app-header>
+    <div class="about__container">
+      <div class="values">
+        <div class="values__title title">About us</div>
+        <div class="values__list">
+          <div class="values__item">
+            <div class="values__subtitle">Who we are?</div>
+            <div class="values__description">
+              <p>We are small indie game company located in Kyiv, Ukraine. This is our first (out of many) games to
+                come.
+              </p>
+              <p>Established in 2020 in underground labs of EPAM, we are PFH - <strong>Play From Home.</strong>
+              </p>
+              <p>Our desire is to help You spend your free time with your friends or even help You make new ones during
+                the lingering lockdown period.
+              </p>
+            </div>
+          </div>
+          <div class="values__item">
+            <div class="values__subtitle">What is this game?</div>
+            <div class="values__description">
+              <p>The game is all about fun.
+              </p>
+              <p>Draw, write and then conbine it all to create the sickest tee design. Only the most unigue and quirky
+                T-shirt will leave the tournament alive!
+              </p>
+              <p>This is a game You can enjoy with up to 5 of your friends. Enjoy, smile, laugh, create and remember -
+                your happiness makes the world a prettier place.
+              </p>
+            </div>
+          </div>
+          <div class="values__item">
+            <div class="values__subtitle">How do you play?</div>
+            <div class="values__description">
+              <p>- First, you draw something silly and think of a witty remark, both 3 times.
+              </p>
+              <p>- Then, you are presented with a random set of phrases and drawings your friend made. At this point you
+                will be asked to compose a tee from the components you are given.
+              </p>
+              <p>Finally, the most anticipated phase of all, the game presents you the funniest tees in a brawl against
+                each other. You must vote for the one you like the most and decide the winner that gets the chiken
+                dinner.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="values__item">
-        <div class="values__subtitle">Great minds</div>
-        <div class="values__description">We bring together diverse groups of people who share our passion for games, and
-          who love to create, support, and play them. We value and implement input from across our company and
-          communities and believe that together, we can achieve greatness.
-        </div>
-      </div>
-      <div class="values__item">
-        <div class="values__subtitle">Plan big</div>
-        <div class="values__description">Making games is the first step in our journey. We also create and maintain
-          entire ecosystems of support, services, and apps that complement our games, and assist our employees and
-          global player base with their everyday needs.
-        </div>
-      </div>
-      <div class="values__item">
-        <div class="values__subtitle">Outside the box</div>
-        <div class="values__description">Our motto is “free to create and ready to explore.” We are constantly looking
-          for innovative new ideas and solutions that will lead our projects to continued success for years on end. Our
-          pioneering drive for originality is why our employees, partners, and players choose PHF
+      <div class="network">
+        <div class="network__title title">Say Hi</div>
+        <div class="network__wrapper">
+          <nav class="network__list">
+            <div class="network__item">
+              <a href="https://www.facebook.com/pfhgames.pfhgames.9" class="network__link facebook"
+                title="Visit our Facebook page!" target="_blank">Facebook</a>
+            </div>
+            <div class="network__item">
+              <a href="https://twitter.com/GamesPfh" class="network__link twitter" title="Visit our Twitter page!"
+                target="_blank">Twitter</a>
+            </div>
+            <div class="network__item">
+              <a href="https://www.instagram.com/PFH_Games/" class="network__link instagram"
+                title="Visit our Instagram page!" target="_blank">Instagram</a>
+            </div>
+            <div class="network__item">
+              <a href="mailto:#" class="network__link email" title="Whrite us!" target="_blank">Email</a>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-footer></app-footer>
