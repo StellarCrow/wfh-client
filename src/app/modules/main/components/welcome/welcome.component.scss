@@ -42,9 +42,15 @@
   }
 }
 
+.tee {
+  position: absolute;
+  width: 34%;
+  z-index: -1;
+}
+
 .game {
-  background: url(/assets/images/shirt.png) no-repeat left top / contain;
-  padding: $padding-top-bottom $padding-left-right;
+  // background: url(/assets/images/shirt.png) no-repeat left top / contain;
+  // padding: $padding-top-bottom $padding-left-right;
 
   &__heading {
     text-align: center;
@@ -71,12 +77,17 @@
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
+    @include fade-scalein-anim();
   }
 
   &__button {
     font-size: 1.3em;
     border: 2px solid #000000;
     letter-spacing: 0.1em;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     &--create {
       transform: rotate(-10deg);

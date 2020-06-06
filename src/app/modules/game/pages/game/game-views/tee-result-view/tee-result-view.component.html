@@ -1,7 +1,7 @@
 <div class="result">
   <div class="result__container">
     <h2 class="result__title">Winner!</h2>
-    <div class="result__tee tee">
+    <div class="result__tee tee" *ngIf="tee">
       <app-tee class="tee__body"
                [fillColor]="tee.picture.background"
                [pictureUrl]="tee.picture.url"

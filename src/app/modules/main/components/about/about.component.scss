@@ -1,72 +1,141 @@
-@import "../../../../core/styles/plugins/variables";
+@import "plugins/variables";
+@import "plugins/mixins";
+@import "plugins/media-mixins";
 
 .about {
   width: 100%;
 
+  .background {
+    display: flex;
+    flex-direction: column;
+
+    &__image {
+      background: no-repeat center center / cover;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+    }
+  }
+
   &__container {
-    position: relative;
-  }
-
-  &__background {
-    background: no-repeat center center / cover;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-  }
-
-  &__title {
     position: absolute;
-    width: 50%;
-    top: 15%;
-    left: 25%;
-    right: 25%;
-    font-size: 2rem;
-    text-align: center;
+    width: 95%;
+    top: 20%;
+    left: 2.5%;
+    right: 2.5%;
+    margin: 0 auto;
+    z-index: 2;
+  }
+  &__title {
+    margin-bottom: 4.5rem;
+    @include phone {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.title {
+  font-size: 4.5rem;
+  text-align: center;
+  font-family: $ff-header-solid;
+  @include text-stroke();
+  color: $text-color--light;
+  text-transform: uppercase;
+  @include tablet {
+    font-size: 2.5rem;
+  }
+  @include phone {
+    font-size: 2.5rem;
   }
 }
 
 .values {
-  width: 80%;
-  margin: 0 auto;
-
-  &__title {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 2.5rem;
-    padding: 1rem;
-  }
-
   &__list {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     flex-basis: auto;
+    margin: 1rem;
   }
 
   &__item {
-    border: 1px solid $grey-dark;
+    border: 2px solid $black;
+    border-radius: 15px;
     margin: 1rem;
-    padding: 2rem;
-    width: 350px;
-    background-color: $primary-color;
-
-    &:hover {
-      background-color: $secondary-color;
+    padding: 1.5rem;
+    max-width: 250px;
+    background-color: $white;
+    @include tablet {
+      min-width: 80%;
+    }
+    @include phone {
+      min-width: 90%;
+      margin: 0.5rem;
     }
   }
 
   &__subtitle {
     text-align: center;
-    font-weight: bold;
+    font-weight: $bold;
     font-size: 1.5rem;
-    padding: 1rem 0.5rem;
+    padding: 0.5rem;
+    border: 2px solid $black;
+    border-radius: 10px;
+    color: #83c6f7;
   }
 
   &__description {
-    line-height: 2;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+}
+
+.network {
+  &__title {
+    margin: 4.5rem 0;
+    @include phone {
+      margin: 1rem 0;
+    }
+  }
+  &__wrapper {
+    border: 2px solid $black;
+    border-radius: 10px;
+    background-color: $white;
+    max-width: 60%;
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+    @include phone {
+      max-width: 100%;
+      margin: 0.5rem;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    @include phone {
+      flex-direction: column;
+    }
+  }
+  &__item {
+    font-weight: $bold;
+    font-size: 1.2em;
+    color: #83c6f7;
     padding: 0.5rem;
+    &:hover {
+      color: darken(#83c6f7, 10%);
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: 10px;
+      border-radius: 0.2rem;
+      background-color: $quaternary-color;
+    }
   }
 }

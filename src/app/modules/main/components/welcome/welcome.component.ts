@@ -22,6 +22,8 @@ export class WelcomeComponent implements OnDestroy {
 
   public highResBackground = WELCOMEBACKGROUND_HD;
 
+  public fillColor: string = "#fcfbf9";
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -31,12 +33,7 @@ export class WelcomeComponent implements OnDestroy {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(ModalJoinRoomComponent, {
-      panelClass: 'custom-dialog',
-      minWidth: '40%',
-      maxWidth: '40%',
-      position: {right: '10%'}
-    });
+    const dialogRef = this.dialog.open(ModalJoinRoomComponent, {panelClass: 'custom-dialog'});
     dialogRef.afterClosed()
       .pipe(takeUntil(this.notifier))
       .subscribe((result) => {
