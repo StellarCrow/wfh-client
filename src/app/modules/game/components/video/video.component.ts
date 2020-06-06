@@ -1,23 +1,23 @@
-import {Component, ViewChild, Input, ElementRef, OnInit} from "@angular/core";
-import {IWSPeer} from "../../interfaces/iwspeer";
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {IWSPeer} from '../../interfaces/iwspeer';
 
 @Component({
-  selector: "app-video",
-  templateUrl: "./video.component.html",
-  styleUrls: ["./video.component.scss"],
+  selector: 'app-video',
+  templateUrl: './video.component.html',
+  styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
   isMuted = false;
 
   @Input() peer: IWSPeer;
-  @ViewChild("videoPlayer") videoPlayer: ElementRef;
+  @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
   get vp(): any {
     return this.videoPlayer.nativeElement;
   }
 
   ngOnInit(): void {
-    this.peer.data.on("stream", (stream: MediaStream) => {
+    this.peer.data.on('stream', (stream: MediaStream) => {
       this.vp.srcObject = stream;
     });
   }

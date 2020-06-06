@@ -17,13 +17,21 @@ export class ActionService implements OnDestroy {
   constructor(
     private gameViewService: GameViewService,
     private socketService: SocketService,
-    private  dataStore: DataStoreService) {
+    private dataStore: DataStoreService) {
     this.subscribeGameStage();
   }
 
   public registerAction() {
     this.usersActions++;
-    if (this.usersActions === 3) {
+
+    let neededActions;
+    if (this.gameStage === 'matching' || this.gameStage === 'voting') {
+      neededActions = 1;
+    } else {
+      neededActions = 3;
+    }
+
+    if (this.usersActions === neededActions) {
       this.gameViewService.setCurrentView(DONE);
       this.socketService.emit(`finish-${this.gameStage}`, {room: this.dataStore.getRoomCode(), username: this.dataStore.getUserName()});
       this.usersActions = 0;

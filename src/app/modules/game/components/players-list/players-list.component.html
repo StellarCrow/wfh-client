@@ -1,13 +1,3 @@
-<button
-  mat-icon-button
-  (click)="toggleSidenav('leftSidenav')"
-  matTooltip="Show filters"
-  color="accent"
-  class="arrow-button"
->
-  <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
-</button>
-
 <div class="players-list__container">
   <video
     muted
@@ -16,7 +6,7 @@
     #userVideo
     class="players-list__user-video"
   ></video>
-  
+
   <ul *ngFor="let peer of peerService.peers" class="players-list">
     <li class="players-list__player player">
       <div class="player__avatar">

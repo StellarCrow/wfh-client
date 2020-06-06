@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private snackBar: MatSnackBar) {
     this.notificationService.notification$.subscribe((message) => {
-      this.snackBar.open(message, 'Close', { duration: 2500, horizontalPosition: 'right' });
+      this.snackBar.open(message, 'Close', {duration: 2000, horizontalPosition: 'right'});
     });
   }
 

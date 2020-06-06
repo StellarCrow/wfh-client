@@ -7,6 +7,10 @@ import {takeUntil} from 'rxjs/operators';
 import {SocketService} from '../../services/socket.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DataStoreService} from '../../../../core/services/data-store.service';
+import {ISocket} from '../../interfaces/isocket';
+import {Router} from '@angular/router';
+import {AudioService} from '../../services/audio.service';
+import {audiofiles} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-game',
@@ -20,7 +24,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private readonly loadedUsers: string[];
   private readonly finishedUsers: string[];
-  private gameStage: string;
+  public gameStage: string;
   public readonly room: string;
 
 
@@ -29,7 +33,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private gameViewService: GameViewService,
     private socketService: SocketService,
     private dataStore: DataStoreService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private audioService: AudioService) {
     this.loadedUsers = this.dataStore.getLoadedUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
 
@@ -40,23 +46,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private notifier = new Subject();
 
-  rightArrowShow = true;
+  isHideButtonRight = false;
 
-  leftArrowShow = true;
+  isHideButtonLeft = false;
 
-  toggleDisplay(arrow: string) {
-    if (arrow === 'rightArrowShow') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (arrow === 'leftArrowShow') {
-      this.leftArrowShow = !this.leftArrowShow;
-    }
-  }
-
-  closeArrow(closed: string) {
-    if (closed === 'right') {
-      this.rightArrowShow = !this.rightArrowShow;
-    } else if (closed === 'left') {
-      this.leftArrowShow = !this.leftArrowShow;
+  public toggleArrow(arrow: string) {
+    if (arrow === 'rightArrow') {
+      this.isHideButtonRight = !this.isHideButtonRight;
+    } else if (arrow === 'leftArrow') {
+      this.isHideButtonLeft = !this.isHideButtonLeft;
     }
   }
 
@@ -65,12 +63,17 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.audioService.setAudio(audiofiles.game);
     this.subscribeGameStage();
     this.listenUserLoaded();
-    this.listenNotification();
+    this.listenUserLeftRoom();
+    this.listenNotification('image-saved');
+    this.listenNotification('new-tee-created');
     this.initGameView();
     this.listenUserFinishAction('user-finish-painting');
     this.listenUserFinishAction('user-finish-phrases');
+    this.listenUserFinishAction('user-finish-matching');
+    this.listenUserFinishAction('user-finish-voting');
   }
 
 
@@ -105,7 +108,18 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
           this.socketService.emit('all-loaded', {room: this.room});
         }
       });
+  }
 
+  private listenUserLeftRoom(): void {
+    this.socketService.listen('user-left-room')
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data: ISocket) => {
+        const users = [...data.payload.users];
+        this.dataStore.setRoomsUsers(users);
+        if (data.payload.creator) {
+          this.router.navigate(['/main/welcome'], { state: { roomDeleted: true } });
+        }
+      });
   }
 
 
@@ -119,10 +133,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  private listenNotification() {
-    this.socketService.listen('image-saved')
+  private listenNotification(event) {
+    this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
-      .subscribe(({answer}) => this.snackBar.open(answer, 'Close', {duration: 2000}));
+      .subscribe(({answer}) => {
+        this.snackBar.open(answer, 'Close', {duration: 2000});
+      });
   }
 
   initGameView(): void {

@@ -1,10 +1,9 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Peer from 'simple-peer';
-import {HideContentService} from '../../services/hide-content.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
-import { PeerService } from '../../services/peer.service';
-import { SocketService } from '../../services/socket.service';
+import {PeerService} from '../../services/peer.service';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-players-list',
@@ -16,7 +15,6 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
   public finishedUsers: string[];
   public roomCode: string;
 
-  @Output() hideComponent = new EventEmitter<string>();
   @ViewChild('userVideo') userVideo: ElementRef;
 
   get uv(): any {
@@ -24,21 +22,16 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private sidenavService: HideContentService,
     private dataStore: DataStoreService,
     private socketService: SocketService,
     public peerService: PeerService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.users = this.dataStore.getRoomsUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
-    this.roomCode = this.dataStore.getRoomCode()
-  }
-
-  public toggleSidenav(id): void {
-    this.sidenavService.toggle(id);
-    this.hideComponent.emit('left');
+    this.roomCode = this.dataStore.getRoomCode();
   }
 
   ngAfterViewInit(): void {
@@ -47,7 +40,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
 
   arrangePeerConnection(): void {
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getUserMedia({video: true, audio: true})
       .then((stream) => {
         this.uv.srcObject = stream;
         this.uv.muted = true;
@@ -86,7 +79,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
           this.peerService.destroyPeer(payload.id);
         });
 
-        this.socketService.emit('join-room', { roomCode: this.roomCode });
+        this.socketService.emit('join-room', {roomCode: this.roomCode});
       });
   }
 
@@ -108,7 +101,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     peer.on('signal', (signal) => {
       this.socketService.emit('send-signal', {userToSignal, callerID, signal});
     });
-    
+
     return peer;
   }
 

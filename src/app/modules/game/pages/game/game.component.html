@@ -1,33 +1,30 @@
-
 <div class="game">
-
-  <div class="game__room-code">
-    <app-room-code></app-room-code>
-  </div>
-
-
   <div class="game__column">
-    <button mat-icon-button (click)="toggleSidenav('leftSidenav')" (click)="toggleDisplay('leftArrowShow')" *ngIf="leftArrowShow"
-      matTooltip="Show filters" color="accent">
-      <mat-icon aria-hidden="false">keyboard_arrow_right</mat-icon>
+    <div class="game__room-code">
+      <app-room-code></app-room-code>
+    </div>
+    <button mat-icon-button class="left" (click)="toggleSidenav('leftSidenav')" (click)="toggleArrow('leftArrow')"
+            [ngClass]="{hideButton:isHideButtonLeft, showButton:!isHideButtonLeft}"
+    >
+      <mat-icon class="icon-arrow"></mat-icon>
     </button>
     <div class="game__players">
 
 
       <!--Players list component-->
-      <mat-sidenav-container >
+      <mat-sidenav-container>
 
-        <mat-sidenav #leftSidenav [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0" mode="side" class="sidenav">
-          <app-players-list (hideComponent)="closeArrow($event)"></app-players-list>
+        <mat-sidenav #leftSidenav [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0" mode="side"
+                     class="sidenav">
+          <app-players-list></app-players-list>
         </mat-sidenav>
       </mat-sidenav-container>
-
 
 
     </div>
   </div>
   <div class="game__column">
-    <div class="game__timer">
+    <div *ngIf="gameStage !== 'finish'" class="game__timer">
       <app-timer></app-timer>
       <!--Timer component-->
     </div>
@@ -42,16 +39,17 @@
   </div>
 
 
-
   <div class="game__column">
     <div class="game__chat">
-      <button mat-icon-button (click)="toggleSidenav('rightSidenav')" (click)="toggleDisplay('rightArrowShow')" *ngIf="rightArrowShow"
-        matTooltip="Show filters" color="accent">
-        <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon></button>
+      <button mat-icon-button class="right" (click)="toggleSidenav('rightSidenav')" (click)="toggleArrow('rightArrow')"
+              [ngClass]="{hideButton:isHideButtonRight, showButton:!isHideButtonRight}"
+      >
+        <mat-icon class="icon-arrow"></mat-icon>
+      </button>
       <!--Chat component-->
       <mat-sidenav-container>
-        <mat-sidenav #rightSidenav   mode="side" [fixedInViewport]="true" position="end" class="sidenav">
-          <app-chat (hideComponent)="closeArrow($event)"></app-chat>
+        <mat-sidenav #rightSidenav mode="side" [fixedInViewport]="true" position="end" class="sidenav">
+          <app-chat></app-chat>
         </mat-sidenav>
       </mat-sidenav-container>
 

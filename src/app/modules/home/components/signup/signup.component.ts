@@ -1,25 +1,33 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output,} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth.service';
 import {AlertService} from '../../../../core/services/alert.service';
 import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
+import {SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
   @Output() signupEvent = new EventEmitter();
+
   public signupForm: FormGroup;
+
   public loading = false;
+
   public submitted = false;
+
+  public defaultBackground = SIGNUPBACKGROUND;
+
+  public highResBackground = SIGNUPBACKGROUND_HD;
 
 
   constructor(
     private formBuilderSignup: FormBuilder,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
   }
 
@@ -28,7 +36,7 @@ export class SignupComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.min(6)]]
+      password: ['', [Validators.required, Validators.min(6)]],
     });
   }
 
@@ -54,15 +62,14 @@ export class SignupComponent implements OnInit {
             this.signupSuccess();
           }
         },
-        error => {
+        (error) => {
           this.alertService.error(error);
           this.loading = false;
-        }
+        },
       );
   }
 
   signupSuccess() {
     this.signupEvent.emit();
   }
-
 }

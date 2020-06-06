@@ -1,10 +1,48 @@
 @import "plugins/variables.scss";
+@import "plugins/media-mixins";
 
 .signup {
+  display: flex;
+  height: 100vh;
+
+  &__background {
+    background: no-repeat center center / cover;
+    width: 50%;
+    height: 100%;
+  }
+
+  &__list {
+    margin-top: 7%;
+    width: 50%;
+  }
+
   &__item {
     width: 80%;
     display: block;
     margin: auto;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
+  }
+
+  &__title {
+    margin: 1rem 4rem;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: bold;
+    @include phone {
+      font-size: 1rem;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    @include tablet {
+      font-size: 2rem;
+      margin: 1rem auto;
+      text-align: center;
+    }
+    @include  hugeScreen {
+      text-align: center;
+    }
   }
 
   &__message {
@@ -12,19 +50,35 @@
     display: block;
     color: $grey-dark;
     margin: 1rem auto;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
   }
 
   &__button {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     display: block;
     width: 80%;
     margin: 1rem auto;
-    background-color: $primary-color;
-    color: $black;
-    border: 1px solid $grey-medium;
+    background-color: #72b8f9;
+    color: $white;
+    border: 1px solid $grey-dark;
+    font-family: 'Roboto', sans-serif;
+    @include  hugeScreen {
+      font-size: 2em;
+    }
+
+    &:hover {
+      background-color: darken(#72b8f9, 10%);
+    }
   }
 }
 
 .icon {
   color: $grey-dark;
+}
+
+.alert {
+  width: 80%;
+  margin: 1rem auto;
 }

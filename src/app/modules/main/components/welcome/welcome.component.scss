@@ -1,13 +1,23 @@
 @import "plugins/variables";
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 .welcome {
   min-height: 100vh;
   position: relative;
-  background: url(/assets/backgrounds/welcome-background.gif) no-repeat center top / cover;
+  background: no-repeat center center / cover;
   transform: scaleX(-1);
   padding: $padding-welcome-page;
   box-sizing: border-box;
+  @include tablet {
+    padding: 200px 4% 4%;
+  }
+
+  &__title {
+    @include tablet {
+      font-size: 2.5em;
+    }
+  }
 
   &__container {
     transform: scaleX(-1);
@@ -24,20 +34,59 @@
     font-family: $ff-header-solid;
     color: $tertiary-color;
     text-transform: uppercase;
+    @include phone {
+      font-size: 1.7em;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      max-width: none;
+    }
+    @include tablet {
+      width: 100%;
+    }
   }
 
   &__game {
     max-width: 30%;
+    @include phone {
+      max-width: 70%;
+      padding: 0 15% 15% 0;
+    }
+    @include tablet {
+      max-width: 70%;
+    }
   }
 }
 
+.tee {
+  position: absolute;
+  width: 34%;
+  z-index: -1;
+  @include phone {
+    width: $tee-phone-width;
+    margin-top: 13vw;
+  }
+  @include tablet {
+    width: $tee-tabled-width;
+  }
+
+}
+
 .game {
-  background: url(/assets/images/shirt.png/) no-repeat left top / contain;
-  padding: $padding-top-bottom $padding-left-right;
+  // background: url(/assets/images/shirt.png) no-repeat left top / contain;
+  // padding: $padding-top-bottom $padding-left-right;
+  &__container {
+    @include phone {
+      margin-top: 30vw;
+    }
+  }
 
   &__heading {
     text-align: center;
     margin-bottom: 1em;
+    @include tablet {
+      margin-bottom: 3em;
+    }
   }
 
   &__title {
@@ -45,17 +94,31 @@
     font-size: 2em;
     @include text-stroke();
     color: $primary-color;
+    @include phone {
+      font-size: 1.8em;
+    }
+    @include tablet {
+      font-size: 2.4em;
+    }
   }
 
   &__description {
     font-family: $ff-secondary;
     margin-bottom: 2em;
+    @include phone {
+      margin-bottom: 1.8em;
+      font-size: .9em;
+    }
+    @include tablet {
+      font-size: 1.5em;
+    }
   }
 
   &__buttons {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
+    @include fade-scalein-anim();
   }
 
   &__button {
@@ -63,21 +126,23 @@
     border: 2px solid #000000;
     letter-spacing: 0.1em;
 
+    &:hover {
+      transform: scale(1.1);
+    }
+
     &--create {
       transform: rotate(-10deg);
     }
 
     &--join {
       transform: rotate(10deg) translateY(30%);
+      @include phone {
+        transform: rotate(0deg) translateY(30%);
+      }
     }
   }
 }
 
-@media (max-width: $bp-medium) {
-  .welcome__game {
-    max-width: 40%;
-  }
-}
 
 @media (min-width: $bp-large) {
   .game {

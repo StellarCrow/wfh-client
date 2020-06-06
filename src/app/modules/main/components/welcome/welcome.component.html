@@ -1,8 +1,9 @@
-<div class="welcome">
+<div class="welcome" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground">
   <div class="welcome__container">
     <div class="welcome__heading">
       <h2 class="welcome__title">Welcome</h2>
     </div>
+    <app-tee-image class="tee" [fillColor]="fillColor"></app-tee-image>
     <div class="welcome__game game">
       <div class="game__container">
         <div class="game__heading">

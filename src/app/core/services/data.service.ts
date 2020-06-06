@@ -14,8 +14,8 @@ export class DataService {
 
   public uploadAvatar(id, file): Observable<IAvatarUploadResponse> {
     const url = apiUrl + `/users/${id}/avatar`;
-    const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
-    return this.http.post<IAvatarUploadResponse>(url, file, { headers });
+    const headers = new HttpHeaders({enctype: 'multipart/form-data'});
+    return this.http.post<IAvatarUploadResponse>(url, file, {headers});
   }
 
 

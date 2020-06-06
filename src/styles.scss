@@ -1,4 +1,5 @@
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 //core
 @import "./src/app/core/styles/core/generic";
@@ -9,3 +10,20 @@
 @include dialog-container-style();
 
 
+@include snackbar-style();
+
+.mat-ripple {
+  @include hugeScreen {
+    font-size: 1em;
+  }
+}
+.custom-dialog{
+  max-width: 40%;
+  min-width: 40%;
+  margin-left: 10%;
+  @include phone {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

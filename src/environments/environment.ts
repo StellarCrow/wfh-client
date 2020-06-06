@@ -8,6 +8,11 @@ export const environment = {
 
 export const apiUrl = 'http://localhost:3000/api';
 export const socketUrl = 'ws://localhost:3000';
+export const audiofiles = {
+  game: 'assets/music/game.mp3',
+  lobby: 'assets/music/lobby.mp3'
+};
+
 
 /*
  * For easier debugging in development mode, you can import the following file

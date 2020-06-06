@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatTabChangeEvent} from '@angular/material/tabs';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   public selectedTabIndex: number;
 
   constructor(private router: Router, private dataStore: DataStoreService) {
-    this.selectedTabIndex = 1;
+    this.selectedTabIndex = 0;
 
     if (this.dataStore.getCurrentUser()) {
       this.router.navigate(['/']);
@@ -22,10 +21,7 @@ export class LoginFormComponent implements OnInit {
   public ngOnInit() {
   }
 
-  tabChanged(event: MatTabChangeEvent) {
-  }
-
   moveToSigninTab() {
-    this.selectedTabIndex = 0;
+    this.selectedTabIndex = 1;
   }
 }

@@ -1,1 +1,23 @@
-<p (click)="handleSubmit()">tee-vote-view works!</p>
+<div class="overlay">
+  <div class="wrapper">
+    <div class="game-phase">
+      <h3 class="game-phase__title">Vote</h3>
+      <p class="game-phase__hint">(click on shirt)</p>
+    </div>
+    <div class="tee-vote-wrapper" *ngIf="leftTee && rightTee">
+      <app-tee class="tee-picture"
+               [fillColor]="leftTee.picture.background"
+               [pictureUrl]="leftTee.picture.url"
+               [phrase]="leftTee.phrase.phrase"
+               (click)="voteForLeftTee()">
+      </app-tee>
+      <div class="versus">VS</div>
+      <app-tee class="tee-picture tee-picture--right"
+               [fillColor]="rightTee.picture.background"
+               [pictureUrl]="rightTee.picture.url"
+               [phrase]="rightTee.phrase.phrase"
+               (click)="voteForRightTee()">
+      </app-tee>
+    </div>
+  </div>
+</div>

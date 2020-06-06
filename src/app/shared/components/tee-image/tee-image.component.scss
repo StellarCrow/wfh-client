@@ -1,0 +1,21 @@
+@import "plugins/media-mixins";
+
+.tee-image {
+  height: 100%;
+  @include phone {
+    height: auto;
+  }
+  @include tablet {
+    height: auto;
+  }
+
+}
+
+.cls-1,
+.cls-3 {
+  stroke: #231f29;
+}
+
+.cls-2 {
+  fill: #231f20;
+}

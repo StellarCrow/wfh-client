@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DoneViewComponent } from './done-view.component';
+import {DoneViewComponent} from './done-view.component';
 
 describe('DoneViewComponent', () => {
   let component: DoneViewComponent;
@@ -8,9 +8,9 @@ describe('DoneViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DoneViewComponent ]
+      declarations: [DoneViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

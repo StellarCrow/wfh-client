@@ -4,17 +4,22 @@ import {LobbyComponent} from './pages/lobby/lobby.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthorizationInterceptor} from '../../core/interceptors/authorization.interceptor';
 import {GameComponent} from './pages/game/game.component';
+import {GameCoreComponent} from './game-core.component';
+import {GameLeaveGuard} from '../../core/guards/game-leave/game-leave.guard';
+import {GameEnterGuard} from '../../core/guards/game-enter/game-enter.guard';
 
 const routes: Routes = [
   {
-    path: 'lobby',
-    component: LobbyComponent
+    path: '',
+    redirectTo: 'lobby',
+    pathMatch: 'full'
   },
   {
-    path: 'play',
-    component: GameComponent,
+    path: '',
+    component: GameCoreComponent,
     children: [
-      {path: '', component: GameComponent, pathMatch: 'full'}
+      {path: 'lobby/:id', component: LobbyComponent, pathMatch: 'full'},
+      {path: 'play/:id', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
     ]
   }
 ];

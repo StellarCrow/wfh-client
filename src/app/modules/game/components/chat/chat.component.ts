@@ -1,11 +1,10 @@
-import {Component, OnDestroy, OnInit, ElementRef, ViewChildren, QueryList, Output, EventEmitter} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {SocketService} from '../../services/socket.service';
 import {IChatMessage} from '../../interfaces/ichat-message';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import { HideContentService } from '../../services/hide-content.service';
 
 @Component({
   selector: 'app-chat',
@@ -25,16 +24,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   private chatScroll = new Subject();
 
   constructor(private socketService: SocketService,
-    private dataStore: DataStoreService,
-    private formBuilder: FormBuilder,
-    private sidenavService:HideContentService) {
-  }
-
-  @Output() hideComponent = new EventEmitter<string>();
-
-  public toggleSidenav(id): void {
-    this.sidenavService.toggle(id);
-    this.hideComponent.emit('right');
+              private dataStore: DataStoreService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {

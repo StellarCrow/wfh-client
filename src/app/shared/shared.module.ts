@@ -6,6 +6,9 @@ import {FooterComponent} from './components/footer/footer.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {RouterModule} from '@angular/router';
 import {ModalComponent} from './components/modal/modal.component';
+import {TeeImageComponent} from './components/tee-image/tee-image.component';
+import { ModalLeavePage } from './components/modal-leave-page/modal-leave-page';
+import { ModalRoomDeletedComponent } from './components/modal-room-deleted/modal-room-deleted.component';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import {ModalComponent} from './components/modal/modal.component';
     ModalComponent,
     HeaderComponent,
     FooterComponent,
-    AlertComponent
+    AlertComponent,
+    ModalLeavePage,
+    TeeImageComponent,
+    ModalRoomDeletedComponent
   ],
   imports: [
     RouterModule,
@@ -25,7 +31,8 @@ import {ModalComponent} from './components/modal/modal.component';
     HeaderComponent,
     FooterComponent,
     AlertComponent,
-    ModalComponent
+    ModalComponent,
+    TeeImageComponent
   ]
 })
 export class SharedModule {
