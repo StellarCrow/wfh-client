@@ -1,0 +1,10 @@
+<div class="player">
+  <div class="player__button" [ngClass]="isPlaying() ? '' : 'player__button--pause'">
+    <button mat-button class="button" (click)="play()" *ngIf="!isPlaying()">
+      <mat-icon mat-list-icon>volume_off</mat-icon>
+    </button>
+    <button mat-button class="button" (click)="pause()" *ngIf="isPlaying()">
+      <mat-icon mat-list-icon>volume_up</mat-icon>
+    </button>
+  </div>
+</div>

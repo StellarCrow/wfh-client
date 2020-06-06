@@ -24,6 +24,7 @@ import {RoomCodeComponent} from './components/room-code/room-code.component';
 import {TeeComponent} from './components/tee/tee.component';
 import {RepeatElementPipe} from './pipes/repeat-element.pipe';
 import {GameCoreComponent} from './game-core.component';
+import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {GameCoreComponent} from './game-core.component';
     RoomCodeComponent,
     GameCoreComponent,
     TeeComponent,
-    RepeatElementPipe
+    RepeatElementPipe,
+    AudioPlayerComponent
   ],
   imports: [
     CommonModule,
