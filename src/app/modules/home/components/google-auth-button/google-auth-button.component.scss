@@ -1,0 +1,26 @@
+@import "plugins/variables";
+
+.google {
+  &__button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin: 0 auto;
+    font-family: $ff-primary;
+  }
+
+  &__icon {
+    margin-right: 0.5em;
+  }
+}
+
+@media (max-width: $bp-small) {
+  .google__button {
+    font-size: 0.8em;
+  }
+}

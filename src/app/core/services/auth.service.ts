@@ -21,7 +21,11 @@ export class AuthService {
   }
 
   public loginUser(email, password): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>(`${apiUrl}/auth/login`, {email, password});
+    return this.http.post<ILoginResponse>(`${apiUrl}/auth/login`, { email, password });
+  }
+
+  public googleLogin(user: Omit<IUser, 'password'>): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(`${apiUrl}/auth/google`, user);
   }
 
   public eLogout() {
