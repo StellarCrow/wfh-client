@@ -1,4 +1,5 @@
 @import "plugins/variables";
+@import "plugins/media-mixins";
 
 .players-list {
   // height: 100%;
@@ -14,6 +15,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    @include phone {
+      margin-top: 3.5em;
+    }
   }
 
   &__user-video {

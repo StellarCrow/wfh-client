@@ -79,7 +79,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private listenStartTimer(): void {
     this.socketService.listen('all-users-loaded').subscribe((_) => {
-      this.startTimer(75);
+      this.startTimer(100000);
       this.dataStore.setGameStage(Stages.painting);
     });
   }
