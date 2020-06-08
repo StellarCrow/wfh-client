@@ -1,5 +1,6 @@
 @import "plugins/variables";
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 .result {
   position: fixed;
@@ -11,6 +12,12 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  @include phone {
+    z-index: 10;
+  }
+  @include tablet {
+    z-index: 10;
+  }
 
   &__container {
     position: relative;
