@@ -8,6 +8,7 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+
   public selectedTabIndex: number;
 
   constructor(private router: Router, private dataStore: DataStoreService) {

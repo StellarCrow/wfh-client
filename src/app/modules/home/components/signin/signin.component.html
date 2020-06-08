@@ -1,5 +1,5 @@
-<div class="signin">
-  <video autoplay loop [muted]="true">
+<div class="signin" (mousemove)="playVideo()">
+  <video autoplay loop [muted]="true" #videoSignIn>
     <source src="/assets/backgrounds/mp4/signIn.mp4" type="video/mp4">
   </video>
   <div class="signin__background"></div>

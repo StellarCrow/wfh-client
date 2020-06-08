@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit, Output,} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth.service';
-import {AlertService} from '../../../../core/services/alert.service';
-import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
+import {
+  Component, EventEmitter, OnInit, Output, ViewChild,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth.service';
+import { AlertService } from '../../../../core/services/alert.service';
+import { IRegisterResponse } from '../../../../shared/interfaces/iregister-response';
 
 @Component({
   selector: 'app-signup',
@@ -11,6 +13,8 @@ import {IRegisterResponse} from '../../../../shared/interfaces/iregister-respons
 })
 export class SignupComponent implements OnInit {
   @Output() signupEvent = new EventEmitter();
+
+  @ViewChild('videoSignUp') video;
 
   public signupForm: FormGroup;
 
@@ -23,6 +27,10 @@ export class SignupComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
   ) {
+  }
+
+  public playVideo() {
+    this.video.nativeElement.play();
   }
 
   public ngOnInit() {

@@ -1,5 +1,5 @@
-<div class="signup">
-  <video autoplay loop [muted]="true" >
+<div class="signup" (mousemove)="playVideo()">
+  <video autoplay loop [muted]="true" #videoSignUp>
     <source src="/assets/backgrounds/mp4/signUp.mp4" type="video/mp4">
   </video>
   <mat-card-content class="signup__list">

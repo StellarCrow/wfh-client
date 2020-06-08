@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth.service';
@@ -12,6 +12,8 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
+  @ViewChild ('videoSignIn') video;
+
   public signinForm: FormGroup;
 
   public loading = false;
@@ -32,6 +34,10 @@ export class SigninComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.min(6)]],
     });
+  }
+
+  public playVideo() {
+    this.video.nativeElement.play();
   }
 
   get getSigninControls() {
