@@ -8,17 +8,12 @@ export class GameViewService {
   private readonly _currentView = new BehaviorSubject<string>('');
   readonly currentView$ = this._currentView.asObservable();
 
-  get currentView(): string {
+  get getCurrentView(): string {
     return this._currentView.getValue();
   }
 
-  set currentView(view: string) {
+  set setCurrentView(view: string) {
     this._currentView.next(view);
-  }
-
-  setCurrentView(view: string): void {
-    // TODO: reset current timer when moving to the next view
-    this.currentView = view;
   }
 
   constructor() {

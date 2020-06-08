@@ -1,3 +1,6 @@
+@import "plugins/media-mixins";
+@import "plugins/mixins";
+
 .overlay {
   position: fixed;
   width: 100%;
@@ -15,6 +18,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @include tablet {
+    top: 60%;
+  }
 }
 
 .game-phase {
@@ -35,7 +41,31 @@
   }
 }
 
-.tee-vote-wrapper {
+.tee {
+  width: 400px;
+
+  &--right {
+    transform: rotate(32deg);
+  }
+
+  &__picture {
+    width: 100%;
+    z-index: 20;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__wrapper {
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.vote-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -50,17 +80,7 @@
   color: #f4cc52;
   transform: rotate(-8deg);
   user-select: none;
-}
-
-.tee-picture {
-  width: 400px;
-  z-index: 20;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &--right {
-    transform: rotate(32deg);
+  @include phone {
+    font-size: 2.5em;
   }
 }

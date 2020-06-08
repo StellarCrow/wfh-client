@@ -15,7 +15,10 @@
   }
 
   &__column {
-    flex: 0 1 33.33%;
+    // flex: 0 1 33.33%;
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 33.33%;
     text-align: center;
     min-height: 100%;
   }
@@ -50,6 +53,10 @@
   -webkit-text-stroke: 5px $dark-brown;
   margin: 0;
   padding: 0;
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .hideButton.left {
@@ -62,6 +69,9 @@
 
 .showButton.left, .hideButton.right {
   transform: scaleX(-1);
+  &:hover {
+    transform: scaleX(-1.05) scaleY(1.05);
+  }
 }
 
 .mat-sidenav-container,

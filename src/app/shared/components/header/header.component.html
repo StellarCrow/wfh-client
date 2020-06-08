@@ -12,13 +12,13 @@
   </div>
   <ul class="header__menu menu">
     <li class="menu__item">
-      <a class="menu__link" routerLink="/main/settings">Settings</a>
+      <app-router-underlink class="menu__link" [link]="'/main/settings'" [content]="'Settings'"></app-router-underlink>
     </li>
     <li class="menu__item">
-      <a class="menu__link" routerLink="/main/about">About</a>
+      <app-router-underlink class="menu__link" [link]="'/main/about'" [content]="'About'"></app-router-underlink>
     </li>
     <li class="menu__item">
-      <a class="menu__link menu__link--logout" (click)="logout()">Logout</a>
+      <app-router-underlink class="menu__link" (click)="logout()" [content]="'Logout'"></app-router-underlink>
     </li>
   </ul>
 </header>

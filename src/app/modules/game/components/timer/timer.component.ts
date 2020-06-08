@@ -23,7 +23,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   public gameStage: string;
 
-  public timerStarts = false;
+  public timerState: boolean;
 
   constructor(
     private socketService: SocketService,
@@ -35,6 +35,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initStage();
+    this.listenTimerState();
     this.listenStartTimer();
     this.listenStopEvent('stop-painting', PHRASE);
     this.listenStopEvent('stop-phrases', MATCHING);
@@ -48,7 +49,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     if (this.duration === 0) {
       this.subscription.unsubscribe();
       this.finishStage(this.gameStage);
-      this.timerStarts = false;
+      this.dataStore.setTimerState(false);
     }
   }
 
@@ -56,16 +57,20 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
       .subscribe((_) => {
-        this.gameViewService.currentView = nextView;
+        this.gameViewService.setCurrentView = nextView;
         this.dataStore.clearFinishedUsers();
-        this.startTimer(75);
+        if (this.gameViewService.getCurrentView === 'tee-vote-view') {
+          this.startTimer(20);
+          return;
+        }
+        this.startTimer(100);
       });
   }
 
   private startTimer(duration: number): void {
     this.duration = duration;
-    if (!this.timerStarts) {
-      this.timerStarts = true;
+    if (!this.timerState) {
+      this.dataStore.setTimerState(true);
       this.subscription = interval(1000).subscribe((t) => {
         this.startCount();
       });
@@ -95,5 +100,10 @@ export class TimerComponent implements OnInit, OnDestroy {
     if (this.dataStore.userIsLast(this.loadedUsers)) {
       return this.socketService.emit(`all-finish-${gameStage}`, {room: this.dataStore.getRoomCode()});
     }
+  }
+
+  private listenTimerState(): void {
+    this.dataStore.getTimerState()
+      .subscribe(state => this.timerState = state);
   }
 }

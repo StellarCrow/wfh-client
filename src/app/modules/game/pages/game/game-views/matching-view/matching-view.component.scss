@@ -1,3 +1,5 @@
+@import "plugins/media-mixins";
+
 .overlay {
   position: fixed;
   width: 100%;
@@ -18,7 +20,7 @@
 }
 
 .slider {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   position: relative;
   padding: 0 50px;
@@ -73,16 +75,8 @@
 
   &--tee {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-
-    &-wrapper {
-      height: 100%;
-      width: 100%;
+    @include phone {
+      height: auto;
     }
   }
 

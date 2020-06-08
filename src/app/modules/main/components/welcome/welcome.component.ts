@@ -18,6 +18,7 @@ export class WelcomeComponent implements OnDestroy {
   private notifier = new Subject();
 
   public fillColor: string = "#fcfbf9";
+  public strokeColor: string = "#d5f9f6";
 
   constructor(
     private router: Router,
