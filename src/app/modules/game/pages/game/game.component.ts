@@ -13,6 +13,7 @@ import {AudioService} from '../../services/audio.service';
 import {audiofiles} from '../../../../../environments/environment';
 import {Stages} from '../../constants/stages.enum';
 import {DRAW} from '../../constants/game-views';
+import {ActionService} from '../../../../core/services/action.service';
 
 @Component({
   selector: 'app-game',
@@ -38,6 +39,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private snackBar: MatSnackBar,
     private router: Router,
     private audioService: AudioService,
+    private actionService: ActionService,
     private viewService: GameViewService) {
     this.loadedUsers = this.dataStore.getLoadedUsers();
     this.finishedUsers = this.dataStore.getFinishedUsers();
@@ -150,6 +152,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gameViewService.currentView$
       .pipe(takeUntil(this.notifier))
       .subscribe((view: string) => {
+        this.actionService.usersActions = 0;
         this.currentView = view;
       });
   }
