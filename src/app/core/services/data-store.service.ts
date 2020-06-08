@@ -15,6 +15,7 @@ export class DataStoreService {
   public loadedUsers: string[] = [];
   public finishedUsers: string[] = [];
   public gameStage: Subject<string> = new Subject();
+  public timerState = new BehaviorSubject(false);
 
 
   constructor() {
@@ -85,5 +86,20 @@ export class DataStoreService {
     const userIsLast = this.getUserName() === array.slice().pop();
     const allUsersFinished = array.length === this.users.length;
     return allUsersFinished && userIsLast;
+  }
+
+  public getTimerState(): Observable<boolean> {
+    return this.timerState;
+  }
+
+  public setTimerState(state: boolean): void {
+    this.timerState.next(state);
+  }
+
+  public clearGameSessionData(): void {
+    this.timerState.next(false);
+    this.users.splice(0, this.users.length);
+    this.loadedUsers.splice(0, this.loadedUsers.length);
+    this.finishedUsers.splice(0, this.finishedUsers.length);
   }
 }

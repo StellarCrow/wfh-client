@@ -38,6 +38,7 @@ export class TeeResultViewComponent implements OnInit, OnDestroy {
   }
 
   public leaveGame() {
+    this.dataStore.clearGameSessionData();
     this.router.navigate(['/main/welcome']);
   }
 
