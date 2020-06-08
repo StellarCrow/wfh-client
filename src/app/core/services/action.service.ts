@@ -32,7 +32,7 @@ export class ActionService implements OnDestroy {
     }
 
     if (this.usersActions === neededActions) {
-      this.gameViewService.setCurrentView(DONE);
+      this.gameViewService.setCurrentView = DONE;
       this.socketService.emit(`finish-${this.gameStage}`, {room: this.dataStore.getRoomCode(), username: this.dataStore.getUserName()});
       this.usersActions = 0;
     }
