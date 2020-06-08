@@ -13,6 +13,8 @@ export const audiofiles = {
   lobby: 'assets/music/lobby.mp3'
 };
 
+export const CLIENT_ID = '29624798464-uqtmjd7f97gs2gm57ns63jmvhmfrghb1.apps.googleusercontent.com';
+
 
 /*
  * For easier debugging in development mode, you can import the following file
