@@ -57,25 +57,24 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.socketService.listen(event)
       .pipe(takeUntil(this.notifier))
       .subscribe((_) => {
-        this.gameViewService.currentView = nextView;
+        this.gameViewService.setCurrentView = nextView;
         this.dataStore.clearFinishedUsers();
-        this.startTimer(75);
+        if (this.gameViewService.getCurrentView === 'tee-vote-view') {
+          this.startTimer(20);
+          return;
+        }
+        this.startTimer(100);
       });
   }
 
   private startTimer(duration: number): void {
     this.duration = duration;
-    console.log('before timer');
     if (!this.timerState) {
-      console.log('right in timer');
       this.dataStore.setTimerState(true);
-      console.log('right before timer');
       this.subscription = interval(1000).subscribe((t) => {
         this.startCount();
       });
-      console.log('right after timer');
     }
-    console.log('after timer');
   }
 
   private listenStartTimer(): void {

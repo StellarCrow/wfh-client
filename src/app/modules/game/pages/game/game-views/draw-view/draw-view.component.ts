@@ -15,6 +15,6 @@ export class DrawViewComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    this.gameViewService.setCurrentView(views.PHRASE);
+    this.gameViewService.setCurrentView = views.PHRASE;
   }
 }
