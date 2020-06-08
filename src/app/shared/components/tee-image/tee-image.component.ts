@@ -7,4 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class TeeImageComponent {
   @Input() fillColor: string;
+  @Input() strokeColor: string = '#231f29';
 }

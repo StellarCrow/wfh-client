@@ -49,9 +49,15 @@
       background-color: darken(#ffc3ae, 10%);
     }
   }
+
+  &__tee-wrapper {
+    transform: rotate(-10deg);
+  }
 }
 
 .tee {
+  transform: rotate(-10deg);
+
   &__body {
     display: flex;
     justify-content: center;
@@ -64,7 +70,7 @@
     background-size: contain;
     z-index: 2;
     margin: 0 auto;
-    transform: rotate(-10deg);
+    @include scale-anim(1.5s, 1.05);
 
     &:hover {
       cursor: pointer;
