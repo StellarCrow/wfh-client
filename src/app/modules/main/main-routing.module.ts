@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {AboutComponent} from './components/about/about.component';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthorizationInterceptor} from '../../core/interceptors/authorization.interceptor';
 import {MainComponent} from './main.component';
 import {SettingsComponent} from './components/settings/settings.component';
 
@@ -25,8 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true}]
+  exports: [RouterModule]
 })
 export class MainRoutingModule {
 }

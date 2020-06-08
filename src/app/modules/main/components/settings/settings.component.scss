@@ -1,5 +1,6 @@
 @import "plugins/variables";
 @import "plugins/mixins";
+@import "plugins/media-mixins";
 
 .settings {
   padding: $padding-welcome-page;
@@ -25,6 +26,10 @@
     background-color: #ffffff;
     box-shadow: 0 0 5px $grey--light;
     max-width: 50%;
+    @include phone {
+      margin: 0 auto;
+      max-width: 80%;
+    }
   }
 }
 

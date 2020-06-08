@@ -15,7 +15,10 @@
   }
 
   &__column {
-    flex: 0 1 33.33%;
+    // flex: 0 1 33.33%;
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 33.33%;
     text-align: center;
     min-height: 100%;
   }
