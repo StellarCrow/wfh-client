@@ -56,7 +56,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
         this.users = data;
       });
     this.configSocketListeners();
-    this.socketService.emit('new-user', {username: this.username, room: this.roomCode});
+    this.socketService.emit('new-user', { username: this.username, room: this.roomCode });
   }
 
   private configSocketListeners(): void {
@@ -81,7 +81,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   private listenGameStarted(): void {
     this.socketService.listen('game-started')
       .pipe(takeUntil(this.notifier))
-      .subscribe((data) => this.router.navigate(['game/play', this.roomCode], {state: {fromLobby: true}}));
+      .subscribe((data) => this.router.navigate(['game/play', this.roomCode], { state: { fromLobby: true, toPlay: true } }));
   }
 
   private listenReconnectUser(): void {
@@ -132,7 +132,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   public startGame() {
-    this.socketService.emit('start-game', {room: this.roomCode});
+    this.socketService.emit('start-game', { room: this.roomCode });
   }
 
 
