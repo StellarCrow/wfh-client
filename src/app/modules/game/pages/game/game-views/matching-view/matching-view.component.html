@@ -11,18 +11,12 @@
 
       <button mat-icon-button class="slider__btn slider__btn--prev" *ngIf="currentPicture !== 0"
         (click)="previousPicture()">
-        <mat-icon class="icon-arrow"></mat-icon>
+        <mat-icon class="icon-arrow arrow"></mat-icon>
       </button>
       <button mat-icon-button class="slider__btn slider__btn--next" *ngIf="currentPicture !== pictures.length - 1"
         (click)="nextPicture()">
-        <mat-icon class="icon-arrow"></mat-icon>
+        <mat-icon class="icon-arrow arrow"></mat-icon>
       </button>
-      <!-- <div class="slider__btn slider__btn--prev" *ngIf="currentPicture !== 0"
-           (click)="previousPicture()">&#10094;
-      </div>
-      <div class="slider__btn slider__btn--next" *ngIf="currentPicture !== pictures.length - 1"
-           (click)="nextPicture()">&#10095;
-      </div> -->
     </div>
 
     <div class="slider">
@@ -35,16 +29,12 @@
 
       <button mat-icon-button class="slider__btn slider__btn--prev" *ngIf="currentPhrase !== 0"
         (click)="previousPhrase()">
-        <mat-icon class="icon-arrow"></mat-icon>
+        <mat-icon class="icon-arrow arrow"></mat-icon>
       </button>
       <button mat-icon-button class="slider__btn slider__btn--next" *ngIf="currentPhrase !== phrases.length - 1"
         (click)="nextPhrase()">
-        <mat-icon class="icon-arrow"></mat-icon>
+        <mat-icon class="icon-arrow arrow"></mat-icon>
       </button>
-      <!-- <div class="slider__btn slider__btn--prev" *ngIf="currentPhrase !== 0" (click)="previousPhrase()">&#10094;</div>
-      <div class="slider__btn slider__btn--next" *ngIf="currentPhrase !== phrases.length - 1" (click)="nextPhrase()">
-        &#10095;
-      </div> -->
     </div>
     <button type="submit" class="submit-btn button" (click)="submit()">Submit</button>
   </div>
