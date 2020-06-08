@@ -5,7 +5,6 @@ import {AuthService} from '../../../../core/services/auth.service';
 import {AlertService} from '../../../../core/services/alert.service';
 import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {SIGNINBACKGROUND, SIGNINBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signin',
@@ -18,10 +17,6 @@ export class SigninComponent implements OnInit {
   public loading = false;
 
   public submitted = false;
-
-  public defaultBackground = SIGNINBACKGROUND;
-
-  public highResBackground = SIGNINBACKGROUND_HD;
 
   constructor(
     private formBuilderSignin: FormBuilder,

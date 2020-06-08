@@ -1,5 +1,8 @@
 <div class="signin">
-  <div class="signin__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground"></div>
+  <video autoplay loop [muted]="true">
+    <source src="/assets/backgrounds/mp4/signIn.mp4" type="video/mp4">
+  </video>
+  <div class="signin__background"></div>
   <mat-card-content class="signin__list">
     <mat-card-title class="signin__title">Sign In</mat-card-title>
 

@@ -4,7 +4,15 @@
 .signin {
   display: flex;
   height: 100vh;
-
+  video {
+    object-fit: cover;
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+    
   &__background {
     background: no-repeat center center / cover;
     width: 50%;

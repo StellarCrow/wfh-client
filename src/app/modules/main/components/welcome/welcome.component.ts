@@ -6,7 +6,6 @@ import {Subject} from 'rxjs';
 import {ModalJoinRoomComponent} from '../modal-join-room/modal-join-room.component';
 import {SocketService} from '../../../game/services/socket.service';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {WELCOMEBACKGROUND, WELCOMEBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +16,6 @@ export class WelcomeComponent implements OnDestroy {
   public roomCode: string;
 
   private notifier = new Subject();
-
-  public defaultBackground = WELCOMEBACKGROUND;
-
-  public highResBackground = WELCOMEBACKGROUND_HD;
 
   public fillColor: string = "#fcfbf9";
 

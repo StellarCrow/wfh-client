@@ -2,6 +2,16 @@
 @import "plugins/mixins";
 @import "plugins/media-mixins";
 
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: scaleX(-1);
+  }
+  
 .welcome {
   min-height: 100vh;
   position: relative;

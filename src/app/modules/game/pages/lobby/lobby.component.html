@@ -1,5 +1,8 @@
 <div class="lobby">
-  <div class="lobby__container" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground">
+  <video autoplay loop [muted]="true">
+    <source src="/assets/backgrounds/mp4/lobby.mp4" type="video/mp4">
+  </video>
+  <div class="lobby__container">
     <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>

@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth.service';
 import {AlertService} from '../../../../core/services/alert.service';
 import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
-import {SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signup',
@@ -18,11 +17,6 @@ export class SignupComponent implements OnInit {
   public loading = false;
 
   public submitted = false;
-
-  public defaultBackground = SIGNUPBACKGROUND;
-
-  public highResBackground = SIGNUPBACKGROUND_HD;
-
 
   constructor(
     private formBuilderSignup: FormBuilder,

@@ -6,7 +6,6 @@ import {SocketService} from '../../services/socket.service';
 import {ISocket} from '../../interfaces/isocket';
 import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
-import {LOBBYBACKGROUND, LOBBYBACKGROUND_HD} from '../../constants/backgrounds';
 import {AudioService} from '../../services/audio.service';
 import {audiofiles} from '../../../../../environments/environment';
 
@@ -31,10 +30,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
   public notifier = new Subject();
   public waveHeight: number;
   public elementsCount: number;
-
-  public defaultBackground = LOBBYBACKGROUND;
-
-  public highResBackground = LOBBYBACKGROUND_HD;
 
   constructor(
     private socketService: SocketService,
