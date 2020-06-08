@@ -22,6 +22,10 @@ export class GameLeaveGuard implements CanDeactivate<Observable<any>> {
   canDeactivate(component: any, currentRoute: ActivatedRouteSnapshot,
                 currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot) {
     const isRoomDeleted = this.router.getCurrentNavigation().extras.state && this.router.getCurrentNavigation().extras.state.roomDeleted;
+    const toPlayroom = this.router.getCurrentNavigation().extras.state && this.router.getCurrentNavigation().extras.state.toPlay;
+    if (toPlayroom) {
+      return true;
+    }
     if (isRoomDeleted) {
       this.dialog.open(ModalRoomDeletedComponent, { panelClass: 'custom-dialog', maxWidth: '40%' });
       return true;

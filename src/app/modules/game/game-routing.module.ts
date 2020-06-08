@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     component: GameCoreComponent,
     children: [
-      {path: 'lobby/:id', component: LobbyComponent, pathMatch: 'full'},
+      {path: 'lobby/:id', component: LobbyComponent, pathMatch: 'full', canDeactivate: [GameLeaveGuard]},
       {path: 'play/:id', component: GameComponent, canDeactivate: [GameLeaveGuard], canActivate: [GameEnterGuard]}
     ]
   }
