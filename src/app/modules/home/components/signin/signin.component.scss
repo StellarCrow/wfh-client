@@ -59,9 +59,14 @@
     display: block;
     width: 80%;
     margin: 1rem auto;
+    padding: 0.6em 0;
     color: $black;
-    border: 1px solid $grey-dark;
-    font-family: "Roboto", sans-serif;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    font-weight: $semi-bold;
+    font-family: $ff-primary;
+
     @include  hugeScreen {
       font-size: 2em;
     }

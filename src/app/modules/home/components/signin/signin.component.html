@@ -27,15 +27,16 @@
         <alert></alert>
       </div>
 
-      <button mat-raised-button color="primary" class="signin__button signin__button-submit button"
+      <button mat-plain-button color="primary" class="signin__button signin__button-submit button"
               [disabled]="loading">
         <span *ngIf="loading"></span>
         Sign In
       </button>
-      <button mat-raised-button color="primary" class="signin__button signin__button-google button">
-        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-        Login with Google
-      </button>
+      <app-google-auth-button></app-google-auth-button>
+<!--      <button mat-raised-button color="primary" class="signin__button signin__button-google button">-->
+<!--        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>-->
+<!--        Login with Google-->
+<!--      </button>-->
     </form>
   </mat-card-content>
 </div>
