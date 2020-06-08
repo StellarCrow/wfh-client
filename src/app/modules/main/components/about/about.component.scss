@@ -130,12 +130,5 @@
     &:hover {
       color: darken(#83c6f7, 10%);
     }
-    &::after {
-      content: "";
-      display: block;
-      height: 10px;
-      border-radius: 0.2rem;
-      background-color: $quaternary-color;
-    }
   }
 }

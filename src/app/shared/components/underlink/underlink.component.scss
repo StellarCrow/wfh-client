@@ -1,0 +1,27 @@
+
+@import "plugins/variables";
+
+.underlink {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  z-index: 0;
+  // &:hover {
+  //   color: lighten(inherit, 10%);
+  // }
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 60%;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: 0;
+    transition: top 0.2s cubic-bezier(0, 0.8, 0.13, 1);
+    background-color: $quaternary-color;
+  }
+  &:hover:after {
+    top: 0%;
+  }
+}

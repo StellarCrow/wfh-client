@@ -1,6 +1,6 @@
 <div class="lobby">
   <div class="lobby__container" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground">
-    <nav class="lobby__back" [routerLink]="['/main/welcome']">Back</nav>
+    <app-router-underlink class="lobby__back" [link]="'/main/welcome'" [content]="'Back'"></app-router-underlink>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>
       <div class="join__code-wrapper">
