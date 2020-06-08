@@ -10,7 +10,7 @@
   padding: $padding-welcome-page;
   box-sizing: border-box;
   @include tablet {
-    padding: 200px 4% 4%;
+    padding: 120px 4% 0;
   }
 
   &__title {
@@ -26,7 +26,6 @@
 
   &__heading {
     @include text-stroke();
-    max-width: 30%;
     margin: 0 auto;
     text-align: center;
     font-size: 2em;
@@ -73,8 +72,6 @@
 }
 
 .game {
-  // background: url(/assets/images/shirt.png) no-repeat left top / contain;
-  // padding: $padding-top-bottom $padding-left-right;
   &__container {
     @include phone {
       margin-top: 30vw;
@@ -103,7 +100,7 @@
   }
 
   &__description {
-    font-family: $ff-secondary;
+    font-family: $ff-secondary; // $ff-primary;
     margin-bottom: 2em;
     @include phone {
       margin-bottom: 1.8em;
