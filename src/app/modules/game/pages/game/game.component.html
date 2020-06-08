@@ -1,5 +1,5 @@
 <div class="game">
-  <div class="game__column game__left-column">
+  <div class="game__column game__column--left">
     <div class="game__room-code">
       <app-room-code></app-room-code>
     </div>
@@ -22,7 +22,7 @@
 
     </div>
   </div>
-  <div class="game__column game__centeral-column">
+  <div class="game__column game__column--central">
     <div *ngIf="gameStage !== 'finish'" class="game__timer">
       <app-timer></app-timer>
       <!--Timer component-->
@@ -38,7 +38,7 @@
   </div>
 
 
-  <div class="game__column game__right-column">
+  <div class="game__column game__column--right">
     <div class="game__chat">
 
       <!--Chat component-->
