@@ -3,7 +3,7 @@
     <source src="/assets/backgrounds/mp4/lobby.mp4" type="video/mp4">
   </video>
   <div class="lobby__container">
-    <nav class="lobby__back" [routerLink]="['/main/welcome']">< Back</nav>
+    <app-router-underlink class="lobby__back" [link]="'/main/welcome'" [content]="'Back'"></app-router-underlink>
     <div class="lobby__join join">
       <span class="join__message" *ngIf="!errorMessage">Join at </span>
       <div class="join__code-wrapper">
