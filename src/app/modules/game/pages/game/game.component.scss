@@ -1,4 +1,5 @@
 @import "plugins/variables";
+@import "plugins/media-mixins";
 
 .game {
   display: flex;
@@ -6,6 +7,15 @@
   position: relative;
   background: url(/assets/backgrounds/game-background.jpg) no-repeat fixed center center / cover;
   min-height: 100vh;
+  @include phone {
+    display: grid;
+    grid-template-areas: "center center" "left right";
+  }
+  @include tablet {
+    display: grid;
+    grid-template-areas: "center center" "left right";
+  }
+
 
   &__room-code {
     position: absolute;
@@ -21,6 +31,42 @@
     width: 33.33%;
     text-align: center;
     min-height: 100%;
+    @include tablet {
+      min-height: 0;
+    }
+    &--left {
+      grid-area: left;
+      @include phone {
+        width: 100%;
+        max-width: 45vw;
+      }
+      @include tablet {
+        width: 100%;
+        max-width: 45vw;
+        padding: 10% 0;
+      }
+    }
+    &--central {
+      grid-area: center;
+      @include phone {
+        width: 100%;
+      }
+      @include tablet {
+        width: 100%;
+      }
+    }
+    &--right{
+      grid-area: right;
+      @include phone {
+        width: 100%;
+        max-width: 45vw;
+      }
+      @include tablet {
+        width: 100%;
+        max-width: 45vw;
+        padding: 10% 0;
+      }
+    }
   }
 
   &__slogan {
@@ -37,6 +83,16 @@
   &__chat {
     max-width: 80%;
     margin: 0 auto;
+    @include phone {
+      width: 90%;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    @include tablet {
+      width: 90%;
+      max-width: 90%;
+      margin: 0 auto;
+    }
   }
 
   &__players {
@@ -54,6 +110,7 @@
   margin: 0;
   padding: 0;
   transition: transform 0.3s;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -61,17 +118,38 @@
 
 .hideButton.left {
   left: 0;
+  @include phone {
+    display: none;
+  }
+  @include tablet {
+    display: none;
+  }
 }
 
 .hideButton.right {
   right: 0;
+  @include phone {
+    display: none;
+  }
+  @include tablet {
+    display: none;
+  }
 }
 
 .showButton.left, .hideButton.right {
   transform: scaleX(-1);
+
   &:hover {
     transform: scaleX(-1.05) scaleY(1.05);
   }
+}
+
+.right {
+  right: 25px;
+}
+
+.left {
+  left: 25px;
 }
 
 .mat-sidenav-container,
@@ -81,3 +159,4 @@
   background: transparent;
   min-height: 100%;
 }
+

@@ -5,11 +5,14 @@
   display: flex;
   height: 100vh;
 
-  &__background {
-    background: no-repeat center center / cover;
-    width: 50%;
-    height: 100%;
-  }
+  video {
+    object-fit: cover;
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    }
 
   &__list {
     margin-top: 7%;

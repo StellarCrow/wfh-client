@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {GameRoutingModule} from './game-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {LobbyComponent} from './pages/lobby/lobby.component';
@@ -57,7 +56,6 @@ import { AudioPlayerComponent } from './components/audio-player/audio-player.com
     GameRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    LazyLoadImageModule,
   ],
 })
 export class GameModule {
