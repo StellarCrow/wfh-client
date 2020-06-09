@@ -31,27 +31,29 @@
       margin-top: 0;
     }
   }
+}
 
-  &__player, .player {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 6em;
-    height: 6em;
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  background-color: #fae89e;
+  margin: 5%;
+  border: 4px solid transparent;
+
+  &--is-finished {
+    border: 4px solid $tertiary-color--darker;
+  }
+
+  &__video,
+  &__avatar {
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
-    background-color: #fae89e;
-    margin: 5%;
-
-    &--is-finished {
-      border: 2px solid $light-green;
-    }
-
-    &__avatar {
-      width: 80%;
-      height: 80%;
-      border-radius: 50%;
-      background-color: #dbfbf8;
-      border: 3px solid #2c2828;
-    }
+    background-color: #dbfbf8;
+    border: 3px solid #2c2828;
   }
 }

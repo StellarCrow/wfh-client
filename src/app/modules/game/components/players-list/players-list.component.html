@@ -7,11 +7,13 @@
     class="players-list__user-video"
   ></video>
 
-  <ul *ngFor="let peer of peerService.peers" class="players-list">
-    <li class="players-list__player player">
-      <div class="player__avatar">
-        <app-video [peer]="peer"></app-video>
+  <ul class="players-list">
+    <li *ngFor="let user of users" class="players-list__player player"
+      [class.player--is-finished]="finishedUsers.includes(user.username)">
+      <div class="player__video" *ngIf="user.peerData">
+        <app-video [peerData]="user.peerData"></app-video>
       </div>
+      <img *ngIf="!user.peerData" src="{{user.avatar}}" alt="{{user.username + ' avatar'}}">
     </li>
   </ul>
 </div>

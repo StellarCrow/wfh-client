@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Peer from 'simple-peer';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {IPlayer} from '../../../../shared/interfaces/iplayer';
 import {PeerService} from '../../services/peer.service';
 import {SocketService} from '../../services/socket.service';
+import {IPeerPlayer} from '../../interfaces/ipeer-player';
 
 @Component({
   selector: 'app-players-list',
@@ -11,7 +11,7 @@ import {SocketService} from '../../services/socket.service';
   styleUrls: ['./players-list.component.scss'],
 })
 export class PlayersListComponent implements OnInit, AfterViewInit {
-  public users: IPlayer[];
+  public users: IPeerPlayer[];
   public finishedUsers: string[];
   public roomCode: string;
 
@@ -29,7 +29,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.users = this.dataStore.getRoomsUsers();
+    this.users = this.dataStore.getRoomsUsers().map(user => ({...user, peerData: null}));
     this.finishedUsers = this.dataStore.getFinishedUsers();
     this.roomCode = this.dataStore.getRoomCode();
   }
@@ -48,24 +48,29 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
         const socketID = this.socketService.socket.id;
 
         this.socketService.on('all-peers', ({payload}) => {
-          console.log((`Received all peers to meet, creating myself ${socketID}`));
-          console.log(payload.peerIDs);
+          // console.log((`Received all peers to meet, creating myself ${socketID}`));
 
           payload.peerIDs.forEach(peerID => {
             const peer = this.createPeer(peerID, socketID, stream);
             this.peerService.peers.push({id: peerID, data: peer});
+
+            const index = this.users.findIndex(user => user.socketId === peerID);
+            this.users[index].peerData = peer;
           });
         });
 
         this.socketService.on('peer-joined', ({payload}) => {
-          console.log((`Heard of a peer ${payload.callerID} joining, creating them`));
+          // console.log((`Heard of a peer ${payload.callerID} joining, creating them`));
 
           const peer = this.addPeer(payload.signal, payload.callerID, stream);
           this.peerService.peers.push({id: payload.callerID, data: peer});
+
+          const index = this.users.findIndex(user => user.socketId === payload.callerID);
+          this.users[index].peerData = peer;
         });
 
         this.socketService.on('received-return-signal', ({payload}) => {
-          console.log((`Heard that ${payload.id} received my signal and sent it back`));
+          // console.log((`Heard that ${payload.id} received my signal and sent it back`));
 
           // find correct peer to signal to
           const peer = this.peerService.findPeer(payload.id);
@@ -73,10 +78,12 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
         });
 
         this.socketService.on('peer-disconnected', ({payload}) => {
-          console.log(`Heard that peer ${payload.id} disconnected`);
+          // console.log(`Heard that peer ${payload.id} disconnected`);
 
           this.peerService.removePeer(payload.id);
           this.peerService.destroyPeer(payload.id);
+
+          this.users = this.users.filter(user => user.socketId !== payload.id);
         });
 
         this.socketService.emit('join-room', {roomCode: this.roomCode});
@@ -91,7 +98,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
    * @param stream - your stream of peer data
    */
   createPeer(userToSignal, callerID, stream) {
-    console.log(`Establishing myself ${callerID} and sending signals to ${userToSignal}`);
+    // console.log(`Establishing myself ${callerID} and sending signals to ${userToSignal}`);
     const peer = new Peer({
       initiator: true,
       trickle: false,
@@ -113,7 +120,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
    * @param stream - new peer's stream of peer data
    */
   addPeer(incomingSignal, callerID, stream) {
-    console.log(`Adding another peer ${callerID} and returning them their signal`);
+    // console.log(`Adding another peer ${callerID} and returning them their signal`);
     const peer = new Peer({
       initiator: false,
       trickle: false,
@@ -131,4 +138,7 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     return peer;
   }
 
+  isMySocket(socketID): boolean {
+    return this.socketService.socket.id === socketID;
+  }
 }
