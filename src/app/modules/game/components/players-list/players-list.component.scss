@@ -31,6 +31,13 @@
       margin-top: 0;
     }
   }
+
+  &__current-user {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 4px solid transparent;
+  }
 }
 
 .player {
@@ -55,5 +62,9 @@
     border-radius: 50%;
     background-color: #dbfbf8;
     border: 3px solid #2c2828;
+  }
+
+  & > img {
+    border-radius: 50%;
   }
 }
