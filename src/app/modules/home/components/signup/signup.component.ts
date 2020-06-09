@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output,} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth.service';
-import {AlertService} from '../../../../core/services/alert.service';
-import {IRegisterResponse} from '../../../../shared/interfaces/iregister-response';
-import {SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD} from '../../constants/backgrounds';
+import {
+  Component, EventEmitter, OnInit, Output, ViewChild,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth.service';
+import { AlertService } from '../../../../core/services/alert.service';
+import { IRegisterResponse } from '../../../../shared/interfaces/iregister-response';
 
 @Component({
   selector: 'app-signup',
@@ -13,22 +14,23 @@ import {SIGNUPBACKGROUND, SIGNUPBACKGROUND_HD} from '../../constants/backgrounds
 export class SignupComponent implements OnInit {
   @Output() signupEvent = new EventEmitter();
 
+  @ViewChild('videoSignUp') video;
+
   public signupForm: FormGroup;
 
   public loading = false;
 
   public submitted = false;
 
-  public defaultBackground = SIGNUPBACKGROUND;
-
-  public highResBackground = SIGNUPBACKGROUND_HD;
-
-
   constructor(
     private formBuilderSignup: FormBuilder,
     private authService: AuthService,
     private alertService: AlertService,
   ) {
+  }
+
+  public playVideo() {
+    this.video.nativeElement.play();
   }
 
   public ngOnInit() {

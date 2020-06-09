@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth.service';
 import {AlertService} from '../../../../core/services/alert.service';
 import {ILoginResponse} from '../../../../shared/interfaces/i-login-response';
 import {DataStoreService} from '../../../../core/services/data-store.service';
-import {SIGNINBACKGROUND, SIGNINBACKGROUND_HD} from '../../constants/backgrounds';
 
 @Component({
   selector: 'app-signin',
@@ -13,15 +12,13 @@ import {SIGNINBACKGROUND, SIGNINBACKGROUND_HD} from '../../constants/backgrounds
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
+  @ViewChild ('videoSignIn') video;
+
   public signinForm: FormGroup;
 
   public loading = false;
 
   public submitted = false;
-
-  public defaultBackground = SIGNINBACKGROUND;
-
-  public highResBackground = SIGNINBACKGROUND_HD;
 
   constructor(
     private formBuilderSignin: FormBuilder,
@@ -37,6 +34,10 @@ export class SigninComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.min(6)]],
     });
+  }
+
+  public playVideo() {
+    this.video.nativeElement.play();
   }
 
   get getSigninControls() {

@@ -1,5 +1,8 @@
-<div class="signin">
-  <div class="signin__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground"></div>
+<div class="signin" (mousemove)="playVideo()">
+  <video autoplay loop [muted]="true" #videoSignIn>
+    <source src="/assets/backgrounds/mp4/signIn.mp4" type="video/mp4">
+  </video>
+  <div class="signin__background"></div>
   <mat-card-content class="signin__list">
     <mat-card-title class="signin__title">Sign In</mat-card-title>
 
@@ -27,15 +30,12 @@
         <alert></alert>
       </div>
 
-      <button mat-raised-button color="primary" class="signin__button signin__button-submit button"
+      <button mat-plain-button color="primary" class="signin__button signin__button-submit button"
               [disabled]="loading">
         <span *ngIf="loading"></span>
         Sign In
       </button>
-      <button mat-raised-button color="primary" class="signin__button signin__button-google button">
-        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-        Login with Google
-      </button>
     </form>
+    <app-google-auth-button></app-google-auth-button>
   </mat-card-content>
 </div>

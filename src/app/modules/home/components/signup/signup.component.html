@@ -1,4 +1,7 @@
-<div class="signup">
+<div class="signup" (mousemove)="playVideo()">
+  <video autoplay loop [muted]="true" #videoSignUp>
+    <source src="/assets/backgrounds/mp4/signUp.mp4" type="video/mp4">
+  </video>
   <mat-card-content class="signup__list">
     <mat-card-title class="signup__title">Sign Up</mat-card-title>
 
@@ -39,11 +42,10 @@
         <alert></alert>
       </div>
 
-      <button mat-raised-button color="primary" class="signup__button button" [disabled]="loading">
+      <button mat-plain-button color="primary" class="signup__button button" [disabled]="loading">
         <span *ngIf="loading"></span>
         Sign Up
       </button>
     </form>
   </mat-card-content>
-  <div class="signup__background" [defaultImage]="defaultBackground" [lazyLoad]="highResBackground"></div>
 </div>

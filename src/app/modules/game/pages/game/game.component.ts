@@ -80,7 +80,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.listenUserFinishAction('user-finish-matching');
     this.listenUserFinishAction('user-finish-voting');
     this.dataStore.setGameStage(Stages.painting);
-    this.viewService.setCurrentView(DRAW);
+    this.viewService.setCurrentView = DRAW;
   }
 
 

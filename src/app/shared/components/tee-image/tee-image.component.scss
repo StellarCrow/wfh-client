@@ -1,7 +1,7 @@
 @import "plugins/media-mixins";
 
 .tee-image {
-  height: 100%;
+  height: auto;
   @include phone {
     height: auto;
   }

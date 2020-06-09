@@ -2,8 +2,18 @@
 @import "plugins/mixins";
 @import "plugins/media-mixins";
 
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: scaleX(-1);
+  }
+  
 .welcome {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   background: no-repeat center center / cover;
   transform: scaleX(-1);
@@ -21,7 +31,7 @@
 
   &__container {
     transform: scaleX(-1);
-    align-self: stretch;
+    align-self: stretch;  
   }
 
   &__heading {
@@ -49,7 +59,6 @@
     max-width: 30%;
     @include phone {
       max-width: 70%;
-      padding: 0 15% 15% 0;
     }
     @include tablet {
       max-width: 70%;
@@ -59,11 +68,10 @@
 
 .tee {
   position: absolute;
-  width: 34%;
+  width: 35%;
   z-index: -1;
   @include phone {
     width: $tee-phone-width;
-    margin-top: 13vw;
   }
   @include tablet {
     width: $tee-tabled-width;
@@ -74,7 +82,7 @@
 .game {
   &__container {
     @include phone {
-      margin-top: 30vw;
+      margin-top: 10vw;
     }
   }
 
@@ -101,7 +109,7 @@
 
   &__description {
     font-family: $ff-secondary; // $ff-primary;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     @include phone {
       margin-bottom: 1.8em;
       font-size: .9em;

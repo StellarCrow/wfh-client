@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {MainRoutingModule} from './main-routing.module';
 import {MainComponent} from './main.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
@@ -30,7 +29,6 @@ import {FormUploadFileComponent} from './components/form-upload-file/form-upload
     MainRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    LazyLoadImageModule,
   ],
 })
 export class MainModule {
