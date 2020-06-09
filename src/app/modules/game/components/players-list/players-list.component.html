@@ -15,7 +15,7 @@
       <div class="player__video" *ngIf="user.peerData">
         <app-video [peerData]="user.peerData"></app-video>
       </div>
-      <img *ngIf="!user.peerData" src="{{user.avatar}}" alt="{{user.username + ' avatar'}}">
+      <img сlass="player__avatar" *ngIf="!user.peerData" src="{{user.avatar}}" alt="{{user.username + ' avatar'}}">
     </li>
   </ul>
 </div>

@@ -52,6 +52,9 @@ export class TeeVoteViewComponent implements OnInit {
         this.setVotingStage();
       }
 
+      console.log('received payload');
+      console.log(payload)
+
       this.leftTee = payload[0];
       this.rightTee = payload[1];
     });
