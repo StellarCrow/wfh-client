@@ -1,11 +1,13 @@
 <div class="players-list__container">
   <video
+    *ngIf="hasVideo"
     muted
     autoplay
     playsinline
     #userVideo
     class="players-list__user-video"
   ></video>
+  <img *ngIf="!hasVideo" src="{{currentUser.avatar}}" alt="{{'my avatar'}}">
 
   <ul class="players-list">
     <li *ngFor="let user of users" class="players-list__player player"

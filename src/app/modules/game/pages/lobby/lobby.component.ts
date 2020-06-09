@@ -8,6 +8,7 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
 import {IPlayer} from '../../../../shared/interfaces/iplayer';
 import {AudioService} from '../../services/audio.service';
 import {audiofiles} from '../../../../../environments/environment';
+import {LocalStorageService} from 'src/app/core/services/local-storage.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   public errorMessage: string;
 
   public username: string;
+  public avatar: string;
 
   public gameReady: boolean;
 
@@ -35,10 +37,12 @@ export class LobbyComponent implements OnInit, OnDestroy {
     private socketService: SocketService,
     private dataStore: DataStoreService,
     private router: Router,
-    private audioService: AudioService
+    private audioService: AudioService,
+    private lSS: LocalStorageService
   ) {
     this.roomCode = this.dataStore.getRoomCode();
     this.username = this.dataStore.getUserName();
+    this.avatar = this.lSS.getItem('user').avatar;
     this.waveHeight = 5;
     this.elementsCount = Math.floor(window.innerHeight / this.waveHeight);
   }
@@ -51,7 +55,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
         this.users = data;
       });
     this.configSocketListeners();
-    this.socketService.emit('new-user', { username: this.username, room: this.roomCode });
+    this.socketService.emit('new-user', { username: this.username, room: this.roomCode, avatar: this.avatar });
   }
 
   private configSocketListeners(): void {

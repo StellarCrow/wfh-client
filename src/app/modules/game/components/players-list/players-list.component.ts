@@ -4,6 +4,7 @@ import {DataStoreService} from '../../../../core/services/data-store.service';
 import {PeerService} from '../../services/peer.service';
 import {SocketService} from '../../services/socket.service';
 import {IPeerPlayer} from '../../interfaces/ipeer-player';
+import {IPlayer} from 'src/app/shared/interfaces/iplayer';
 
 @Component({
   selector: 'app-players-list',
@@ -12,8 +13,11 @@ import {IPeerPlayer} from '../../interfaces/ipeer-player';
 })
 export class PlayersListComponent implements OnInit, AfterViewInit {
   public users: IPeerPlayer[];
+  public currentUser: IPlayer;
   public finishedUsers: string[];
   public roomCode: string;
+  public socketId: string;
+  public hasVideo: boolean = true;
 
   @ViewChild('userVideo') userVideo: ElementRef;
 
@@ -29,9 +33,13 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.users = this.dataStore.getRoomsUsers().map(user => ({...user, peerData: null}));
-    this.finishedUsers = this.dataStore.getFinishedUsers();
     this.roomCode = this.dataStore.getRoomCode();
+    this.socketId = this.socketService.socket.id;
+    this.users = this.dataStore
+      .getPlayersWithoutMe(this.socketId)
+      .map(user => ({...user, peerData: null}));
+    this.finishedUsers = this.dataStore.getFinishedUsers();
+    this.currentUser = this.dataStore.getCurrentPlayer(this.socketId);
   }
 
   ngAfterViewInit(): void {
@@ -45,13 +53,11 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
         this.uv.srcObject = stream;
         this.uv.muted = true;
 
-        const socketID = this.socketService.socket.id;
-
         this.socketService.on('all-peers', ({payload}) => {
-          // console.log((`Received all peers to meet, creating myself ${socketID}`));
+          // console.log((`Received all peers to meet, creating myself ${this.socketId}`));
 
           payload.peerIDs.forEach(peerID => {
-            const peer = this.createPeer(peerID, socketID, stream);
+            const peer = this.createPeer(peerID, this.socketId, stream);
             this.peerService.peers.push({id: peerID, data: peer});
 
             const index = this.users.findIndex(user => user.socketId === peerID);
@@ -87,6 +93,10 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
         });
 
         this.socketService.emit('join-room', {roomCode: this.roomCode});
+      })
+      .catch((err) => {
+        console.log(err, 'No user media present, check your webcam.');
+        this.hasVideo = false;
       });
   }
 
@@ -136,9 +146,5 @@ export class PlayersListComponent implements OnInit, AfterViewInit {
     peer.signal(incomingSignal);
 
     return peer;
-  }
-
-  isMySocket(socketID): boolean {
-    return this.socketService.socket.id === socketID;
   }
 }
