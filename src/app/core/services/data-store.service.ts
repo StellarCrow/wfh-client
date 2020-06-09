@@ -25,6 +25,14 @@ export class DataStoreService {
     return this.currentUser;
   }
 
+  public getCurrentPlayer(socketId: string): IPlayer {
+    return this.users.find(user => user.socketId === socketId);
+  }
+
+  public getPlayersWithoutMe(socketId: string): IPlayer[] {
+    return this.users.filter(user => user.socketId !== socketId);
+  }
+
   public setCurrentUser(user: IUser) {
     this.currentUser = user;
   }

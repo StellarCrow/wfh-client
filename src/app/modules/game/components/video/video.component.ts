@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {IWSPeer} from '../../interfaces/iwspeer';
+import Peer from 'simple-peer';
 
 @Component({
   selector: 'app-video',
@@ -9,7 +9,7 @@ import {IWSPeer} from '../../interfaces/iwspeer';
 export class VideoComponent implements OnInit {
   isMuted = false;
 
-  @Input() peer: IWSPeer;
+  @Input() peerData: Peer;
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
   get vp(): any {
@@ -17,7 +17,7 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.peer.data.on('stream', (stream: MediaStream) => {
+    this.peerData.on('stream', (stream: MediaStream) => {
       this.vp.srcObject = stream;
     });
   }
