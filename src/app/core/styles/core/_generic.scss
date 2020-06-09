@@ -6,6 +6,7 @@ body {
   box-sizing: border-box;
   font-size: $base-font-size;
   font-family: $ff-primary;
+  overscroll-behavior: none;
 
   @media (min-width: $bp-medium) {
     font-size: $base-font-size * 1.2;
