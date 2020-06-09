@@ -13,8 +13,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./tee-vote-view.component.scss']
 })
 export class TeeVoteViewComponent implements OnInit {
-  public hasVoted: boolean;
-
   public leftTee: ITee;
   public rightTee: ITee;
 
@@ -38,7 +36,6 @@ export class TeeVoteViewComponent implements OnInit {
 
   private setVotingStage(): void {
     this.dataStore.setGameStage(Stages.voting);
-    this.hasVoted = false;
   }
 
   private initVote(): void {
@@ -47,14 +44,6 @@ export class TeeVoteViewComponent implements OnInit {
 
   private listenReceiveTeePair() {
     this.socketService.listen('send-vote-tees').subscribe(({payload}) => {
-      if (this.hasVoted) {
-        console.log('Re-Setting the stage', this.hasVoted);
-        this.setVotingStage();
-      }
-
-      console.log('received payload');
-      console.log(payload)
-
       this.leftTee = payload[0];
       this.rightTee = payload[1];
     });
@@ -69,7 +58,6 @@ export class TeeVoteViewComponent implements OnInit {
   }
 
   private submitVote(winner: ITee) {
-    this.hasVoted = true;
     const username = this.dataStore.getUserName();
     const room = this.dataStore.getRoomCode();
 

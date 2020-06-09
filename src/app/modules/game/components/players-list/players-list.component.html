@@ -7,7 +7,8 @@
     #userVideo
     class="players-list__user-video"
   ></video>
-  <img *ngIf="!hasVideo" src="{{currentUser.avatar}}" alt="{{'my avatar'}}">
+  <img *ngIf="!hasVideo" src="{{currentUser.avatar}}" alt="{{'my avatar'}}" class="players-list__current-user"
+    [class.player--is-finished]="finishedUsers.includes(currentUser.username)">
 
   <ul class="players-list">
     <li *ngFor="let user of users" class="players-list__player player"
