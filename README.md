@@ -83,7 +83,6 @@ If You've already gone through installing the Back-end part, you can skip the fi
 ---|---|---|---|---|---
 [Daria Diachuk](https://github.com/StellarCrow) |[Maksym Koval](https://github.com/maxonchil) |[Nataliia Mogylchuk](https://github.com/nmogylchuk)|[Denys Stetsenko](https://github.com/oddestdan) |[Oleksandr Bezdorozhev](https://github.com/lightcraf)|[Mykyta Hlukhov](https://github.com/nikitahlukhov)
 
-
 <br>
 
 ## Documentation
